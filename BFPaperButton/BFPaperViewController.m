@@ -43,7 +43,7 @@
     
     BFPaperButton *bfFlatSmart = [[BFPaperButton alloc] initFlatWithFrame:CGRectMake(20, 20, 280, 43)];
     [bfFlatSmart setTitle:@"BFPaperButton Flat: Smart Color" forState:UIControlStateNormal];
-    bfFlatSmart.backgroundColor = [UIColor paperColorGray600];
+    bfFlatSmart.backgroundColor = [UIColor paperColorGray600];  // This is from the included cocoapod "UIColor+BFPaperColors".
     [bfFlatSmart setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [bfFlatSmart setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     [bfFlatSmart addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -53,7 +53,7 @@
     BFPaperButton *bfFlatDumb = [[BFPaperButton alloc] initFlatWithFrame:CGRectMake(20, 71, 280, 43)];
     bfFlatDumb.usesSmartColor = NO;
     [bfFlatDumb setTitle:@"BFPaperButton Flat: !Smart Color" forState:UIControlStateNormal];
-    bfFlatDumb.backgroundColor = [UIColor paperColorGray600];
+    bfFlatDumb.backgroundColor = [UIColor paperColorGray600];   // This is from the included cocoapod "UIColor+BFPaperColors".
     [bfFlatDumb setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [bfFlatDumb setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     [bfFlatDumb addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
