@@ -72,25 +72,18 @@ bfFlatSmart.backgroundColor = [UIColor paperColorGray600];	// This is from the i
 ```
 
 ## Customized Example
-`   BFPaperButton *bfFlatCustom = [[BFPaperButton alloc] initFlatWithFrame:CGRectMake(20, 511, 280, 43)]; 
-    
-    [bfFlatCustom setTitle:@"BFPaperButton Flat: Customized" forState:UIControlStateNormal];
-    
-    [bfFlatCustom setTitleColor:[UIColor colorWithRed:1 green:0 blue:1 alpha:1] forState:UIControlStateNormal];
-    
-    [bfFlatCustom setTitleColor:[UIColor colorWithRed:1 green:0 blue:1 alpha:1] forState:UIControlStateHighlighted];
-    
-    [bfFlatCustom addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
-    
-    bfFlatCustom.cornerRadius = 20;
-    
-    bfFlatCustom.tapCircleDiameter = bfPaperButton_tapCircleDiameterLarge;
-    
-    bfFlatCustom.tapCircleColor = [UIColor colorWithRed:0.3 green:0 blue:1 alpha:0.6];  // Setting this color overrides "Smart Color".
-    
-    bfFlatCustom.backgroundFadeColor = [UIColor colorWithRed:1 green:0 blue:1 alpha:1]; // Setting this color overrides "Smart Color".
-    
-    [self.view addSubview:bfFlatCustom];`
+```smalltalk
+BFPaperButton *bfFlatCustom = [[BFPaperButton alloc] initFlatWithFrame:CGRectMake(20, 511, 280, 43)];     
+[bfFlatCustom setTitle:@"BFPaperButton Flat: Customized" forState:UIControlStateNormal];
+[bfFlatCustom setTitleColor:[UIColor colorWithRed:1 green:0 blue:1 alpha:1] forState:UIControlStateNormal];
+[bfFlatCustom setTitleColor:[UIColor colorWithRed:1 green:0 blue:1 alpha:1] forState:UIControlStateHighlighted];
+[bfFlatCustom addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
+bfFlatCustom.cornerRadius = 20;
+bfFlatCustom.tapCircleDiameter = bfPaperButton_tapCircleDiameterLarge;
+bfFlatCustom.tapCircleColor = [UIColor colorWithRed:0.3 green:0 blue:1 alpha:0.6];  // Setting this color overrides "Smart Color".
+bfFlatCustom.backgroundFadeColor = [UIColor colorWithRed:1 green:0 blue:1 alpha:1]; // Setting this color overrides "Smart Color".
+[self.view addSubview:bfFlatCustom];
+```
   
 
 
