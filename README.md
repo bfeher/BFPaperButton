@@ -55,10 +55,14 @@ Usage
 Add the _BFPaperButton_ header and implementation file to your project. (.h & .m)
 
 ## Creating a Flat BFPaperButton
-`BFPaperButton *flatPaperButton = [[BFPaperButton alloc] initFlatWithFrame:rect];`
+```objective-c
+BFPaperButton *flatPaperButton = [[BFPaperButton alloc] initFlatWithFrame:rect];
+```objective-c
 
 ## Creating a Raised BFPaperButton
-`BFPaperButton *raisedPaperButton = [[BFPaperButton alloc] initRaisedWithFrame:rect];`
+```objective-c
+BFPaperButton *raisedPaperButton = [[BFPaperButton alloc] initRaisedWithFrame:rect];
+```
 
 ## Working Example
 ```objective-c
@@ -72,7 +76,7 @@ bfFlatSmart.backgroundColor = [UIColor paperColorGray600];	// This is from the i
 ```
 
 ## Customized Example
-```smalltalk
+```objective-c
 BFPaperButton *bfFlatCustom = [[BFPaperButton alloc] initFlatWithFrame:CGRectMake(20, 511, 280, 43)];     
 [bfFlatCustom setTitle:@"BFPaperButton Flat: Customized" forState:UIControlStateNormal];
 [bfFlatCustom setTitleColor:[UIColor colorWithRed:1 green:0 blue:1 alpha:1] forState:UIControlStateNormal];
