@@ -1,0 +1,472 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F46DDB2A19761BF500D26097 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46DDB2919761BF500D26097 /* Foundation.framework */; };
+		F46DDB2C19761BF500D26097 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46DDB2B19761BF500D26097 /* CoreGraphics.framework */; };
+		F46DDB2E19761BF500D26097 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46DDB2D19761BF500D26097 /* UIKit.framework */; };
+		F46DDB3419761BF600D26097 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F46DDB3219761BF600D26097 /* InfoPlist.strings */; };
+		F46DDB3619761BF600D26097 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F46DDB3519761BF600D26097 /* main.m */; };
+		F46DDB3A19761BF600D26097 /* BFPaperAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F46DDB3919761BF600D26097 /* BFPaperAppDelegate.m */; };
+		F46DDB3D19761BF600D26097 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F46DDB3B19761BF600D26097 /* Main.storyboard */; };
+		F46DDB4019761BF600D26097 /* BFPaperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F46DDB3F19761BF600D26097 /* BFPaperViewController.m */; };
+		F46DDB4219761BF600D26097 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F46DDB4119761BF600D26097 /* Images.xcassets */; };
+		F46DDB4919761BF600D26097 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46DDB4819761BF600D26097 /* XCTest.framework */; };
+		F46DDB4A19761BF600D26097 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46DDB2919761BF500D26097 /* Foundation.framework */; };
+		F46DDB4B19761BF600D26097 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46DDB2D19761BF500D26097 /* UIKit.framework */; };
+		F46DDB5319761BF600D26097 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F46DDB5119761BF600D26097 /* InfoPlist.strings */; };
+		F46DDB5519761BF600D26097 /* BFPaperButtonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F46DDB5419761BF600D26097 /* BFPaperButtonTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F46DDB4C19761BF600D26097 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F46DDB1E19761BF500D26097 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F46DDB2519761BF500D26097;
+			remoteInfo = BFPaperButton;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F46DDB2619761BF500D26097 /* BFPaperButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BFPaperButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F46DDB2919761BF500D26097 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F46DDB2B19761BF500D26097 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F46DDB2D19761BF500D26097 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F46DDB3119761BF600D26097 /* BFPaperButton-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BFPaperButton-Info.plist"; sourceTree = "<group>"; };
+		F46DDB3319761BF600D26097 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F46DDB3519761BF600D26097 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F46DDB3719761BF600D26097 /* BFPaperButton-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BFPaperButton-Prefix.pch"; sourceTree = "<group>"; };
+		F46DDB3819761BF600D26097 /* BFPaperAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BFPaperAppDelegate.h; sourceTree = "<group>"; };
+		F46DDB3919761BF600D26097 /* BFPaperAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BFPaperAppDelegate.m; sourceTree = "<group>"; };
+		F46DDB3C19761BF600D26097 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F46DDB3E19761BF600D26097 /* BFPaperViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BFPaperViewController.h; sourceTree = "<group>"; };
+		F46DDB3F19761BF600D26097 /* BFPaperViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BFPaperViewController.m; sourceTree = "<group>"; };
+		F46DDB4119761BF600D26097 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F46DDB4719761BF600D26097 /* BFPaperButtonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BFPaperButtonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F46DDB4819761BF600D26097 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		F46DDB5019761BF600D26097 /* BFPaperButtonTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BFPaperButtonTests-Info.plist"; sourceTree = "<group>"; };
+		F46DDB5219761BF600D26097 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F46DDB5419761BF600D26097 /* BFPaperButtonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BFPaperButtonTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F46DDB2319761BF500D26097 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F46DDB2C19761BF500D26097 /* CoreGraphics.framework in Frameworks */,
+				F46DDB2E19761BF500D26097 /* UIKit.framework in Frameworks */,
+				F46DDB2A19761BF500D26097 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F46DDB4419761BF600D26097 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F46DDB4919761BF600D26097 /* XCTest.framework in Frameworks */,
+				F46DDB4B19761BF600D26097 /* UIKit.framework in Frameworks */,
+				F46DDB4A19761BF600D26097 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F46DDB1D19761BF500D26097 = {
+			isa = PBXGroup;
+			children = (
+				F46DDB2F19761BF500D26097 /* BFPaperButton */,
+				F46DDB4E19761BF600D26097 /* BFPaperButtonTests */,
+				F46DDB2819761BF500D26097 /* Frameworks */,
+				F46DDB2719761BF500D26097 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F46DDB2719761BF500D26097 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F46DDB2619761BF500D26097 /* BFPaperButton.app */,
+				F46DDB4719761BF600D26097 /* BFPaperButtonTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F46DDB2819761BF500D26097 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F46DDB2919761BF500D26097 /* Foundation.framework */,
+				F46DDB2B19761BF500D26097 /* CoreGraphics.framework */,
+				F46DDB2D19761BF500D26097 /* UIKit.framework */,
+				F46DDB4819761BF600D26097 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F46DDB2F19761BF500D26097 /* BFPaperButton */ = {
+			isa = PBXGroup;
+			children = (
+				F46DDB3819761BF600D26097 /* BFPaperAppDelegate.h */,
+				F46DDB3919761BF600D26097 /* BFPaperAppDelegate.m */,
+				F46DDB3B19761BF600D26097 /* Main.storyboard */,
+				F46DDB3E19761BF600D26097 /* BFPaperViewController.h */,
+				F46DDB3F19761BF600D26097 /* BFPaperViewController.m */,
+				F46DDB4119761BF600D26097 /* Images.xcassets */,
+				F46DDB3019761BF600D26097 /* Supporting Files */,
+			);
+			path = BFPaperButton;
+			sourceTree = "<group>";
+		};
+		F46DDB3019761BF600D26097 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F46DDB3119761BF600D26097 /* BFPaperButton-Info.plist */,
+				F46DDB3219761BF600D26097 /* InfoPlist.strings */,
+				F46DDB3519761BF600D26097 /* main.m */,
+				F46DDB3719761BF600D26097 /* BFPaperButton-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F46DDB4E19761BF600D26097 /* BFPaperButtonTests */ = {
+			isa = PBXGroup;
+			children = (
+				F46DDB5419761BF600D26097 /* BFPaperButtonTests.m */,
+				F46DDB4F19761BF600D26097 /* Supporting Files */,
+			);
+			path = BFPaperButtonTests;
+			sourceTree = "<group>";
+		};
+		F46DDB4F19761BF600D26097 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F46DDB5019761BF600D26097 /* BFPaperButtonTests-Info.plist */,
+				F46DDB5119761BF600D26097 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F46DDB2519761BF500D26097 /* BFPaperButton */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F46DDB5819761BF600D26097 /* Build configuration list for PBXNativeTarget "BFPaperButton" */;
+			buildPhases = (
+				F46DDB2219761BF500D26097 /* Sources */,
+				F46DDB2319761BF500D26097 /* Frameworks */,
+				F46DDB2419761BF500D26097 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BFPaperButton;
+			productName = BFPaperButton;
+			productReference = F46DDB2619761BF500D26097 /* BFPaperButton.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F46DDB4619761BF600D26097 /* BFPaperButtonTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F46DDB5B19761BF600D26097 /* Build configuration list for PBXNativeTarget "BFPaperButtonTests" */;
+			buildPhases = (
+				F46DDB4319761BF600D26097 /* Sources */,
+				F46DDB4419761BF600D26097 /* Frameworks */,
+				F46DDB4519761BF600D26097 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F46DDB4D19761BF600D26097 /* PBXTargetDependency */,
+			);
+			name = BFPaperButtonTests;
+			productName = BFPaperButtonTests;
+			productReference = F46DDB4719761BF600D26097 /* BFPaperButtonTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F46DDB1E19761BF500D26097 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = BFPaper;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Bence Feher";
+				TargetAttributes = {
+					F46DDB4619761BF600D26097 = {
+						TestTargetID = F46DDB2519761BF500D26097;
+					};
+				};
+			};
+			buildConfigurationList = F46DDB2119761BF500D26097 /* Build configuration list for PBXProject "BFPaperButton" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F46DDB1D19761BF500D26097;
+			productRefGroup = F46DDB2719761BF500D26097 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F46DDB2519761BF500D26097 /* BFPaperButton */,
+				F46DDB4619761BF600D26097 /* BFPaperButtonTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F46DDB2419761BF500D26097 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F46DDB4219761BF600D26097 /* Images.xcassets in Resources */,
+				F46DDB3419761BF600D26097 /* InfoPlist.strings in Resources */,
+				F46DDB3D19761BF600D26097 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F46DDB4519761BF600D26097 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F46DDB5319761BF600D26097 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F46DDB2219761BF500D26097 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F46DDB4019761BF600D26097 /* BFPaperViewController.m in Sources */,
+				F46DDB3619761BF600D26097 /* main.m in Sources */,
+				F46DDB3A19761BF600D26097 /* BFPaperAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F46DDB4319761BF600D26097 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F46DDB5519761BF600D26097 /* BFPaperButtonTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F46DDB4D19761BF600D26097 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F46DDB2519761BF500D26097 /* BFPaperButton */;
+			targetProxy = F46DDB4C19761BF600D26097 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F46DDB3219761BF600D26097 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F46DDB3319761BF600D26097 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F46DDB3B19761BF600D26097 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F46DDB3C19761BF600D26097 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F46DDB5119761BF600D26097 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F46DDB5219761BF600D26097 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F46DDB5619761BF600D26097 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F46DDB5719761BF600D26097 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F46DDB5919761BF600D26097 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BFPaperButton/BFPaperButton-Prefix.pch";
+				INFOPLIST_FILE = "BFPaperButton/BFPaperButton-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F46DDB5A19761BF600D26097 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BFPaperButton/BFPaperButton-Prefix.pch";
+				INFOPLIST_FILE = "BFPaperButton/BFPaperButton-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		F46DDB5C19761BF600D26097 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BFPaperButton.app/BFPaperButton";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BFPaperButton/BFPaperButton-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "BFPaperButtonTests/BFPaperButtonTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		F46DDB5D19761BF600D26097 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BFPaperButton.app/BFPaperButton";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BFPaperButton/BFPaperButton-Prefix.pch";
+				INFOPLIST_FILE = "BFPaperButtonTests/BFPaperButtonTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F46DDB2119761BF500D26097 /* Build configuration list for PBXProject "BFPaperButton" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F46DDB5619761BF600D26097 /* Debug */,
+				F46DDB5719761BF600D26097 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F46DDB5819761BF600D26097 /* Build configuration list for PBXNativeTarget "BFPaperButton" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F46DDB5919761BF600D26097 /* Debug */,
+				F46DDB5A19761BF600D26097 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F46DDB5B19761BF600D26097 /* Build configuration list for PBXNativeTarget "BFPaperButtonTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F46DDB5C19761BF600D26097 /* Debug */,
+				F46DDB5D19761BF600D26097 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F46DDB1E19761BF500D26097 /* Project object */;
+}
