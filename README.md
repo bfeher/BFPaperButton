@@ -58,11 +58,10 @@ Add the _BFPaperButton_ header and implementation file to your project. (.h & .m
 `BFPaperButton *flatPaperButton = [[BFPaperButton alloc] initFlatWithFrame:rect];`
 
 ## Creating a Raised BFPaperButton
-`BFPaperButton *flatPaperButton = [[BFPaperButton alloc] initRaisedWithFrame:rect];`
+`BFPaperButton *raisedPaperButton = [[BFPaperButton alloc] initRaisedWithFrame:rect];`
 
 ## Working Example
-`
-    BFPaperButton *bfFlatSmart = [[BFPaperButton alloc] initFlatWithFrame:CGRectMake(20, 20, 280, 43)];
+`BFPaperButton *bfFlatSmart = [[BFPaperButton alloc] initFlatWithFrame:CGRectMake(20, 20, 280, 43)];
     
     [bfFlatSmart setTitle:@"BFPaperButton Flat: Smart Color" forState:UIControlStateNormal];
     
@@ -74,13 +73,10 @@ Add the _BFPaperButton_ header and implementation file to your project. (.h & .m
     
     [bfFlatSmart addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:bfFlatSmart];
-`
+    [self.view addSubview:bfFlatSmart];`
 
 ## Customized Example
-`
-    BFPaperButton *bfFlatCustom = [[BFPaperButton alloc] initFlatWithFrame:CGRectMake(20, 511, 280, 43)];
-    
+`   BFPaperButton *bfFlatCustom = [[BFPaperButton alloc] initFlatWithFrame:CGRectMake(20, 511, 280, 43)]; 
     
     [bfFlatCustom setTitle:@"BFPaperButton Flat: Customized" forState:UIControlStateNormal];
     
@@ -98,8 +94,7 @@ Add the _BFPaperButton_ header and implementation file to your project. (.h & .m
     
     bfFlatCustom.backgroundFadeColor = [UIColor colorWithRed:1 green:0 blue:1 alpha:1]; // Setting this color overrides "Smart Color".
     
-    [self.view addSubview:bfFlatCustom];
-`
+    [self.view addSubview:bfFlatCustom];`
   
 
 
