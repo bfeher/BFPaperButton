@@ -61,19 +61,15 @@ Add the _BFPaperButton_ header and implementation file to your project. (.h & .m
 `BFPaperButton *raisedPaperButton = [[BFPaperButton alloc] initRaisedWithFrame:rect];`
 
 ## Working Example
-`BFPaperButton *bfFlatSmart = [[BFPaperButton alloc] initFlatWithFrame:CGRectMake(20, 20, 280, 43)];
-    
-    [bfFlatSmart setTitle:@"BFPaperButton Flat: Smart Color" forState:UIControlStateNormal];
-    
-    bfFlatSmart.backgroundColor = [UIColor paperColorGray600];	// This is from the included cocoapod "UIColor+BFPaperColors".
-    
-    [bfFlatSmart setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    
-    [bfFlatSmart setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-    
-    [bfFlatSmart addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.view addSubview:bfFlatSmart];`
+```objective-c
+BFPaperButton *bfFlatSmart = [[BFPaperButton alloc] initFlatWithFrame:CGRectMake(20, 20, 280, 43)];
+[bfFlatSmart setTitle:@"BFPaperButton Flat: Smart Color" forState:UIControlStateNormal];
+bfFlatSmart.backgroundColor = [UIColor paperColorGray600];	// This is from the included cocoapod "UIColor+BFPaperColors".
+[bfFlatSmart setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+[bfFlatSmart setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+[bfFlatSmart addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
+[self.view addSubview:bfFlatSmart];
+```
 
 ## Customized Example
 `   BFPaperButton *bfFlatCustom = [[BFPaperButton alloc] initFlatWithFrame:CGRectMake(20, 511, 280, 43)]; 
@@ -107,7 +103,10 @@ CocoaPods are the best way to manage library dependencies in Objective-C project
 Learn more at http://cocoapods.org
 
 Add this to your podfile to add BFPaperButton to your project.
-`pod 'BFPaperButton',       '~> 1.0'`
+```ruby
+platform :ios, '7.0'
+pod "BFPaperButton", "~> 1.0"
+```
 
 
 License
