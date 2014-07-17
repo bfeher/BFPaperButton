@@ -8,7 +8,7 @@ BFPaperButton
 
 About
 ---------
-_BFPaperButton_ is a subclass of UIButton that behaves much like the new paper buttons from Google' Material Design Labs.
+_BFPaperButton_ is a subclass of UIButton that behaves much like the new paper buttons from Google's Material Design Labs.
 All animation are asynchronous and are performed on sublayers.
 BFPaperButtons work right away with pleasing default behaviors, however they can be easily customized! The corner radius, tap-circle color, background fade color, and tap-circle diameter are all readily customizable via public properties.
 
