@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		55FFD66AAF204A9CB9263275 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06DB54154CCF4D8789C3CAC5 /* libPods.a */; };
-		F406E22819765B6700A7AD41 /* BFPaperButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F406E22719765B6700A7AD41 /* BFPaperButton.m */; };
 		F46DDB2A19761BF500D26097 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46DDB2919761BF500D26097 /* Foundation.framework */; };
 		F46DDB2C19761BF500D26097 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46DDB2B19761BF500D26097 /* CoreGraphics.framework */; };
 		F46DDB2E19761BF500D26097 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46DDB2D19761BF500D26097 /* UIKit.framework */; };
@@ -23,6 +22,7 @@
 		F46DDB4B19761BF600D26097 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46DDB2D19761BF500D26097 /* UIKit.framework */; };
 		F46DDB5319761BF600D26097 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F46DDB5119761BF600D26097 /* InfoPlist.strings */; };
 		F46DDB5519761BF600D26097 /* BFPaperButtonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F46DDB5419761BF600D26097 /* BFPaperButtonTests.m */; };
+		F48E739D19779C1400982A46 /* BFPaperButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F48E739C19779C1400982A46 /* BFPaperButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,8 +37,6 @@
 
 /* Begin PBXFileReference section */
 		06DB54154CCF4D8789C3CAC5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		F406E22619765B6700A7AD41 /* BFPaperButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFPaperButton.h; sourceTree = "<group>"; };
-		F406E22719765B6700A7AD41 /* BFPaperButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFPaperButton.m; sourceTree = "<group>"; };
 		F46DDB2619761BF500D26097 /* BFPaperButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BFPaperButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F46DDB2919761BF500D26097 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F46DDB2B19761BF500D26097 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -58,6 +56,8 @@
 		F46DDB5019761BF600D26097 /* BFPaperButtonTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BFPaperButtonTests-Info.plist"; sourceTree = "<group>"; };
 		F46DDB5219761BF600D26097 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F46DDB5419761BF600D26097 /* BFPaperButtonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BFPaperButtonTests.m; sourceTree = "<group>"; };
+		F48E739B19779C1400982A46 /* BFPaperButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFPaperButton.h; path = Classes/BFPaperButton.h; sourceTree = SOURCE_ROOT; };
+		F48E739C19779C1400982A46 /* BFPaperButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFPaperButton.m; path = Classes/BFPaperButton.m; sourceTree = SOURCE_ROOT; };
 		F658830A0312461885FF110D /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -165,8 +165,8 @@
 		F474FC3C19761E5900BD436C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				F406E22619765B6700A7AD41 /* BFPaperButton.h */,
-				F406E22719765B6700A7AD41 /* BFPaperButton.m */,
+				F48E739B19779C1400982A46 /* BFPaperButton.h */,
+				F48E739C19779C1400982A46 /* BFPaperButton.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -306,7 +306,7 @@
 			files = (
 				F46DDB4019761BF600D26097 /* BFPaperViewController.m in Sources */,
 				F46DDB3619761BF600D26097 /* main.m in Sources */,
-				F406E22819765B6700A7AD41 /* BFPaperButton.m in Sources */,
+				F48E739D19779C1400982A46 /* BFPaperButton.m in Sources */,
 				F46DDB3A19761BF600D26097 /* BFPaperAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
