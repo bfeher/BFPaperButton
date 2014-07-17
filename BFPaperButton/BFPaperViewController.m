@@ -29,6 +29,8 @@
  */
 
 #import "BFPaperViewController.h"
+#import "BFPaperButton.h"
+#import "UIColor+BFPaperColors.h"
 
 @interface BFPaperViewController ()
 

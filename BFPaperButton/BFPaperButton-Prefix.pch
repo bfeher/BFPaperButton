@@ -14,9 +14,3 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 #endif
-
-
-
-// Import throughout the project:
-#import "BFPaperButton.h"
-#import "UIColor+BFPaperColors.h"

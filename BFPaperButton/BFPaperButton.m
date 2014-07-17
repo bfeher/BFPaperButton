@@ -30,6 +30,7 @@
 
 #import "BFPaperButton.h"
 #import <QuartzCore/QuartzCore.h>
+#import "UIColor+BFPaperColors.h"
 
 
 @interface BFPaperButton ()

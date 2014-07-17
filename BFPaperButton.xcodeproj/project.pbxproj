@@ -359,6 +359,7 @@
 /* Begin XCBuildConfiguration section */
 		F46DDB5619761BF600D26097 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F658830A0312461885FF110D /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -389,14 +390,16 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = "\"$(SRCROOT)/Pods/Headers\"/**";
 			};
 			name = Debug;
 		};
 		F46DDB5719761BF600D26097 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F658830A0312461885FF110D /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -421,8 +424,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = "\"$(SRCROOT)/Pods/Headers\"/**";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -438,6 +442,7 @@
 				INFOPLIST_FILE = "BFPaperButton/BFPaperButton-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = "\"$(SRCROOT)/Pods/Headers\"/** \"$(BUILT_PRODUCTS_DIR)\"/** \"${PODS_ROOT}/BuildHeaders\"/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -453,12 +458,14 @@
 				INFOPLIST_FILE = "BFPaperButton/BFPaperButton-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = "\"$(SRCROOT)/Pods/Headers\"/** \"$(BUILT_PRODUCTS_DIR)\"/** \"${PODS_ROOT}/BuildHeaders\"/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
 		F46DDB5C19761BF600D26097 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F658830A0312461885FF110D /* Pods.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BFPaperButton.app/BFPaperButton";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -481,6 +488,7 @@
 		};
 		F46DDB5D19761BF600D26097 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F658830A0312461885FF110D /* Pods.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BFPaperButton.app/BFPaperButton";
 				FRAMEWORK_SEARCH_PATHS = (
