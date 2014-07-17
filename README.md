@@ -3,7 +3,7 @@ BFPaperButton
 
 > A flat button inspired by Google Material Design's Paper theme.
 
-![Screenshot](https://raw.githubusercontent.com/bfeher/BFPaperButton/master/BFPaperButtonDemoGif.gif "Screenshot")
+![Animated Screenshot](https://raw.githubusercontent.com/bfeher/BFPaperButton/master/BFPaperButtonDemoGif2.gif "Animated Screenshot")
 
 
 About
