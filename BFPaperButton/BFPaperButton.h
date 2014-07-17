@@ -94,20 +94,6 @@ static CGFloat const bfPaperButton_tapCircleDiameterLarge = bfPaperButton_tapCir
 - (instancetype)initRaisedWithFrame:(CGRect)frame;
 
 /**
- *  Initializes a Raised BFPaperButton with "Smart Color" ability, and obviously without a frame.
- *
- *  @return A Raised BFPaperButton with Smart Color and no frame!
- */
-//- (instancetype)initRaisedSmartColor;
-
-/**
- *  Initializes a Raised BFPaperButton with "Smart Color" ability, and assigns it a frame.
- *
- *  @return A Raised BFPaperButton with Smart Color and a frame!
- */
-//- (instancetype)initRaisedSmartColorWithFrame:(CGRect)frame;
-
-/**
  *  Initializes a Flat BFPaperButton, obviously without a frame.
  *
  *  @return A Flat BFPaperButton!
@@ -120,19 +106,5 @@ static CGFloat const bfPaperButton_tapCircleDiameterLarge = bfPaperButton_tapCir
  *  @return A Flat BFPaperButton with a frame!
  */
 - (instancetype)initFlatWithFrame:(CGRect)frame;
-
-/**
- *  Initializes a Flat BFPaperButton with "Smart Color" ability, and obviously without a frame.
- *
- *  @return A Flat BFPaperButton with Smart Color and no frame!
- */
-//- (instancetype)initFlatSmartColor;
-
-/**
- *  Initializes a Flat BFPaperButton with "Smart Color" ability, and assigns it a frame.
- *
- *  @return A Flat BFPaperButton with Smart Color and a frame!
- */
-//- (instancetype)initFlatSmartColorWithFrame:(CGRect)frame;
 
 @end
