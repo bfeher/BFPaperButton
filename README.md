@@ -36,22 +36,17 @@ The UIColor to fade clear backgrounds to. NOTE: Setting this defeats the "Smart 
 `CGFloat tapCircleDiameter;` 
 The CGFloat value representing the Diameter of the tap-circle. By default it will be the result of MAX(self.frame.width, self.frame.height). Any value less than zero will result in default being used. Two constants, tapCircleDiameterLarge and tapCircleDiameterSmall are also available for use.
 
-**Notes on RAISED vs FLAT and SMART COLOR vs NON SMART COLOR:**
-
-*RAISED*
-
+### Notes on RAISED vs FLAT and SMART COLOR vs NON SMART COLOR:
+####RAISED
 Has a shadow, so a clear background will look silly. It has only a tap-circle color. No background-fade.
  
-*FLAT*
-
+####FLAT
 Has no shadow, therefore clear backgrounds look fine. If the background is clear, it also has a background-fade color to help visualize the button and its frame.
 
-*SMART COLOR*
-
+####SMART COLOR
 Will use the titleLabel's font color to pick a tap circle color and, if the background is clear, will also pick a lighter background fade color.
  
-*NON SMART COLOR*
-
+####NON SMART COLOR
 Will use a translucent gray tap-circle and, if the background is clear, a lighter translucent graybackground-fade color.
 
 
@@ -59,17 +54,17 @@ Usage
 ---------
 Add the _BFPaperButton_ header and implementation file to your project. (.h & .m)
 
-## Creating a Flat BFPaperButton
+### Creating a Flat BFPaperButton
 ```objective-c
 BFPaperButton *flatPaperButton = [[BFPaperButton alloc] initFlatWithFrame:rect];
 ```
 
-## Creating a Raised BFPaperButton
+### Creating a Raised BFPaperButton
 ```objective-c
 BFPaperButton *raisedPaperButton = [[BFPaperButton alloc] initRaisedWithFrame:rect];
 ```
 
-## Working Example
+### Working Example
 ```objective-c
 BFPaperButton *bfFlatSmart = [[BFPaperButton alloc] initFlatWithFrame:CGRectMake(20, 20, 280, 43)];
 [bfFlatSmart setTitle:@"BFPaperButton Flat: Smart Color" forState:UIControlStateNormal];
@@ -80,7 +75,7 @@ bfFlatSmart.backgroundColor = [UIColor paperColorGray600];	// This is from the i
 [self.view addSubview:bfFlatSmart];
 ```
 
-## Customized Example
+### Customized Example
 ```objective-c
 BFPaperButton *bfFlatCustom = [[BFPaperButton alloc] initFlatWithFrame:CGRectMake(20, 511, 280, 43)];     
 [bfFlatCustom setTitle:@"BFPaperButton Flat: Customized" forState:UIControlStateNormal];
