@@ -81,14 +81,14 @@
     [self.view addSubview:bfRaisedSmart];
     
     
-    BFPaperButton *bfRaisedDumb = [[BFPaperButton alloc] initRaisedWithFrame:CGRectMake(20, 297, 280, 43)];
+    BFPaperButton *bfRaisedDumb = [[BFPaperButton alloc] initRaisedWithFrame:CGRectMake(20, 307, 280, 43)];
     bfRaisedDumb.usesSmartColor = NO;
     [bfRaisedDumb setTitle:@"BFPaperButton Raised: !Smart Color" forState:UIControlStateNormal];
     [bfRaisedDumb addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bfRaisedDumb];
     
     
-    BFPaperButton *bfRaisedSmartSmall = [[BFPaperButton alloc] initRaisedWithFrame:CGRectMake(20, 355, 135, 83)];
+    BFPaperButton *bfRaisedSmartSmall = [[BFPaperButton alloc] initRaisedWithFrame:CGRectMake(20, 375, 135, 83)];
     bfRaisedSmartSmall.titleLabel.numberOfLines = 0;
     bfRaisedSmartSmall.titleLabel.font = [UIFont systemFontOfSize:10.f];
     [bfRaisedSmartSmall setTitle:@"BFPaperButton Raised: Smart Color" forState:UIControlStateNormal];
@@ -96,7 +96,7 @@
     [self.view addSubview:bfRaisedSmartSmall];
     
     
-    BFPaperButton *bfRaisedDumbSmall = [[BFPaperButton alloc] initRaisedWithFrame:CGRectMake(163, 355, 135, 83)];
+    BFPaperButton *bfRaisedDumbSmall = [[BFPaperButton alloc] initRaisedWithFrame:CGRectMake(163, 375, 135, 83)];
     bfRaisedDumbSmall.usesSmartColor = NO;
     bfRaisedDumbSmall.titleLabel.numberOfLines = 0;
     bfRaisedDumbSmall.titleLabel.font = [UIFont systemFontOfSize:10.f];
@@ -105,30 +105,36 @@
     [bfRaisedDumbSmall addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bfRaisedDumbSmall];
     
+    BFPaperButton *circle1 = [[BFPaperButton alloc] initRaisedWithFrame:CGRectMake(20, 468, 86, 86)];
+    [circle1 setTitle:@"Center" forState:UIControlStateNormal];
+    [circle1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [circle1 setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    [circle1 addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
+    circle1.cornerRadius = circle1.frame.size.width / 2;
+    circle1.rippleFromTapLocation = NO;
+    [self.view addSubview:circle1];
     
-    BFPaperButton *bfRaisedCustom = [[BFPaperButton alloc] initRaisedWithFrame:CGRectMake(20, 453, 280, 43)];
-    [bfRaisedCustom setTitle:@"BFPaperButton Raised: Customized" forState:UIControlStateNormal];
-    bfRaisedCustom.backgroundColor = [UIColor colorWithRed:0.3 green:0 blue:1 alpha:1];
-    [bfRaisedCustom setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [bfRaisedCustom setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-    [bfRaisedCustom addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
-    bfRaisedCustom.cornerRadius = 10;
-    bfRaisedCustom.tapCircleDiameter = bfPaperButton_tapCircleDiameterSmall;
-    bfRaisedCustom.tapCircleColor = [UIColor colorWithRed:0.3 green:1 blue:0.4 alpha:0.4];  // Setting this color overrides "Smart Color".
-    [self.view addSubview:bfRaisedCustom];
-    
-    
-    BFPaperButton *bfFlatCustom = [[BFPaperButton alloc] initFlatWithFrame:CGRectMake(20, 511, 280, 43)];
-    [bfFlatCustom setTitle:@"BFPaperButton Flat: Customized" forState:UIControlStateNormal];
-    [bfFlatCustom setTitleColor:[UIColor colorWithRed:1 green:0 blue:1 alpha:1] forState:UIControlStateNormal];
-    [bfFlatCustom setTitleColor:[UIColor colorWithRed:1 green:0 blue:1 alpha:1] forState:UIControlStateHighlighted];
-    [bfFlatCustom addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
-    bfFlatCustom.cornerRadius = 20;
-    bfFlatCustom.tapCircleDiameter = bfPaperButton_tapCircleDiameterLarge;
-    bfFlatCustom.tapCircleColor = [UIColor colorWithRed:0.3 green:0 blue:1 alpha:0.6];  // Setting this color overrides "Smart Color".
-    bfFlatCustom.backgroundFadeColor = [UIColor colorWithRed:1 green:0 blue:1 alpha:1]; // Setting this color overrides "Smart Color".
-    [self.view addSubview:bfFlatCustom];
+    BFPaperButton *circle2 = [[BFPaperButton alloc] initRaisedWithFrame:CGRectMake(116, 468, 86, 86)];
+    [circle2 setTitle:@"Custom" forState:UIControlStateNormal];
+    [circle2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [circle2 setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    [circle2 addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
+    circle2.backgroundColor = [UIColor colorWithRed:0.3 green:0 blue:1 alpha:1];
+    circle2.tapCircleColor = [UIColor colorWithRed:1 green:0 blue:1 alpha:0.8];  // Setting this color overrides "Smart Color".
+    circle2.cornerRadius = circle2.frame.size.width / 2;
+    [self.view addSubview:circle2];
 
+    BFPaperButton *circle3 = [[BFPaperButton alloc] initFlatWithFrame:CGRectMake(212, 468, 86, 86)];
+    [circle3 setTitle:@"Custom" forState:UIControlStateNormal];
+    [circle3 setTitleColor:[UIColor paperColorGray900] forState:UIControlStateNormal];
+    [circle3 setTitleColor:[UIColor paperColorGray900] forState:UIControlStateHighlighted];
+    [circle3 addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
+    circle3.cornerRadius = circle3.frame.size.width / 2;
+    circle3.tapCircleDiameter = 53;
+    circle3.rippleFromTapLocation = NO;
+    circle3.tapCircleColor = [UIColor colorWithRed:0.3 green:0 blue:1 alpha:0.6];  // Setting this color overrides "Smart Color".
+    circle3.backgroundFadeColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:1]; // Setting this color overrides "Smart Color".
+    [self.view addSubview:circle3];
 }
 
 - (void)didReceiveMemoryWarning

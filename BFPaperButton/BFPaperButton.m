@@ -56,17 +56,17 @@ static CGFloat const bfPaperButton_raisedShadowYOffset             = 4.f;
 //static const CGFloat loweredShadowXOffset            = 0.f;
 static CGFloat const bfPaperButton_raisedShadowXOffset             = 2.f;
 // -shadow opacity:
-static CGFloat const bfPaperButton_loweredShadowOpacity            = 0.4f;
-static CGFloat const bfPaperButton_raisedShadowOpacity             = 0.3f;
+static CGFloat const bfPaperButton_loweredShadowOpacity            = 0.5f;
+static CGFloat const bfPaperButton_raisedShadowOpacity             = 0.5f;
 // -animation durations:
 static CGFloat const bfPaperButton_animationDurationConstant       = 0.12f;
 static CGFloat const bfPaperButton_tapCircleGrowthDurationConstant = bfPaperButton_animationDurationConstant * 2;
 // -the tap-circle's size:
 static CGFloat const bfPaperButton_tapCircleDiameterStartValue     = 5.f;    // for the mask
 // -the tap-circle's beauty:
-static CGFloat const bfPaperButton_tapFillConstant                 = 0.16f;  // or 0.12f if you like a bit darker
-static CGFloat const bfPaperButton_clearBGTapFillConstant          = 0.12f;  // or 0.1f if you like a bit darker
-static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.08f;  // or 0.1f if you like a bit darker
+static CGFloat const bfPaperButton_tapFillConstant                 = 0.16f;
+static CGFloat const bfPaperButton_clearBGTapFillConstant          = 0.12f;
+static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
 
 #define BFPAPERBUTTON__DUMB_TAP_FILL_COLOR             [UIColor colorWithWhite:0.1 alpha:bfPaperButton_tapFillConstant]
 #define BFPAPERBUTTON__CLEAR_BG_DUMB_TAP_FILL_COLOR    [UIColor colorWithWhite:0.3 alpha:bfPaperButton_clearBGTapFillConstant]
@@ -203,6 +203,7 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.08f;  // 
     self.usesSmartColor = YES;
     self.cornerRadius = bfPaperButton_loweredShadowRadius;
     self.tapCircleDiameter = -1.f;
+    self.rippleFromTapLocation = YES;
     
     
     CGRect endRect = CGRectMake(self.bounds.origin.x, self.bounds.origin.y , self.frame.size.width, self.frame.size.height);
@@ -439,10 +440,12 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.08f;  // 
     
     
     // Animation Mask Rects
-    UIBezierPath *startingTapCirclePath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(self.tapPoint.x - (bfPaperButton_tapCircleDiameterStartValue / 2.f), self.tapPoint.y - (bfPaperButton_tapCircleDiameterStartValue / 2.f), bfPaperButton_tapCircleDiameterStartValue, bfPaperButton_tapCircleDiameterStartValue) cornerRadius:bfPaperButton_tapCircleDiameterStartValue / 2.f];
+    CGPoint origin = self.rippleFromTapLocation ? self.tapPoint : CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
+    NSLog(@"self.center: (x%0.2f, y%0.2f)", self.center.x, self.center.y);
+    UIBezierPath *startingTapCirclePath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(origin.x - (bfPaperButton_tapCircleDiameterStartValue / 2.f), origin.y - (bfPaperButton_tapCircleDiameterStartValue / 2.f), bfPaperButton_tapCircleDiameterStartValue, bfPaperButton_tapCircleDiameterStartValue) cornerRadius:bfPaperButton_tapCircleDiameterStartValue / 2.f];
     
     CGFloat tapCircleDiameterEndValue = (self.tapCircleDiameter < 0) ? MAX(self.frame.size.width, self.frame.size.height) : self.tapCircleDiameter;
-    UIBezierPath *endTapCirclePath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(self.tapPoint.x - (tapCircleDiameterEndValue/ 2.f), self.tapPoint.y - (tapCircleDiameterEndValue/ 2.f), tapCircleDiameterEndValue, tapCircleDiameterEndValue) cornerRadius:tapCircleDiameterEndValue/ 2.f];
+    UIBezierPath *endTapCirclePath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(origin.x - (tapCircleDiameterEndValue/ 2.f), origin.y - (tapCircleDiameterEndValue/ 2.f), tapCircleDiameterEndValue, tapCircleDiameterEndValue) cornerRadius:tapCircleDiameterEndValue/ 2.f];
     
     // Animation Mask Layer:
     CAShapeLayer *animationMaskLayer = [CAShapeLayer layer];
@@ -550,11 +553,12 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.08f;  // 
     // Animation Mask Rects
     CGFloat newTapCircleStartValue = (self.tapCircleDiameter < 0) ? MAX(self.frame.size.width, self.frame.size.height) : self.tapCircleDiameter;
     
-    UIBezierPath *startingTapCirclePath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(self.tapPoint.x - (newTapCircleStartValue / 2.f), self.tapPoint.y - (newTapCircleStartValue / 2.f), newTapCircleStartValue, newTapCircleStartValue) cornerRadius:newTapCircleStartValue / 2.f];
+    CGPoint origin = self.rippleFromTapLocation ? self.tapPoint : CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
+    UIBezierPath *startingTapCirclePath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(origin.x - (newTapCircleStartValue / 2.f), origin.y - (newTapCircleStartValue / 2.f), newTapCircleStartValue, newTapCircleStartValue) cornerRadius:newTapCircleStartValue / 2.f];
     
     CGFloat tapCircleDiameterEndValue = (self.tapCircleDiameter < 0) ? MAX(self.frame.size.width, self.frame.size.height) : self.tapCircleDiameter;
     tapCircleDiameterEndValue += 40.f;
-    UIBezierPath *endTapCirclePath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(self.tapPoint.x - (tapCircleDiameterEndValue/ 2.f), self.tapPoint.y - (tapCircleDiameterEndValue/ 2.f), tapCircleDiameterEndValue, tapCircleDiameterEndValue) cornerRadius:tapCircleDiameterEndValue/ 2.f];
+    UIBezierPath *endTapCirclePath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(origin.x - (tapCircleDiameterEndValue/ 2.f), origin.y - (tapCircleDiameterEndValue/ 2.f), tapCircleDiameterEndValue, tapCircleDiameterEndValue) cornerRadius:tapCircleDiameterEndValue/ 2.f];
     
     // Animation Mask Layer:
     CAShapeLayer *animationMaskLayer = [CAShapeLayer layer];

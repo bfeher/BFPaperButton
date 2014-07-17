@@ -36,6 +36,9 @@ The UIColor to fade clear backgrounds to. NOTE: Setting this defeats the "Smart 
 `CGFloat tapCircleDiameter;` 
 The CGFloat value representing the Diameter of the tap-circle. By default it will be the result of MAX(self.frame.width, self.frame.height). Any value less than zero will result in default being used. Two constants, tapCircleDiameterLarge and tapCircleDiameterSmall are also available for use.
 
+`BOOL rippleFromTapLocation;`
+A flag to set to YES to have the tap-circle ripple from point of touch. If this is set to NO, the tap-circle will always ripple from the center of the button. Default is YES.
+
 ### Notes on RAISED vs FLAT and SMART COLOR vs NON SMART COLOR:
 ####RAISED
 Has a shadow, so a clear background will look silly. It has only a tap-circle color. No background-fade.
@@ -65,6 +68,7 @@ BFPaperButton *raisedPaperButton = [[BFPaperButton alloc] initRaisedWithFrame:re
 ```
 
 ### Working Example
+*(Taken directly from example project.)*
 ```objective-c
 BFPaperButton *bfFlatSmart = [[BFPaperButton alloc] initFlatWithFrame:CGRectMake(20, 20, 280, 43)];
 [bfFlatSmart setTitle:@"BFPaperButton Flat: Smart Color" forState:UIControlStateNormal];
@@ -76,17 +80,19 @@ bfFlatSmart.backgroundColor = [UIColor paperColorGray600];	// This is from the i
 ```
 
 ### Customized Example
+*(Taken directly from example project.)*
 ```objective-c
-BFPaperButton *bfFlatCustom = [[BFPaperButton alloc] initFlatWithFrame:CGRectMake(20, 511, 280, 43)];     
-[bfFlatCustom setTitle:@"BFPaperButton Flat: Customized" forState:UIControlStateNormal];
-[bfFlatCustom setTitleColor:[UIColor colorWithRed:1 green:0 blue:1 alpha:1] forState:UIControlStateNormal];
-[bfFlatCustom setTitleColor:[UIColor colorWithRed:1 green:0 blue:1 alpha:1] forState:UIControlStateHighlighted];
-[bfFlatCustom addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
-bfFlatCustom.cornerRadius = 20;
-bfFlatCustom.tapCircleDiameter = bfPaperButton_tapCircleDiameterLarge;
-bfFlatCustom.tapCircleColor = [UIColor colorWithRed:0.3 green:0 blue:1 alpha:0.6];  // Setting this color overrides "Smart Color".
-bfFlatCustom.backgroundFadeColor = [UIColor colorWithRed:1 green:0 blue:1 alpha:1]; // Setting this color overrides "Smart Color".
-[self.view addSubview:bfFlatCustom];
+BFPaperButton *circle3 = [[BFPaperButton alloc] initFlatWithFrame:CGRectMake(212, 468, 86, 86)];
+[circle3 setTitle:@"Custom" forState:UIControlStateNormal];
+[circle3 setTitleColor:[UIColor paperColorGray900] forState:UIControlStateNormal];
+[circle3 setTitleColor:[UIColor paperColorGray900] forState:UIControlStateHighlighted];
+[circle3 addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
+circle3.cornerRadius = circle3.frame.size.width / 2;
+circle3.tapCircleDiameter = 53;
+circle3.rippleFromTapLocation = NO;
+circle3.tapCircleColor = [UIColor colorWithRed:0.3 green:0 blue:1 alpha:0.6];  // Setting this color overrides "Smart Color".
+circle3.backgroundFadeColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:1]; // Setting this color overrides "Smart Color".
+[self.view addSubview:circle3];
 ```
   
 
