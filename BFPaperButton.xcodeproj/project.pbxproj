@@ -37,8 +37,8 @@
 
 /* Begin PBXFileReference section */
 		06DB54154CCF4D8789C3CAC5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		F42B5BA41978DC9300D6F4B5 /* BFPaperButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFPaperButton.h; path = Classes/BFPaperButton.h; sourceTree = "<group>"; };
-		F42B5BA51978DC9300D6F4B5 /* BFPaperButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFPaperButton.m; path = Classes/BFPaperButton.m; sourceTree = "<group>"; };
+		F42B5BA41978DC9300D6F4B5 /* BFPaperButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFPaperButton.h; path = ../Classes/BFPaperButton.h; sourceTree = "<group>"; };
+		F42B5BA51978DC9300D6F4B5 /* BFPaperButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFPaperButton.m; path = ../Classes/BFPaperButton.m; sourceTree = "<group>"; };
 		F46DDB2619761BF500D26097 /* BFPaperButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BFPaperButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F46DDB2919761BF500D26097 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F46DDB2B19761BF500D26097 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
