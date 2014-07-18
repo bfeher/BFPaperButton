@@ -255,6 +255,7 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     [self addTarget:self action:@selector(paperTouchDown:) forControlEvents:UIControlEventTouchDown];
     [self addTarget:self action:@selector(paperTouchUp:) forControlEvents:UIControlEventTouchUpInside];
     [self addTarget:self action:@selector(paperTouchUp:) forControlEvents:UIControlEventTouchUpOutside];
+    [self addTarget:self action:@selector(paperTouchUp:) forControlEvents:UIControlEventTouchCancel];
     
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:nil];
     tapGestureRecognizer.delegate = self;
