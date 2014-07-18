@@ -38,11 +38,11 @@
 @property CGRect downRect;
 @property CGRect upRect;
 @property CALayer *backgroundColorFadeLayer;
-@property CALayer *animationLayer;
 @property CAShapeLayer *maskLayer;
 @property CGPoint tapPoint;
 @property BOOL letGo;
 @property BOOL growthFinished;
+@property NSMutableArray *rippleAnimationQueue;
 @end
 
 @implementation BFPaperButton
@@ -205,13 +205,9 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     self.tapCircleDiameter = -1.f;
     self.rippleFromTapLocation = YES;
     
+    self.rippleAnimationQueue = [NSMutableArray array];
     
     CGRect endRect = CGRectMake(self.bounds.origin.x, self.bounds.origin.y , self.frame.size.width, self.frame.size.height);
-    // Setup animation layer:
-    self.animationLayer = [[CALayer alloc] init];
-    self.animationLayer.frame = endRect;
-    self.animationLayer.cornerRadius = self.cornerRadius;
-    [self.layer insertSublayer:self.animationLayer atIndex:0];
     
     self.backgroundColorFadeLayer = [[CALayer alloc] init];
     self.backgroundColorFadeLayer.frame = endRect;
@@ -358,7 +354,7 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
 #pragma mark - Animation
 - (void)growTapCircle
 {
-    NSLog(@"expanding a tap circle");
+    //NSLog(@"expanding a tap circle");
     if (self.isRaised) {
         // Increase shadow radius:
         CABasicAnimation *increaseRadius = [CABasicAnimation animationWithKeyPath:@"shadowRadius"];
@@ -393,8 +389,10 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     
     CGRect endRect = CGRectMake(self.bounds.origin.x, self.bounds.origin.y , self.frame.size.width, self.frame.size.height);
     
-    self.animationLayer.frame = endRect;
-    self.animationLayer.cornerRadius = self.cornerRadius;
+    
+    CALayer *tempAnimationLayer = [CALayer new];
+    tempAnimationLayer.frame = endRect;
+    tempAnimationLayer.cornerRadius = self.cornerRadius;
     
     
     if ([UIColor isColorClear:self.backgroundColor]) {
@@ -434,14 +432,14 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     }
     
     // Set animation layer's background color:
-    self.animationLayer.backgroundColor = self.tapCircleColor.CGColor;
-    self.animationLayer.borderColor = [UIColor clearColor].CGColor;
-    self.animationLayer.borderWidth = 0;
+    tempAnimationLayer.backgroundColor = self.tapCircleColor.CGColor;
+    tempAnimationLayer.borderColor = [UIColor clearColor].CGColor;
+    tempAnimationLayer.borderWidth = 0;
     
     
     // Animation Mask Rects
     CGPoint origin = self.rippleFromTapLocation ? self.tapPoint : CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
-    NSLog(@"self.center: (x%0.2f, y%0.2f)", self.center.x, self.center.y);
+    //NSLog(@"self.center: (x%0.2f, y%0.2f)", self.center.x, self.center.y);
     UIBezierPath *startingTapCirclePath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(origin.x - (bfPaperButton_tapCircleDiameterStartValue / 2.f), origin.y - (bfPaperButton_tapCircleDiameterStartValue / 2.f), bfPaperButton_tapCircleDiameterStartValue, bfPaperButton_tapCircleDiameterStartValue) cornerRadius:bfPaperButton_tapCircleDiameterStartValue / 2.f];
     
     CGFloat tapCircleDiameterEndValue = (self.tapCircleDiameter < 0) ? MAX(self.frame.size.width, self.frame.size.height) : self.tapCircleDiameter;
@@ -455,7 +453,7 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     animationMaskLayer.borderColor = [UIColor clearColor].CGColor;
     animationMaskLayer.borderWidth = 0;
     
-    self.animationLayer.mask = animationMaskLayer;
+    tempAnimationLayer.mask = animationMaskLayer;
     
     // Grow tap-circle animation:
     CABasicAnimation *tapCircleGrowthAnimation = [CABasicAnimation animationWithKeyPath:@"path"];
@@ -479,14 +477,18 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     fadeIn.removedOnCompletion = NO;
     
     
+    // Add the animation layer to our animation queue and insert it into our view:
+    [self.rippleAnimationQueue addObject:tempAnimationLayer];
+    [self.layer insertSublayer:tempAnimationLayer above:self.backgroundColorFadeLayer];
+
     [animationMaskLayer addAnimation:tapCircleGrowthAnimation forKey:@"animatePath"];
-    [self.animationLayer addAnimation:fadeIn forKey:@"opacityAnimation"];
+    [tempAnimationLayer addAnimation:fadeIn forKey:@"opacityAnimation"];
 }
 
 
 - (void)animationDidStop:(CAAnimation *)theAnimation2 finished:(BOOL)flag
 {
-    NSLog(@"animation ENDED");
+    //NSLog(@"animation ENDED");
     self.growthFinished = YES;
     
     /*if([[theAnimation2 valueForKey:@"id"] isEqual:@"tapGrowth"]
@@ -499,7 +501,7 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
 
 - (void)fadeBGOutAndBringShadowBackToStart
 {
-    NSLog(@"fading bg");
+   // NSLog(@"fading bg");
     
     if (self.isRaised) {
         // Decrease shadow radius:
@@ -548,8 +550,10 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
 
 - (void)growTapCircleABit
 {
-    NSLog(@"expanding a bit more");
+    //NSLog(@"expanding a bit more");
     
+    CALayer *tempAnimationLayer = [self.rippleAnimationQueue firstObject];
+
     // Animation Mask Rects
     CGFloat newTapCircleStartValue = (self.tapCircleDiameter < 0) ? MAX(self.frame.size.width, self.frame.size.height) : self.tapCircleDiameter;
     
@@ -568,7 +572,7 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     animationMaskLayer.borderColor = [UIColor clearColor].CGColor;
     animationMaskLayer.borderWidth = 0;
     
-    self.animationLayer.mask = animationMaskLayer;
+    tempAnimationLayer.mask = animationMaskLayer;
     
     // Grow tap-circle animation:
     CABasicAnimation *tapCircleGrowthAnimation = [CABasicAnimation animationWithKeyPath:@"path"];
@@ -585,16 +589,19 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
 
 - (void)fadeTapCircleOut
 {
-    NSLog(@"Fading away");
-    // Fade out self.animationLayer:
+    //NSLog(@"Fading away");
+
+    CALayer *tempAnimationLayer = [self.rippleAnimationQueue firstObject];
+    [self.rippleAnimationQueue removeObjectAtIndex:0];
+
     CABasicAnimation *fadeOut = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    fadeOut.fromValue = [NSNumber numberWithFloat:self.animationLayer.opacity];
+    fadeOut.fromValue = [NSNumber numberWithFloat:tempAnimationLayer.opacity];
     fadeOut.toValue = [NSNumber numberWithFloat:0.f];
     fadeOut.duration = bfPaperButton_tapCircleGrowthDurationConstant;
     fadeOut.fillMode = kCAFillModeForwards;
     fadeOut.removedOnCompletion = NO;
     
-    [self.animationLayer addAnimation:fadeOut forKey:@"opacityAnimation"];
+    [tempAnimationLayer addAnimation:fadeOut forKey:@"opacityAnimation"];
 }
 #pragma mark -
 
