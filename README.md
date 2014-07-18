@@ -17,7 +17,7 @@ Flat BFPaperButtons have no shadow and will remain flat through all animations. 
 Raised BFPaperButtons have a drop shadow that animates along with a tap, giving it the feeling of raising up with your touch. Raised BFPaperButtons do not look good with a clear background color since it will expose their shadow layer underneath.
 
 By default, BFPaperButtons use "Smart Color" which will match the tap-circle and background fade colors to the color of the `titleLabel`.
-You can turn off Smart Color by setting the property, `.usesSmartColor` to `NO`. If you disable Smart Color, a gray color will be used for both the tap-circle and the background color fade.
+You can turn off Smart Color by setting the property, `.usesSmartColor` to `NO`. If you disable Smart Color, a gray color will be used by default for both the tap-circle and the background color fade.
 You can set your own colors via: `.tapCircleColor` and `.backgroundFadeColor`. Note that setting these disables Smart Color.
 
 ## Properties
@@ -34,7 +34,7 @@ The UIColor to use for the circle which appears where you tap. NOTE: Setting thi
 The UIColor to fade clear backgrounds to. NOTE: Setting this defeats the "Smart Color" ability of the background fade. An alpha value of 1 is recommended, as the fade is a constant (clearBGFadeConstant) defined in the BFpaperButton.m. This bothers me too.
 
 `CGFloat tapCircleDiameter;` 
-The CGFloat value representing the Diameter of the tap-circle. By default it will be the result of MAX(self.frame.width, self.frame.height). Any value less than zero will result in default being used. Two constants, tapCircleDiameterLarge and tapCircleDiameterSmall are also available for use.
+The CGFloat value representing the Diameter of the tap-circle. By default it will be calculated to almost be big enough to cover up the whole background. Any value less than zero will result in default being used. Three pleasing sizes, `bfPaperButton_tapCircleDiameterSmall`, `bfPaperButton_tapCircleDiameterMedium`, and `bfPaperButton_tapCircleDiameterLarge` are also available for use.
 
 `BOOL rippleFromTapLocation;`
 A flag to set to YES to have the tap-circle ripple from point of touch. If this is set to NO, the tap-circle will always ripple from the center of the button. Default is YES.
@@ -94,10 +94,6 @@ circle3.tapCircleColor = [UIColor colorWithRed:0.3 green:0 blue:1 alpha:0.6];  /
 circle3.backgroundFadeColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:1]; // Setting this color overrides "Smart Color".
 [self.view addSubview:circle3];
 ```
-  
-
-
-
 
 Cocoapods
 -------
