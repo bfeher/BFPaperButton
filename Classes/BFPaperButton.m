@@ -314,6 +314,13 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     [self layoutSubviews];
 }
 
+- (void)setTitleFont:(UIFont *)font
+{
+    if (_titleFont != font) {
+        _titleFont = font;
+        self.titleLabel.font = font;
+    }
+}
 
 #pragma mark - Gesture Recognizer Delegate
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {

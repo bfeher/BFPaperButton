@@ -57,6 +57,9 @@ static CGFloat const bfPaperButton_tapCircleDiameterDefault = -1.f;
 /** A flag to set to YES to have the tap-circle ripple from point of touch. If this is set to NO, the tap-circle will always ripple from the center of the button. Default is YES. */
 @property BOOL rippleFromTapLocation;
 
+/** A property governing the title font. It is settable via UIAppearance! */
+@property (nonatomic) UIFont *titleFont UI_APPEARANCE_SELECTOR;
+
 
 /* Notes on RAISED vs FLAT and SMART COLOR vs NON SMART COLOR:
  *
