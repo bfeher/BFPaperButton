@@ -38,7 +38,6 @@
 @property CGRect downRect;
 @property CGRect upRect;
 @property CALayer *backgroundColorFadeLayer;
-@property CAShapeLayer *maskLayer;
 @property CGPoint tapPoint;
 @property BOOL letGo;
 @property BOOL growthFinished;
@@ -260,9 +259,6 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:nil];
     tapGestureRecognizer.delegate = self;
     [self addGestureRecognizer:tapGestureRecognizer];
-    
-    self.maskLayer.frame = self.frame;
-    self.maskLayer.cornerRadius = self.cornerRadius;
 }
 
 
