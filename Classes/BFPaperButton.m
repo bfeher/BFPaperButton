@@ -614,24 +614,4 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
 #pragma mark -
 
 
-
-/*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect
- {
- // Drawing code
- [super drawRect:rect];
- 
- CGContextRef context = UIGraphicsGetCurrentContext();
- if (!context) {
- NSLog(@"No context for BFpaperButton: drawRect!");
- return;
- }
- 
- CGSize size = self.bounds.size;
- UIGraphicsBeginImageContextWithOptions(size, NO, 0.f);
- }*/
-
-
 @end
