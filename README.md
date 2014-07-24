@@ -1,5 +1,6 @@
 BFPaperButton
 =============
+[![CocoaPods](https://img.shields.io/cocoapods/v/BFPaperButton.svg?style=flat)](https://github.com/bfeher/BFPaperButton)
 
 > A flat button inspired by Google Material Design's Paper theme.
 
@@ -104,7 +105,7 @@ Learn more at http://cocoapods.org
 Add this to your podfile to add BFPaperButton to your project.
 ```ruby
 platform :ios, '7.0'
-pod 'BFPaperButton', '~> 1.2.5'
+pod 'BFPaperButton', '~> 1.2.6'
 ```
 
 

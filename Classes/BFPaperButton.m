@@ -329,9 +329,9 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     
     return NO;  // Disallow recognition of tap gestures. We just needed this to grab that tasty tap location.
 }
-#pragma mark -
 
 
+#pragma mark - IBAction Callback Handlers
 - (void)paperTouchDown:(id)sender
 {
     //NSLog(@"Touch down handler");
@@ -442,7 +442,7 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     
     
     // Animation Mask Rects
-    CGPoint origin = self.rippleFromTapLocation ? self.tapPoint : CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
+    CGPoint origin = self.rippleFromTapLocation ? self.tapPoint : CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
     //NSLog(@"self.center: (x%0.2f, y%0.2f)", self.center.x, self.center.y);
     UIBezierPath *startingTapCirclePath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(origin.x - (bfPaperButton_tapCircleDiameterStartValue / 2.f), origin.y - (bfPaperButton_tapCircleDiameterStartValue / 2.f), bfPaperButton_tapCircleDiameterStartValue, bfPaperButton_tapCircleDiameterStartValue) cornerRadius:bfPaperButton_tapCircleDiameterStartValue / 2.f];
     
@@ -561,7 +561,7 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     // Animation Mask Rects
     CGFloat newTapCircleStartValue = (self.tapCircleDiameter < 0) ? MAX(self.frame.size.width, self.frame.size.height) : self.tapCircleDiameter;
     
-    CGPoint origin = self.rippleFromTapLocation ? self.tapPoint : CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
+    CGPoint origin = self.rippleFromTapLocation ? self.tapPoint : CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
     UIBezierPath *startingTapCirclePath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(origin.x - (newTapCircleStartValue / 2.f), origin.y - (newTapCircleStartValue / 2.f), newTapCircleStartValue, newTapCircleStartValue) cornerRadius:newTapCircleStartValue / 2.f];
     
     CGFloat tapCircleDiameterEndValue = (self.tapCircleDiameter < 0) ? MAX(self.frame.size.width, self.frame.size.height) : self.tapCircleDiameter;
