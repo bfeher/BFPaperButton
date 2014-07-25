@@ -22,23 +22,27 @@ You can turn off Smart Color by setting the property, `.usesSmartColor` to `NO`.
 You can set your own colors via: `.tapCircleColor` and `.backgroundFadeColor`. Note that setting these disables Smart Color.
 
 ## Properties
-`CGFloat cornerRadius;` 
+`CGFloat cornerRadius` 
 The corner radius which propagates through to the sub layers.
 
-`BOOL usesSmartColor;` 
+`BOOL usesSmartColor` 
 A flag to set YES to use Smart Color, or NO to use a custom color scheme. While Smart Color is the default (usesSmartColor = YES), customization is cool too.
 
-`UIColor *tapCircleColor;` 
+`UIColor *tapCircleColor` 
 The UIColor to use for the circle which appears where you tap. NOTE: Setting this defeats the "Smart Color" ability of the tap circle. Alpha values less than 1 are recommended.
 
-`UIColor *backgroundFadeColor;` 
+`UIColor *backgroundFadeColor` 
 The UIColor to fade clear backgrounds to. NOTE: Setting this defeats the "Smart Color" ability of the background fade. An alpha value of 1 is recommended, as the fade is a constant (clearBGFadeConstant) defined in the BFpaperButton.m. This bothers me too.
 
-`CGFloat tapCircleDiameter;` 
+`CGFloat tapCircleDiameter` 
 The CGFloat value representing the Diameter of the tap-circle. By default it will be calculated to almost be big enough to cover up the whole background. Any value less than zero will result in default being used. Three pleasing sizes, `bfPaperButton_tapCircleDiameterSmall`, `bfPaperButton_tapCircleDiameterMedium`, and `bfPaperButton_tapCircleDiameterLarge` are also available for use.
 
-`BOOL rippleFromTapLocation;`
+`BOOL rippleFromTapLocation`
 A flag to set to YES to have the tap-circle ripple from point of touch. If this is set to NO, the tap-circle will always ripple from the center of the button. Default is YES.
+
+`BOOL isRaised`
+A flag to set to YES to CHANGE a flat button to raised, or set to NO to CHANGE a raised button to flat. If you used one of the provided custom initializers, you should probably leave this parameter alone. If you instantiated via storyboard or IB and want to change from riased to flat, this is the parameter for you!
+
 
 ### Notes on RAISED vs FLAT and SMART COLOR vs NON SMART COLOR:
 ####RAISED
@@ -105,7 +109,7 @@ Learn more at http://cocoapods.org
 Add this to your podfile to add BFPaperButton to your project.
 ```ruby
 platform :ios, '7.0'
-pod 'BFPaperButton', '~> 1.2.6'
+pod 'BFPaperButton', '~> 1.2.7'
 ```
 
 

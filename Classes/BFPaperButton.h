@@ -57,6 +57,9 @@ static CGFloat const bfPaperButton_tapCircleDiameterDefault = -1.f;
 /** A flag to set to YES to have the tap-circle ripple from point of touch. If this is set to NO, the tap-circle will always ripple from the center of the button. Default is YES. */
 @property BOOL rippleFromTapLocation;
 
+/** A flag to set to YES to CHANGE a flat button to raised, or set to NO to CHANGE a raised button to flat. If you used one of the provided custom initializers, you should probably leave this parameter alone. If you instantiated via storyboard or IB and want to change from riased to flat, this is the parameter for you! */
+@property (nonatomic) BOOL isRaised;
+
 /** A property governing the title font. It is settable via UIAppearance! */
 @property (nonatomic) UIFont *titleFont UI_APPEARANCE_SELECTOR;
 

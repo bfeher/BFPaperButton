@@ -34,7 +34,6 @@
 
 
 @interface BFPaperButton ()
-@property (nonatomic) BOOL isRaised;
 @property CGRect downRect;
 @property CGRect upRect;
 @property CALayer *backgroundColorFadeLayer;
@@ -221,7 +220,7 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     self.backgroundFadeColor = nil;
     
     self.titleLabel.font = [UIFont systemFontOfSize:15.f];
-    [self setTitle:@"BFPaperButton" forState:UIControlStateNormal];
+//    [self setTitle:@"BFPaperButton" forState:UIControlStateNormal];
     [self setBackgroundImage:[UIColor imageFromColor:[UIColor paperColorBlue]] forState:UIControlStateDisabled];
     [self setTitleColor:[UIColor paperColorGray700] forState:UIControlStateDisabled];
     
