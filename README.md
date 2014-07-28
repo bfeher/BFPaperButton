@@ -55,7 +55,7 @@ Has no shadow, therefore clear backgrounds look fine. If the background is clear
 Will use the titleLabel's font color to pick a tap circle color and, if the background is clear, will also pick a lighter background fade color.
  
 ####NON SMART COLOR
-Will use a translucent gray tap-circle and, if the background is clear, a lighter translucent graybackground-fade color.
+Will use a translucent gray tap-circle and, if the background is clear, a lighter translucent gray background-fade color.
 
 
 Usage
