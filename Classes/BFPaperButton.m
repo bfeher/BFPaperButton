@@ -191,6 +191,16 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     [self setNeedsDisplay];
 }
 
+- (void)sizeToFit
+{
+    [super sizeToFit];
+    if (self.isRaised) {
+        self.downRect = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height + bfPaperButton_loweredShadowYOffset);
+        self.upRect = CGRectMake(0 - bfPaperButton_raisedShadowXOffset, self.bounds.origin.y + bfPaperButton_raisedShadowYOffset, self.bounds.size.width + (2 * bfPaperButton_raisedShadowXOffset), self.bounds.size.height + bfPaperButton_raisedShadowYOffset);
+        self.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.downRect cornerRadius:self.cornerRadius].CGPath;
+    }
+}
+
 
 #pragma mark - Setup
 - (void)setupRaised:(BOOL)isRaised
