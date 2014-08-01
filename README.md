@@ -32,7 +32,7 @@ A flag to set YES to use Smart Color, or NO to use a custom color scheme. While 
 The UIColor to use for the circle which appears where you tap. NOTE: Setting this defeats the "Smart Color" ability of the tap circle. Alpha values less than 1 are recommended.
 
 `UIColor *backgroundFadeColor` <br />
-The UIColor to fade clear backgrounds to. NOTE: Setting this defeats the "Smart Color" ability of the background fade. An alpha value of 1 is recommended, as the fade is a constant (clearBGFadeConstant) defined in the BFpaperButton.m. This bothers me too.
+The UIColor to fade clear backgrounds to. NOTE: Setting this defeats the "Smart Color" ability of the background fade. An alpha value of 1 is recommended, as the fade is a constant (clearBGFadeConstant) defined in the BFPaperButton.m. This bothers me too.
 
 `CGFloat tapCircleDiameter` <br />
 The CGFloat value representing the Diameter of the tap-circle. By default it will be calculated to almost be big enough to cover up the whole background. Any value less than zero will result in default being used. Three pleasing sizes, `bfPaperButton_tapCircleDiameterSmall`, `bfPaperButton_tapCircleDiameterMedium`, and `bfPaperButton_tapCircleDiameterLarge` are also available for use.
@@ -109,7 +109,7 @@ Learn more at http://cocoapods.org
 Add this to your podfile to add BFPaperButton to your project.
 ```ruby
 platform :ios, '7.0'
-pod 'BFPaperButton', '~> 1.2.8'
+pod 'BFPaperButton', '~> 1.2.9'
 ```
 
 
