@@ -182,10 +182,16 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
 - (void)setEnabled:(BOOL)enabled
 {
     [super setEnabled:enabled];
-    
-    if (!enabled) {
-        self.layer.masksToBounds = YES;
-        self.clipsToBounds = YES;
+
+    if (self.isRaised) {
+        if (!enabled) {
+            self.layer.masksToBounds = YES;
+            self.clipsToBounds = YES;
+        }
+        else {
+            self.layer.masksToBounds = NO;
+            self.clipsToBounds = NO;
+        }
     }
     [self setNeedsDisplay];
 }
