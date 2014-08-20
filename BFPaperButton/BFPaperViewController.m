@@ -42,7 +42,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    BFPaperButton *bfFlatSmart = [[BFPaperButton alloc] initFlatWithFrame:CGRectMake(20, 20, 280, 43)];
+    BFPaperButton *bfFlatSmart = [[BFPaperButton alloc] initWithFrame:CGRectMake(20, 20, 280, 43) raised:NO];
     [bfFlatSmart setTitle:@"BFPaperButton Flat: Smart Color" forState:UIControlStateNormal];
     bfFlatSmart.backgroundColor = [UIColor paperColorGray600];  // This is from the included cocoapod "UIColor+BFPaperColors".
     [bfFlatSmart setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -50,8 +50,7 @@
     [bfFlatSmart addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bfFlatSmart];
     
-    
-    BFPaperButton *bfFlatDumb = [[BFPaperButton alloc] initFlatWithFrame:CGRectMake(20, 71, 280, 43)];
+    BFPaperButton *bfFlatDumb = [[BFPaperButton alloc] initWithFrame:CGRectMake(20, 71, 280, 43) raised:NO];
     bfFlatDumb.usesSmartColor = NO;
     [bfFlatDumb setTitle:@"BFPaperButton Flat: !Smart Color" forState:UIControlStateNormal];
     bfFlatDumb.backgroundColor = [UIColor paperColorGray600];   // This is from the included cocoapod "UIColor+BFPaperColors".
@@ -60,42 +59,38 @@
     [bfFlatDumb addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bfFlatDumb];
     
-    
-    BFPaperButton *bfFlatClearSmart = [[BFPaperButton alloc] initFlatWithFrame:CGRectMake(20, 122, 280, 43)];
+    BFPaperButton *bfFlatClearSmart = [[BFPaperButton alloc] initWithFrame:CGRectMake(20, 122, 280, 43) raised:NO];
     [bfFlatClearSmart setTitle:@"BFPaperButton Flat: Clear, Smart Color" forState:UIControlStateNormal];
     [bfFlatClearSmart addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bfFlatClearSmart];
     
-    
-    BFPaperButton *bfFlatClearDumb = [[BFPaperButton alloc] initFlatWithFrame:CGRectMake(20, 173, 280, 43)];
+    BFPaperButton *bfFlatClearDumb = [[BFPaperButton alloc] initWithFrame:CGRectMake(20, 173, 280, 43) raised:NO];
     bfFlatClearDumb.usesSmartColor = NO;
     [bfFlatClearDumb setTitle:@"BFPaperButton Flat: Clear, !Smart Color" forState:UIControlStateNormal];
     [bfFlatClearDumb addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bfFlatClearDumb];
     
     
-    BFPaperButton *bfRaisedSmart = [[BFPaperButton alloc] initRaisedWithFrame:CGRectMake(20, 239, 280, 43)];
+    
+    BFPaperButton *bfRaisedSmart = [[BFPaperButton alloc] initWithFrame:CGRectMake(20, 239, 280, 43) raised:YES];
     [bfRaisedSmart setTitle:@"BFPaperButton Raised: Smart Color" forState:UIControlStateNormal];
     [bfRaisedSmart addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bfRaisedSmart];
     
-    
-    BFPaperButton *bfRaisedDumb = [[BFPaperButton alloc] initRaisedWithFrame:CGRectMake(20, 307, 280, 43)];
+    BFPaperButton *bfRaisedDumb = [[BFPaperButton alloc] initWithFrame:CGRectMake(20, 307, 280, 43) raised:YES];
     bfRaisedDumb.usesSmartColor = NO;
     [bfRaisedDumb setTitle:@"BFPaperButton Raised: !Smart Color" forState:UIControlStateNormal];
     [bfRaisedDumb addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bfRaisedDumb];
     
-    
-    BFPaperButton *bfRaisedSmartSmall = [[BFPaperButton alloc] initRaisedWithFrame:CGRectMake(20, 375, 135, 83)];
+    BFPaperButton *bfRaisedSmartSmall = [[BFPaperButton alloc] initWithFrame:CGRectMake(20, 375, 135, 83) raised:YES];
     bfRaisedSmartSmall.titleLabel.numberOfLines = 0;
     bfRaisedSmartSmall.titleLabel.font = [UIFont systemFontOfSize:10.f];
     [bfRaisedSmartSmall setTitle:@"BFPaperButton Raised: Smart Color" forState:UIControlStateNormal];
     [bfRaisedSmartSmall addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bfRaisedSmartSmall];
     
-    
-    BFPaperButton *bfRaisedDumbSmall = [[BFPaperButton alloc] initRaisedWithFrame:CGRectMake(163, 375, 135, 83)];
+    BFPaperButton *bfRaisedDumbSmall = [[BFPaperButton alloc] initWithFrame:CGRectMake(163, 375, 135, 83) raised:YES];
     bfRaisedDumbSmall.usesSmartColor = NO;
     bfRaisedDumbSmall.titleLabel.numberOfLines = 0;
     bfRaisedDumbSmall.titleLabel.font = [UIFont systemFontOfSize:10.f];
@@ -104,7 +99,9 @@
     [bfRaisedDumbSmall addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bfRaisedDumbSmall];
     
-    BFPaperButton *circle1 = [[BFPaperButton alloc] initRaisedWithFrame:CGRectMake(20, 468, 86, 86)];
+    
+    
+    BFPaperButton *circle1 = [[BFPaperButton alloc] initWithFrame:CGRectMake(20, 468, 86, 86) raised:YES];
     [circle1 setTitle:@"Center" forState:UIControlStateNormal];
     [circle1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [circle1 setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
@@ -113,7 +110,7 @@
     circle1.rippleFromTapLocation = NO;
     [self.view addSubview:circle1];
     
-    BFPaperButton *circle2 = [[BFPaperButton alloc] initRaisedWithFrame:CGRectMake(116, 468, 86, 86)];
+    BFPaperButton *circle2 = [[BFPaperButton alloc] initWithFrame:CGRectMake(116, 468, 86, 86) raised:YES];
     [circle2 setTitle:@"Custom" forState:UIControlStateNormal];
     [circle2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [circle2 setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
@@ -123,7 +120,7 @@
     circle2.cornerRadius = circle2.frame.size.width / 2;
     [self.view addSubview:circle2];
 
-    BFPaperButton *circle3 = [[BFPaperButton alloc] initFlatWithFrame:CGRectMake(212, 468, 86, 86)];
+    BFPaperButton *circle3 = [[BFPaperButton alloc] initWithFrame:CGRectMake(212, 468, 86, 86) raised:NO];
     [circle3 setTitle:@"Custom" forState:UIControlStateNormal];
     [circle3 setTitleColor:[UIColor paperColorGray900] forState:UIControlStateNormal];
     [circle3 setTitleColor:[UIColor paperColorGray900] forState:UIControlStateHighlighted];

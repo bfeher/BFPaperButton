@@ -99,6 +99,25 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
 }
 
 #pragma mark - Custom Initializers
+- (instancetype)initWithRaised:(BOOL)raised
+{
+    self = [super init];
+    if (self) {
+        [self setupRaised:raised];
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame raised:(BOOL)raised
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self setupRaised:raised];
+    }
+    return self;
+}
+
+#pragma mark Deprecated Initializers
 - (instancetype)initRaised
 {
     self = [super init];
@@ -117,24 +136,6 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     return self;
 }
 
-/*- (instancetype)initRaisedSmartColor
-{
-    self = [super init];
-    if (self) {
-        [self setupRaised:YES withSmartColor:YES];
-    }
-    return self;
-}*/
-
-/*- (instancetype)initRaisedSmartColorWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self setupRaised:YES withSmartColor:YES];
-    }
-    return self;
-}*/
-
 - (instancetype)initFlat
 {
     self = [super init];
@@ -152,24 +153,6 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     }
     return self;
 }
-
-/*- (instancetype)initFlatSmartColor
-{
-    self = [super init];
-    if (self) {
-        [self setupRaised:NO withSmartColor:YES];
-    }
-    return self;
-}*/
-
-/*- (instancetype)initFlatSmartColorWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self setupRaised:NO withSmartColor:YES];
-    }
-    return self;
-}*/
 
 
 #pragma mark - Parent Overrides

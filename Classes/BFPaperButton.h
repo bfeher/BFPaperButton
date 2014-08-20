@@ -29,7 +29,8 @@
 
 #import <UIKit/UIKit.h>
 
-// Nice circle diameter constants:
+#pragma mark - Useful constants
+// Nice circle diameter constants with ugly names:
 static CGFloat const bfPaperButton_tapCircleDiameterMedium = 305.f;
 static CGFloat const bfPaperButton_tapCircleDiameterSmall = bfPaperButton_tapCircleDiameterMedium / 2.f;
 static CGFloat const bfPaperButton_tapCircleDiameterLarge = bfPaperButton_tapCircleDiameterMedium * 1.5f;
@@ -38,6 +39,7 @@ static CGFloat const bfPaperButton_tapCircleDiameterDefault = -1.f;
 
 @interface BFPaperButton : UIButton <UIGestureRecognizerDelegate>
 
+#pragma mark - Properties
 /** The corner radius which propagates through to the sub layers. */
 @property (nonatomic) CGFloat cornerRadius;
 
@@ -85,32 +87,55 @@ static CGFloat const bfPaperButton_tapCircleDiameterDefault = -1.f;
  *  graybackground-fade color.
  */
 
+#pragma mark - Initializers
+/**
+ *  Initializes a BFPaperButton without a frame. Can be Raised of Flat.
+ *
+ *  @param raised A BOOL flag to determine whether or not this instance should be raised or flat. YES = Raised, NO = Flat.
+ *
+ *  @return A (Raised or Flat) BFPaperButton without a frame!
+ */
+- (instancetype)initWithRaised:(BOOL)raised;
+
+
+/**
+ *  Initializes a BFPaperButton with a frame. Can be Raised of Flat.
+ *
+ *  @param frame  A CGRect to use as the button's frame.
+ *  @param raised A BOOL flag to determine whether or not this instance should be raised or flat. YES = Raised, NO = Flat.
+ *
+ *  @return A (Raised or Flat) BFPaperButton with a frame!
+ */
+- (instancetype)initWithFrame:(CGRect)frame raised:(BOOL)raised;
+
+
+#pragma mark - Deprecated Initializers
 /**
  *  Initializes a Raised BFPaperButton, obviously without a frame.
  *
  *  @return A Raised BFPaperButton!
  */
-- (instancetype)initRaised;
+- (instancetype)initRaised __attribute__((deprecated("Please use -(instancetype)initWithRaised:(BOOL)raised")));
 
 /**
  *  Initializes a Raised BFPaperButton and assigns it a frame.
  *
  *  @return A Raised BFPaperButton with a frame!
  */
-- (instancetype)initRaisedWithFrame:(CGRect)frame;
+- (instancetype)initRaisedWithFrame:(CGRect)frame __attribute__((deprecated("Please use - (instancetype)initWithFrame:(CGRect)frame raised:(BOOL)raised")));
 
 /**
  *  Initializes a Flat BFPaperButton, obviously without a frame.
  *
  *  @return A Flat BFPaperButton!
  */
-- (instancetype)initFlat;
+- (instancetype)initFlat __attribute__((deprecated("Please use -(instancetype)initWithRaised:(BOOL)raised")));
 
 /**
  *  Initializes a Flat BFPaperButton and assigns it a frame.
  *
  *  @return A Flat BFPaperButton with a frame!
  */
-- (instancetype)initFlatWithFrame:(CGRect)frame;
+- (instancetype)initFlatWithFrame:(CGRect)frame __attribute__((deprecated("Please use - (instancetype)initWithFrame:(CGRect)frame raised:(BOOL)raised")));
 
 @end

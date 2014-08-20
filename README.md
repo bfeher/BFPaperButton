@@ -64,18 +64,18 @@ Add the _BFPaperButton_ header and implementation file to your project. (.h & .m
 
 ### Creating a Flat BFPaperButton
 ```objective-c
-BFPaperButton *flatPaperButton = [[BFPaperButton alloc] initFlatWithFrame:rect];
+BFPaperButton *flatPaperButton = [[BFPaperButton alloc] initWithFrame:rect raised:NO];
 ```
 
 ### Creating a Raised BFPaperButton
 ```objective-c
-BFPaperButton *raisedPaperButton = [[BFPaperButton alloc] initRaisedWithFrame:rect];
+BFPaperButton *raisedPaperButton = [[BFPaperButton alloc] initWithFrame:rect raised:YES];
 ```
 
 ### Working Example
 *(Taken directly from example project.)*<br />
 ```objective-c
-BFPaperButton *bfFlatSmart = [[BFPaperButton alloc] initFlatWithFrame:CGRectMake(20, 20, 280, 43)];
+BFPaperButton *bfFlatSmart = [[BFPaperButton alloc] initWithFrame:CGRectMake(20, 20, 280, 43) raised:NO];
 [bfFlatSmart setTitle:@"BFPaperButton Flat: Smart Color" forState:UIControlStateNormal];
 bfFlatSmart.backgroundColor = [UIColor paperColorGray600];	// This is from the included cocoapod "UIColor+BFPaperColors".
 [bfFlatSmart setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -87,7 +87,7 @@ bfFlatSmart.backgroundColor = [UIColor paperColorGray600];	// This is from the i
 ### Customized Example
 *(Taken directly from example project.)*<br />
 ```objective-c
-BFPaperButton *circle3 = [[BFPaperButton alloc] initFlatWithFrame:CGRectMake(212, 468, 86, 86)];
+BFPaperButton *circle3 = [[BFPaperButton alloc] initWithFrame:CGRectMake(212, 468, 86, 86) raised:NO];
 [circle3 setTitle:@"Custom" forState:UIControlStateNormal];
 [circle3 setTitleColor:[UIColor paperColorGray900] forState:UIControlStateNormal];
 [circle3 setTitleColor:[UIColor paperColorGray900] forState:UIControlStateHighlighted];
@@ -109,7 +109,7 @@ Learn more at http://cocoapods.org
 Add this to your podfile to add BFPaperButton to your project.
 ```ruby
 platform :ios, '7.0'
-pod 'BFPaperButton', '~> 1.3.1'
+pod 'BFPaperButton', '~> 1.3.2'
 ```
 
 
