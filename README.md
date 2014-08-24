@@ -40,6 +40,9 @@ The CGFloat value representing the Diameter of the tap-circle. By default it wil
 `BOOL rippleFromTapLocation`<br />
 A flag to set to YES to have the tap-circle ripple from point of touch. If this is set to NO, the tap-circle will always ripple from the center of the button. Default is YES.
 
+`BOOL rippleBeyondBounds`<br />
+A flag to set to YES to have the tap-circle ripple beyond the bounds of the button. If this is set to NO, the tap-circle will be clipped to the button's bounds. Default is NO.
+
 `BOOL isRaised`<br />
 A flag to set to YES to CHANGE a flat button to raised, or set to NO to CHANGE a raised button to flat. If you used one of the provided custom initializers, you should probably leave this parameter alone. If you instantiated via storyboard or IB and want to change from riased to flat, this is the parameter for you!
 
@@ -87,17 +90,18 @@ bfFlatSmart.backgroundColor = [UIColor paperColorGray600];	// This is from the i
 ### Customized Example
 *(Taken directly from example project.)*<br />
 ```objective-c
-BFPaperButton *circle3 = [[BFPaperButton alloc] initWithFrame:CGRectMake(212, 468, 86, 86) raised:NO];
-[circle3 setTitle:@"Custom" forState:UIControlStateNormal];
-[circle3 setTitleColor:[UIColor paperColorGray900] forState:UIControlStateNormal];
-[circle3 setTitleColor:[UIColor paperColorGray900] forState:UIControlStateHighlighted];
-[circle3 addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
-circle3.cornerRadius = circle3.frame.size.width / 2;
-circle3.tapCircleDiameter = 53;
-circle3.rippleFromTapLocation = NO;
-circle3.tapCircleColor = [UIColor colorWithRed:0.3 green:0 blue:1 alpha:0.6];  // Setting this color overrides "Smart Color".
-circle3.backgroundFadeColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:1]; // Setting this color overrides "Smart Color".
-[self.view addSubview:circle3];
+BFPaperButton *circle2 = [[BFPaperButton alloc] initWithFrame:CGRectMake(116, 468, 86, 86) raised:YES];
+[circle2 setTitle:@"Custom" forState:UIControlStateNormal];
+[circle2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+[circle2 setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+[circle2 addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
+circle2.backgroundColor = [UIColor colorWithRed:0.3 green:0 blue:1 alpha:1];
+circle2.tapCircleColor = [UIColor colorWithRed:1 green:0 blue:1 alpha:0.6];  // Setting this color overrides "Smart Color".
+circle2.cornerRadius = circle2.frame.size.width / 2;
+circle2.rippleFromTapLocation = NO;
+circle2.rippleBeyondBounds = YES;
+circle2.tapCircleDiameter = MAX(circle2.frame.size.width, circle2.frame.size.height) * 1.3;
+[self.view addSubview:circle2];
 ```
 
 Cocoapods
@@ -109,7 +113,7 @@ Learn more at http://cocoapods.org
 Add this to your podfile to add BFPaperButton to your project.
 ```ruby
 platform :ios, '7.0'
-pod 'BFPaperButton', '~> 1.3.2'
+pod 'BFPaperButton', '~> 1.4.1'
 ```
 
 
