@@ -208,8 +208,8 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     self.rippleAnimationQueue = [NSMutableArray array];
     
     CGRect endRect = CGRectMake(self.bounds.origin.x, self.bounds.origin.y , self.frame.size.width, self.frame.size.height);
-    NSLog(@"endRect in setup = (%0.2f, %0.2f, %0.2f %0.2f", endRect.origin.x, endRect.origin.y, endRect.size.width, endRect.size.height);
-    NSLog(@"cornerRadius = %0.2f", self.cornerRadius);
+    //NSLog(@"endRect in setup = (%0.2f, %0.2f, %0.2f %0.2f", endRect.origin.x, endRect.origin.y, endRect.size.width, endRect.size.height);
+    //NSLog(@"cornerRadius = %0.2f", self.cornerRadius);
     self.backgroundColorFadeLayer = [[CALayer alloc] init];
     self.backgroundColorFadeLayer.frame = endRect;
     self.backgroundColorFadeLayer.cornerRadius = self.cornerRadius;
@@ -439,7 +439,7 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
         
         // Setup background fade layer:
         self.backgroundColorFadeLayer.frame = endRect;
-        NSLog(@"endRect in animation = (%0.2f, %0.2f, %0.2f %0.2f", endRect.origin.x, endRect.origin.y, endRect.size.width, endRect.size.height);
+        //NSLog(@"endRect in animation = (%0.2f, %0.2f, %0.2f %0.2f", endRect.origin.x, endRect.origin.y, endRect.size.width, endRect.size.height);
         self.backgroundColorFadeLayer.cornerRadius = self.cornerRadius;
         self.backgroundColorFadeLayer.backgroundColor = self.backgroundFadeColor.CGColor;
         
