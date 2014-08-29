@@ -472,20 +472,19 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     UIView *tapCircleLayerSizerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tapCircleFinalDiameter, tapCircleFinalDiameter)];
     tapCircleLayerSizerView.center = self.rippleFromTapLocation ? self.tapPoint : CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
 
-    // Calculate mask starting path:
+    // Calculate starting path:
     UIView *startingRectSizerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, bfPaperButton_tapCircleDiameterStartValue, bfPaperButton_tapCircleDiameterStartValue)];
     startingRectSizerView.center = tapCircleLayerSizerView.center;
     
-    // Create starting circle path for mask:
+    // Create starting circle path:
     UIBezierPath *startingCirclePath = [UIBezierPath bezierPathWithRoundedRect:startingRectSizerView.frame cornerRadius:bfPaperButton_tapCircleDiameterStartValue / 2.f];
     
-    // Calculate mask ending path:
-    CGFloat tapCircleDiameterEndValue = (self.tapCircleDiameter < 0) ? MAX(self.frame.size.width, self.frame.size.height) : self.tapCircleDiameter;
-    UIView *endingRectSizerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tapCircleDiameterEndValue, tapCircleDiameterEndValue)];
+    // Calculate ending path:
+    UIView *endingRectSizerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tapCircleFinalDiameter, tapCircleFinalDiameter)];
     endingRectSizerView.center = tapCircleLayerSizerView.center;
     
-    // Create ending circle path for mask:
-    UIBezierPath *endingCirclePath = [UIBezierPath bezierPathWithRoundedRect:endingRectSizerView.frame cornerRadius:tapCircleDiameterEndValue / 2.f];
+    // Create ending circle path:
+    UIBezierPath *endingCirclePath = [UIBezierPath bezierPathWithRoundedRect:endingRectSizerView.frame cornerRadius:tapCircleFinalDiameter / 2.f];
 
     // Create tap circle:
     CAShapeLayer *tapCircle = [CAShapeLayer layer];
