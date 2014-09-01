@@ -41,6 +41,7 @@
 //@property UIView *animationsView;
 @property CALayer *backgroundColorFadeLayer;
 @property NSMutableArray *rippleAnimationQueue;
+@property NSMutableArray *deathRowForCircleLayers;  // This is where old circle layers go to be killed :(
 @end
 
 @implementation BFPaperButton
@@ -206,6 +207,7 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     self.rippleBeyondBounds = NO;
     
     self.rippleAnimationQueue = [NSMutableArray array];
+    self.deathRowForCircleLayers = [NSMutableArray array];
     
     CGRect endRect = CGRectMake(self.bounds.origin.x, self.bounds.origin.y , self.frame.size.width, self.frame.size.height);
     //NSLog(@"endRect in setup = (%0.2f, %0.2f, %0.2f %0.2f", endRect.origin.x, endRect.origin.y, endRect.size.width, endRect.size.height);
@@ -388,6 +390,21 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
 
 
 #pragma mark - Animation
+- (void)animationDidStop:(CAAnimation *)theAnimation2 finished:(BOOL)flag
+{
+    //NSLog(@"animation ENDED");
+    self.growthFinished = YES;
+    
+    if ([[theAnimation2 valueForKey:@"id"] isEqualToString:@"fadeCircleOut"]) {
+        [[self.deathRowForCircleLayers objectAtIndex:0] removeFromSuperlayer];
+        [self.deathRowForCircleLayers removeObjectAtIndex:0];
+    }
+    else if ([[theAnimation2 valueForKey:@"id"] isEqualToString:@"removeFadeBackgroundDarker"]) {
+        self.backgroundColorFadeLayer.backgroundColor = [UIColor clearColor].CGColor;
+    }
+}
+
+
 - (void)growTapCircle
 {
     //NSLog(@"expanding a tap circle");
@@ -542,19 +559,6 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
 }
 
 
-- (void)animationDidStop:(CAAnimation *)theAnimation2 finished:(BOOL)flag
-{
-    //NSLog(@"animation ENDED");
-    self.growthFinished = YES;
-    
-    /*if([[theAnimation2 valueForKey:@"id"] isEqual:@"tapGrowth"]
-     &&
-     self.letGo) {
-     [self removeTapCircle];
-     }*/
-}
-
-
 - (void)fadeBGOutAndBringShadowBackToStart
 {
    // NSLog(@"fading bg");
@@ -592,6 +596,8 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     if ([UIColor isColorClear:self.backgroundColor]) {
         // Remove darkened background fade:
         CABasicAnimation *removeFadeBackgroundDarker = [CABasicAnimation animationWithKeyPath:@"opacity"];
+        [removeFadeBackgroundDarker setValue:@"removeFadeBackgroundDarker" forKey:@"id"];
+        removeFadeBackgroundDarker.delegate = self;
         removeFadeBackgroundDarker.duration = bfPaperButton_animationDurationConstant;
         removeFadeBackgroundDarker.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
         removeFadeBackgroundDarker.fromValue = [NSNumber numberWithFloat:bfPaperButton_clearBGFadeConstant];
@@ -652,8 +658,12 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
 
     CALayer *tempAnimationLayer = [self.rippleAnimationQueue firstObject];
     [self.rippleAnimationQueue removeObjectAtIndex:0];
+    [self.deathRowForCircleLayers addObject:tempAnimationLayer];
+
 
     CABasicAnimation *fadeOut = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    [fadeOut setValue:@"fadeCircleOut" forKey:@"id"];
+    fadeOut.delegate = self;
     fadeOut.fromValue = [NSNumber numberWithFloat:tempAnimationLayer.opacity];
     fadeOut.toValue = [NSNumber numberWithFloat:0.f];
     fadeOut.duration = bfPaperButton_tapCircleGrowthDurationConstant;
