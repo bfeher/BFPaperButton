@@ -144,7 +144,6 @@
 - (void)buttonWasPressed:(id)sender
 {
     NSLog(@"%@ was pressed!", ((UIButton *)sender).titleLabel.text);
-    [self performSegueWithIdentifier:@"push" sender:sender];
 }
 
 @end
