@@ -373,6 +373,9 @@
     NSUInteger totalComponents = CGColorGetNumberOfComponents(color.CGColor);
     BOOL isGreyscale = (totalComponents == 2) ? YES : NO;
     CGFloat *components = (CGFloat *)CGColorGetComponents(color.CGColor);
+    if (!components) {
+        return YES;
+    }
     
     if(isGreyscale) {
         if (components[1] <= 0) {
