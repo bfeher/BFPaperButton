@@ -227,13 +227,13 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     self.titleLabel.font = [UIFont systemFontOfSize:15.f];
 //    [self setTitle:@"BFPaperButton" forState:UIControlStateNormal];
     // Set disabled state:
-    [self setBackgroundImage:[UIColor imageFromColor:[UIColor paperColorGray300]] forState:UIControlStateDisabled];
-    [self setTitleColor:[UIColor paperColorGray400] forState:UIControlStateDisabled];
+//    [self setBackgroundImage:[UIColor imageFromColor:[UIColor paperColorGray300]] forState:UIControlStateDisabled];
+//    [self setTitleColor:[UIColor paperColorGray400] forState:UIControlStateDisabled];
     
     if (self.isRaised) {
         self.backgroundColor = [UIColor paperColorBlue];
-        [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+//        [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        [self setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
         
         // Draw shadow
         self.downRect = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height + bfPaperButton_loweredShadowYOffset);
@@ -248,8 +248,8 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     }
     else {
         self.backgroundColor = [UIColor clearColor];
-        [self setTitleColor:[UIColor paperColorBlue] forState:UIControlStateNormal];
-        [self setTitleColor:[UIColor paperColorBlue] forState:UIControlStateHighlighted];
+//        [self setTitleColor:[UIColor paperColorBlue] forState:UIControlStateNormal];
+//        [self setTitleColor:[UIColor paperColorBlue] forState:UIControlStateHighlighted];
         
 //        self.layer.masksToBounds = YES;
 //        self.clipsToBounds = YES;
@@ -397,7 +397,9 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     
     if ([[theAnimation2 valueForKey:@"id"] isEqualToString:@"fadeCircleOut"]) {
         [[self.deathRowForCircleLayers objectAtIndex:0] removeFromSuperlayer];
-        [self.deathRowForCircleLayers removeObjectAtIndex:0];
+        if (self.deathRowForCircleLayers.count > 0) {
+            [self.deathRowForCircleLayers removeObjectAtIndex:0];
+        }
     }
     else if ([[theAnimation2 valueForKey:@"id"] isEqualToString:@"removeFadeBackgroundDarker"]) {
         self.backgroundColorFadeLayer.backgroundColor = [UIColor clearColor].CGColor;
@@ -657,9 +659,10 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     //NSLog(@"Fading away");
 
     CALayer *tempAnimationLayer = [self.rippleAnimationQueue firstObject];
-    [self.rippleAnimationQueue removeObjectAtIndex:0];
+    if (self.rippleAnimationQueue.count > 0) {
+        [self.rippleAnimationQueue removeObjectAtIndex:0];
+    }
     [self.deathRowForCircleLayers addObject:tempAnimationLayer];
-
 
     CABasicAnimation *fadeOut = [CABasicAnimation animationWithKeyPath:@"opacity"];
     [fadeOut setValue:@"fadeCircleOut" forKey:@"id"];
