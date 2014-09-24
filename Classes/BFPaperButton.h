@@ -34,7 +34,7 @@
 static CGFloat const bfPaperButton_tapCircleDiameterMedium = 305.f;
 static CGFloat const bfPaperButton_tapCircleDiameterSmall = bfPaperButton_tapCircleDiameterMedium / 2.f;
 static CGFloat const bfPaperButton_tapCircleDiameterLarge = bfPaperButton_tapCircleDiameterMedium * 1.5f;
-static CGFloat const bfPaperButton_tapCircleDiameterDefault = -1.f;
+extern CGFloat const bfPaperButton_tapCircleDiameterDefault;
 
 
 @interface BFPaperButton : UIButton <UIGestureRecognizerDelegate>

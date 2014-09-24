@@ -10,29 +10,29 @@
 	<string>BFPaperButton</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>67FCBFA3-877A-44F3-9A0C-27F7B97630B4</key>
+		<key>37DA6020AA3BBC1B7E24EED372416FCD9E002028</key>
 		<string>https://github.com/bfeher/BFPaperButton.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>BFPaperButton.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>67FCBFA3-877A-44F3-9A0C-27F7B97630B4</key>
+		<key>37DA6020AA3BBC1B7E24EED372416FCD9E002028</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/bfeher/BFPaperButton.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>67FCBFA3-877A-44F3-9A0C-27F7B97630B4</string>
+	<string>37DA6020AA3BBC1B7E24EED372416FCD9E002028</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>67FCBFA3-877A-44F3-9A0C-27F7B97630B4</string>
+			<string>37DA6020AA3BBC1B7E24EED372416FCD9E002028</string>
 			<key>IDESourceControlWCCName</key>
 			<string>BFPaperButton</string>
 		</dict>

@@ -44,6 +44,7 @@ alpha:1.0]
 #pragma mark - Utilities
 + (BOOL)isColorClear:(UIColor *)color;
 + (UIImage *)imageFromColor:(UIColor *)color;
++ (NSString *)colorToHex:(UIColor *)color;
 
 #pragma mark - Red
 + (UIColor *)paperColorRed50;

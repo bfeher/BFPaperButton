@@ -45,6 +45,7 @@
 @end
 
 @implementation BFPaperButton
+CGFloat const bfPaperButton_tapCircleDiameterDefault = -1.f;
 // Constants used for tweaking the look/feel of:
 // -shadow radius:
 static CGFloat const bfPaperButton_loweredShadowRadius             = 1.5f;
@@ -202,7 +203,7 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     // Default setup:
     self.usesSmartColor = YES;
     self.cornerRadius = bfPaperButton_loweredShadowRadius;
-    self.tapCircleDiameter = -1.f;
+    self.tapCircleDiameter = bfPaperButton_tapCircleDiameterDefault;
     self.rippleFromTapLocation = YES;
     self.rippleBeyondBounds = NO;
     
@@ -658,22 +659,23 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
 {
     //NSLog(@"Fading away");
 
-    CALayer *tempAnimationLayer = [self.rippleAnimationQueue firstObject];
     if (self.rippleAnimationQueue.count > 0) {
+        CALayer *tempAnimationLayer = [self.rippleAnimationQueue firstObject];
         [self.rippleAnimationQueue removeObjectAtIndex:0];
-    }
-    [self.deathRowForCircleLayers addObject:tempAnimationLayer];
+        
+        [self.deathRowForCircleLayers addObject:tempAnimationLayer];
 
-    CABasicAnimation *fadeOut = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    [fadeOut setValue:@"fadeCircleOut" forKey:@"id"];
-    fadeOut.delegate = self;
-    fadeOut.fromValue = [NSNumber numberWithFloat:tempAnimationLayer.opacity];
-    fadeOut.toValue = [NSNumber numberWithFloat:0.f];
-    fadeOut.duration = bfPaperButton_tapCircleGrowthDurationConstant;
-    fadeOut.fillMode = kCAFillModeForwards;
-    fadeOut.removedOnCompletion = NO;
-    
-    [tempAnimationLayer addAnimation:fadeOut forKey:@"opacityAnimation"];
+        CABasicAnimation *fadeOut = [CABasicAnimation animationWithKeyPath:@"opacity"];
+        [fadeOut setValue:@"fadeCircleOut" forKey:@"id"];
+        fadeOut.delegate = self;
+        fadeOut.fromValue = [NSNumber numberWithFloat:tempAnimationLayer.opacity];
+        fadeOut.toValue = [NSNumber numberWithFloat:0.f];
+        fadeOut.duration = bfPaperButton_tapCircleGrowthDurationConstant;
+        fadeOut.fillMode = kCAFillModeForwards;
+        fadeOut.removedOnCompletion = NO;
+        
+        [tempAnimationLayer addAnimation:fadeOut forKey:@"opacityAnimation"];
+    }
 }
 #pragma mark -
 

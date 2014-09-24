@@ -21,6 +21,8 @@ By default, BFPaperButtons use "Smart Color" which will match the tap-circle and
 You can turn off Smart Color by setting the property, `.usesSmartColor` to `NO`. If you disable Smart Color, a gray color will be used by default for both the tap-circle and the background color fade.
 You can set your own colors via: `.tapCircleColor` and `.backgroundFadeColor`. Note that setting these disables Smart Color.
 
+***Note*** *that setting the button type to Custom in the Storyboard is required to prevent the title from fading out on UIControlStateHighlighted.*
+
 ## Properties
 `CGFloat cornerRadius` <br />
 The corner radius which propagates through to the sub layers.
@@ -113,7 +115,7 @@ Learn more at http://cocoapods.org
 Add this to your podfile to add BFPaperButton to your project.
 ```ruby
 platform :ios, '7.0'
-pod 'BFPaperButton', '~> 1.5.3'
+pod 'BFPaperButton', '~> 1.5.4'
 ```
 
 
