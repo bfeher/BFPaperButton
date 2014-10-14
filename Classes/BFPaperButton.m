@@ -159,25 +159,15 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
 
 
 #pragma mark - Parent Overrides
-/*- (void)setHighlighted:(BOOL)highlighted
- {
- [super setHighlighted:highlighted];
- [self setNeedsDisplay];
- }*/
-
 - (void)setEnabled:(BOOL)enabled
 {
     [super setEnabled:enabled];
 
     if (self.isRaised) {
         if (!enabled) {
-//            self.layer.masksToBounds = YES;
-//            self.clipsToBounds = YES;
             self.layer.shadowOpacity = 0;
         }
         else {
-//            self.layer.masksToBounds = NO;
-//            self.clipsToBounds = NO;
             self.layer.shadowOpacity = bfPaperButton_loweredShadowOpacity;
         }
     }
@@ -225,17 +215,7 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     self.tapCircleColor = nil;
     self.backgroundFadeColor = nil;
     
-    self.titleLabel.font = [UIFont systemFontOfSize:15.f];
-//    [self setTitle:@"BFPaperButton" forState:UIControlStateNormal];
-    // Set disabled state:
-//    [self setBackgroundImage:[UIColor imageFromColor:[UIColor paperColorGray300]] forState:UIControlStateDisabled];
-//    [self setTitleColor:[UIColor paperColorGray400] forState:UIControlStateDisabled];
-    
     if (self.isRaised) {
-        self.backgroundColor = [UIColor paperColorBlue];
-//        [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//        [self setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-        
         // Draw shadow
         self.downRect = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height + bfPaperButton_loweredShadowYOffset);
         self.upRect = CGRectMake(0 - bfPaperButton_raisedShadowXOffset, self.bounds.origin.y + bfPaperButton_raisedShadowYOffset, self.bounds.size.width + (2 * bfPaperButton_raisedShadowXOffset), self.bounds.size.height + bfPaperButton_raisedShadowYOffset);
@@ -248,12 +228,7 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
         self.layer.shadowOffset = CGSizeMake(0.f, 1.0f);
     }
     else {
-        self.backgroundColor = [UIColor clearColor];
-//        [self setTitleColor:[UIColor paperColorBlue] forState:UIControlStateNormal];
-//        [self setTitleColor:[UIColor paperColorBlue] forState:UIControlStateHighlighted];
-        
-//        self.layer.masksToBounds = YES;
-//        self.clipsToBounds = YES;
+        // Erase shadow:
         self.layer.shadowOpacity = 0.f;
     }
     
@@ -276,14 +251,7 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     self.upRect = CGRectMake(0 - bfPaperButton_raisedShadowXOffset, self.bounds.origin.y + bfPaperButton_raisedShadowYOffset, self.bounds.size.width + (2 * bfPaperButton_raisedShadowXOffset), self.bounds.size.height + bfPaperButton_raisedShadowYOffset);
     
     if (_isRaised) {
-        // Reset the button to look like a raised one: (Not sure if I should be forcing this, or letting the user make clear buttons with shadows below them.)
-        /*if ([UIColor isColorClear:self.backgroundColor]) {
-         self.backgroundColor = [UIColor paperBlueColor];
-         [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-         [self setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-         }*/
         // Draw shadow
-//        self.layer.masksToBounds = NO;
         self.layer.shadowColor = [UIColor colorWithWhite:0.2f alpha:1.f].CGColor;
         self.layer.shadowOpacity = bfPaperButton_loweredShadowOpacity;
         self.layer.shadowRadius = bfPaperButton_loweredShadowRadius;
@@ -291,17 +259,7 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
         self.layer.shadowOffset = CGSizeMake(0.f, 1.0f);
     }
     else {
-        // Reset the button to look like a flat one: (Not sure if I should be forcing this, or letting the user make flat buttons with the raised look sans shadow.)
-        /*if (![UIColor isColorClear:self.backgroundColor]) {
-         self.backgroundColor = [UIColor clearColor];
-         [self setTitleColor:[UIColor paperBlueColor] forState:UIControlStateNormal];
-         [self setTitleColor:[UIColor paperBlueColor] forState:UIControlStateHighlighted];
-         [self setTitleColor:[UIColor paperDarkGrayColor] forState:UIControlStateDisabled];
-         }*/
-        
         // Erase shadow:
-//        self.layer.masksToBounds = YES;
-//        self.clipsToBounds = YES;
         self.layer.shadowOpacity = 0.f;
     }
 }
@@ -311,7 +269,6 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     _cornerRadius = cornerRadius;
     self.layer.cornerRadius = _cornerRadius;
     self.backgroundColorFadeLayer.cornerRadius = _cornerRadius;
-//    self.animationsView.layer.cornerRadius = _cornerRadius;
 
     if (self.isRaised) {
         self.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.downRect cornerRadius:self.cornerRadius].CGPath;

@@ -61,12 +61,14 @@
     
     BFPaperButton *bfFlatClearSmart = [[BFPaperButton alloc] initWithFrame:CGRectMake(20, 122, 280, 43) raised:NO];
     [bfFlatClearSmart setTitle:@"BFPaperButton Flat: Clear, Smart Color" forState:UIControlStateNormal];
+    [bfFlatClearSmart setTitleColor:[UIColor paperColorBlue] forState:UIControlStateNormal];
     [bfFlatClearSmart addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bfFlatClearSmart];
     
     BFPaperButton *bfFlatClearDumb = [[BFPaperButton alloc] initWithFrame:CGRectMake(20, 173, 280, 43) raised:NO];
     bfFlatClearDumb.usesSmartColor = NO;
     [bfFlatClearDumb setTitle:@"BFPaperButton Flat: Clear, !Smart Color" forState:UIControlStateNormal];
+    [bfFlatClearDumb setTitleColor:[UIColor paperColorBlue] forState:UIControlStateNormal];
     [bfFlatClearDumb addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bfFlatClearDumb];
     
