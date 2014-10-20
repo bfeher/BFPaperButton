@@ -390,7 +390,7 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
         shadowOpacityAnimation.duration = bfPaperButton_animationDurationConstant;
         shadowOpacityAnimation.fromValue = [NSNumber numberWithFloat:bfPaperButton_loweredShadowOpacity];
         shadowOpacityAnimation.toValue = [NSNumber numberWithFloat:bfPaperButton_raisedShadowOpacity];
-        shadowOpacityAnimation.fillMode = kCAFillModeForwards;
+        shadowOpacityAnimation.fillMode = kCAFillModeBackwards;
         shadowOpacityAnimation.removedOnCompletion = NO;
         
         [self.layer addAnimation:shadowAnimation forKey:@"shadow"];
@@ -545,7 +545,7 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
         shadowOpacityAnimation.duration = bfPaperButton_animationDurationConstant;
         shadowOpacityAnimation.fromValue = [NSNumber numberWithFloat:bfPaperButton_raisedShadowOpacity];
         shadowOpacityAnimation.toValue = [NSNumber numberWithFloat:bfPaperButton_loweredShadowOpacity];
-        shadowOpacityAnimation.fillMode = kCAFillModeForwards;
+        shadowOpacityAnimation.fillMode = kCAFillModeBackwards;
         shadowOpacityAnimation.removedOnCompletion = NO;
         
         [self.layer addAnimation:shadowAnimation forKey:@"shadow"];
