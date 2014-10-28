@@ -408,11 +408,11 @@
 }
 
 
-+ (NSString *)colorToHex:(UIColor *)color
++ (NSString *)hexStringFromRGBColor:(UIColor *)color
 {
     NSString *hexColor = nil;
     
-    // This method only works for RGB colors
+    // This method only works for RGB colors.
     if (color
         &&
         CGColorGetNumberOfComponents(color.CGColor) == 4) {
@@ -430,6 +430,12 @@
     }
     
     return hexColor;
+}
+
+// DEPRECATED!!
++ (NSString *)colorToHex:(UIColor *)color
+{
+    return [self hexStringFromRGBColor:color];
 }
 
 
