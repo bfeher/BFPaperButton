@@ -61,6 +61,7 @@ static CGFloat const bfPaperButton_raisedShadowOpacity             = 0.5f;
 // -animation durations:
 static CGFloat const bfPaperButton_animationDurationConstant       = 0.12f;
 static CGFloat const bfPaperButton_tapCircleGrowthDurationConstant = bfPaperButton_animationDurationConstant * 2;
+static CGFloat const bfPaperButton_fadeOutDurationConstant         = bfPaperButton_animationDurationConstant * 4;
 // -the tap-circle's size:
 static CGFloat const bfPaperButton_tapCircleDiameterStartValue     = 5.f;    // for the mask
 // -the tap-circle's beauty:
@@ -339,9 +340,9 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     //NSLog(@"Touch Up handler");
     self.letGo = YES;
     
-    if (self.growthFinished) {
+//    if (self.growthFinished) {    // Removing this to make the circle always fade out. We lose a little growing animation to this on fast taps, but we gain a smooth ending each time. NOTE: I'm leaving the code here for those who want it.
         [self growTapCircleABit];
-    }
+//    }
     [self fadeTapCircleOut];
     [self fadeBGOutAndBringShadowBackToStart];
 }
@@ -528,13 +529,13 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
         CABasicAnimation *decreaseRadius = [CABasicAnimation animationWithKeyPath:@"shadowRadius"];
         decreaseRadius.fromValue = [NSNumber numberWithFloat:bfPaperButton_raisedShadowRadius];
         decreaseRadius.toValue = [NSNumber numberWithFloat:bfPaperButton_loweredShadowRadius];
-        decreaseRadius.duration = bfPaperButton_animationDurationConstant;
+        decreaseRadius.duration = bfPaperButton_fadeOutDurationConstant;
         decreaseRadius.fillMode = kCAFillModeForwards;
         decreaseRadius.removedOnCompletion = NO;
         
         // Move shadow back up a bit and shrink it a bit:
         CABasicAnimation *shadowAnimation = [CABasicAnimation animationWithKeyPath:@"shadowPath"];
-        shadowAnimation.duration = bfPaperButton_animationDurationConstant;
+        shadowAnimation.duration = bfPaperButton_fadeOutDurationConstant;
         shadowAnimation.fromValue = (id)[UIBezierPath bezierPathWithRoundedRect:self.upRect cornerRadius:self.cornerRadius].CGPath;
         shadowAnimation.toValue = (id)[UIBezierPath bezierPathWithRoundedRect:self.downRect cornerRadius:self.cornerRadius].CGPath;
         shadowAnimation.fillMode = kCAFillModeForwards;
@@ -542,7 +543,7 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
         
         // Darken shadow opacity:
         CABasicAnimation *shadowOpacityAnimation = [CABasicAnimation animationWithKeyPath:@"shadowOpacity"];
-        shadowOpacityAnimation.duration = bfPaperButton_animationDurationConstant;
+        shadowOpacityAnimation.duration = bfPaperButton_fadeOutDurationConstant;
         shadowOpacityAnimation.fromValue = [NSNumber numberWithFloat:bfPaperButton_raisedShadowOpacity];
         shadowOpacityAnimation.toValue = [NSNumber numberWithFloat:bfPaperButton_loweredShadowOpacity];
         shadowOpacityAnimation.fillMode = kCAFillModeBackwards;
@@ -588,7 +589,7 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     
     // Calculate mask ending path:
     CGFloat tapCircleDiameterEndValue = (self.tapCircleDiameter < 0) ? MAX(self.frame.size.width, self.frame.size.height) : self.tapCircleDiameter;
-    tapCircleDiameterEndValue += 40.f;
+    tapCircleDiameterEndValue += 100.f;
     UIView *endingRectSizerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tapCircleDiameterEndValue, tapCircleDiameterEndValue)];
     endingRectSizerView.center = tapCircleLayerSizerView.center;
     
@@ -601,7 +602,7 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     
     // Expand tap-circle animation:
     CABasicAnimation *tapCircleGrowthAnimation = [CABasicAnimation animationWithKeyPath:@"path"];
-    tapCircleGrowthAnimation.duration = bfPaperButton_tapCircleGrowthDurationConstant;
+    tapCircleGrowthAnimation.duration = bfPaperButton_fadeOutDurationConstant;
     tapCircleGrowthAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     tapCircleGrowthAnimation.fromValue = (__bridge id)startingCirclePath.CGPath;
     tapCircleGrowthAnimation.toValue = (__bridge id)endingCirclePath.CGPath;
@@ -627,7 +628,7 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
         fadeOut.delegate = self;
         fadeOut.fromValue = [NSNumber numberWithFloat:tempAnimationLayer.opacity];
         fadeOut.toValue = [NSNumber numberWithFloat:0.f];
-        fadeOut.duration = bfPaperButton_tapCircleGrowthDurationConstant;
+        fadeOut.duration = bfPaperButton_fadeOutDurationConstant;
         fadeOut.fillMode = kCAFillModeForwards;
         fadeOut.removedOnCompletion = NO;
         
