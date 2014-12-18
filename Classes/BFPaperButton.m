@@ -56,7 +56,7 @@ static CGFloat const bfPaperButton_raisedShadowYOffset             = 4.f;
 //static const CGFloat loweredShadowXOffset            = 0.f;
 static CGFloat const bfPaperButton_raisedShadowXOffset             = 2.f;
 // -shadow opacity:
-static CGFloat const bfPaperButton_loweredShadowOpacity            = 0.5f;
+static CGFloat const bfPaperButton_loweredShadowOpacity            = 0.7f;
 static CGFloat const bfPaperButton_raisedShadowOpacity             = 0.5f;
 // -animation durations:
 static CGFloat const bfPaperButton_animationDurationConstant       = 0.12f;
@@ -391,7 +391,7 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
         shadowOpacityAnimation.duration = bfPaperButton_animationDurationConstant;
         shadowOpacityAnimation.fromValue = [NSNumber numberWithFloat:bfPaperButton_loweredShadowOpacity];
         shadowOpacityAnimation.toValue = [NSNumber numberWithFloat:bfPaperButton_raisedShadowOpacity];
-        shadowOpacityAnimation.fillMode = kCAFillModeBackwards;
+        shadowOpacityAnimation.fillMode = kCAFillModeForwards;
         shadowOpacityAnimation.removedOnCompletion = NO;
         
         [self.layer addAnimation:shadowAnimation forKey:@"shadow"];
