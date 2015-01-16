@@ -31,9 +31,9 @@
 
 #pragma mark - Useful constants
 // Nice circle diameter constants with ugly names:
-static CGFloat const bfPaperButton_tapCircleDiameterMedium = 305.f;
-static CGFloat const bfPaperButton_tapCircleDiameterSmall = bfPaperButton_tapCircleDiameterMedium / 2.f;
-static CGFloat const bfPaperButton_tapCircleDiameterLarge = bfPaperButton_tapCircleDiameterMedium * 1.5f;
+extern CGFloat const bfPaperButton_tapCircleDiameterMedium;
+extern CGFloat const bfPaperButton_tapCircleDiameterSmall;
+extern CGFloat const bfPaperButton_tapCircleDiameterLarge;
 extern CGFloat const bfPaperButton_tapCircleDiameterDefault;
 
 
