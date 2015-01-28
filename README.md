@@ -28,7 +28,7 @@ You can set your own colors via: `.tapCircleColor` and `.backgroundFadeColor`. N
 
 ## Properties
 `UIColor *shadowColor` <br />
-The UIColor for the shadow of a raised button. An alpha value of 1 is recommended as shadowOpacity overwrites the alpha of this color.
+The UIColor for the shadow of a raised button. An alpha value of `1` is recommended as shadowOpacity overwrites the alpha of this color.
 
 `CGFloat loweredShadowOpacity` <br />
 A CGFLoat representing the opacity of the shadow of RAISED buttons when they are lowered (idle). Default is `0.5f`.
