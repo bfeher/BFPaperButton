@@ -107,7 +107,7 @@
     [bfRaisedDumbSmall setBackgroundColor:[UIColor paperColorBlue]];
     bfRaisedDumbSmall.titleLabel.numberOfLines = 0;
     bfRaisedDumbSmall.titleLabel.font = [UIFont systemFontOfSize:10.f];
-    bfRaisedDumbSmall.tapCircleDiameter = bfPaperButton_tapCircleDiameterMedium;
+    bfRaisedDumbSmall.tapCircleDiameter = bfPaperButton_tapCircleDiameterFull;
     [bfRaisedDumbSmall setTitle:@"BFPaperButton Raised: !Smart Color, large circle" forState:UIControlStateNormal];
     [bfRaisedDumbSmall setTitleFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:15.f]];
     [bfRaisedDumbSmall addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -149,7 +149,7 @@
     circle3.cornerRadius = circle3.frame.size.width / 2;
     circle3.tapCircleDiameter = 53;
     circle3.tapCircleColor = [UIColor colorWithRed:0.3 green:0 blue:1 alpha:0.6];  // Setting this color overrides "Smart Color".
-    circle3.backgroundFadeColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:1]; // Setting this color overrides "Smart Color".
+    circle3.backgroundFadeColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:0.3f]; // Setting this color overrides "Smart Color".
     [self.view addSubview:circle3];
 }
 

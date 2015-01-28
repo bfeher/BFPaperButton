@@ -41,41 +41,18 @@
 @property CALayer *backgroundColorFadeLayer;
 @property NSMutableArray *rippleAnimationQueue;
 @property NSMutableArray *deathRowForCircleLayers;  // This is where old circle layers go to be killed :(
+@property UIColor *dumbTapCircleFillColor;
+@property UIColor *clearBackgroundDumbTapCircleColor;
+@property UIColor *clearBackgroundDumbFadeColor;
 @end
 
 @implementation BFPaperButton
 // Public consts:
-CGFloat const bfPaperButton_tapCircleDiameterMedium = 305.f;
-CGFloat const bfPaperButton_tapCircleDiameterSmall = bfPaperButton_tapCircleDiameterMedium / 2.f;
-CGFloat const bfPaperButton_tapCircleDiameterLarge = bfPaperButton_tapCircleDiameterMedium * 1.5f;
-CGFloat const bfPaperButton_tapCircleDiameterDefault = -1.f;
-
-// Constants used for tweaking the look/feel of:
-// -shadow radius:
-static CGFloat const bfPaperButton_loweredShadowRadius             = 1.5f;
-static CGFloat const bfPaperButton_raisedShadowRadius              = 4.5f;
-// -shadow location:
-static CGFloat const bfPaperButton_loweredShadowYOffset            = 1.f;
-static CGFloat const bfPaperButton_raisedShadowYOffset             = 4.f;
-//static const CGFloat loweredShadowXOffset            = 0.f;
-static CGFloat const bfPaperButton_raisedShadowXOffset             = 2.f;
-// -shadow opacity:
-static CGFloat const bfPaperButton_loweredShadowOpacity            = 0.7f;
-static CGFloat const bfPaperButton_raisedShadowOpacity             = 0.5f;
-// -animation durations:
-static CGFloat const bfPaperButton_animationDurationConstant       = 0.12f;
-static CGFloat const bfPaperButton_tapCircleGrowthDurationConstant = bfPaperButton_animationDurationConstant * 2;
-static CGFloat const bfPaperButton_fadeOutDurationConstant         = bfPaperButton_animationDurationConstant * 4;
-// -the tap-circle's size:
-static CGFloat const bfPaperButton_tapCircleDiameterStartValue     = 5.f;    // for the mask
-// -the tap-circle's beauty:
-static CGFloat const bfPaperButton_tapFillConstant                 = 0.16f;
-static CGFloat const bfPaperButton_clearBGTapFillConstant          = 0.12f;
-static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
-
-#define BFPAPERBUTTON__DUMB_TAP_FILL_COLOR             [UIColor colorWithWhite:0.1 alpha:bfPaperButton_tapFillConstant]
-#define BFPAPERBUTTON__CLEAR_BG_DUMB_TAP_FILL_COLOR    [UIColor colorWithWhite:0.3 alpha:bfPaperButton_clearBGTapFillConstant]
-#define BFPAPERBUTTON__CLEAR_BG_DUMB_FADE_COLOR        [UIColor colorWithWhite:0.3 alpha:1]
+CGFloat const bfPaperButton_tapCircleDiameterMedium  = 305.f;
+CGFloat const bfPaperButton_tapCircleDiameterSmall   = bfPaperButton_tapCircleDiameterMedium / 2.f;
+CGFloat const bfPaperButton_tapCircleDiameterLarge   = bfPaperButton_tapCircleDiameterMedium * 1.5f;
+CGFloat const bfPaperButton_tapCircleDiameterFull    = -1.f;
+CGFloat const bfPaperButton_tapCircleDiameterDefault = -2.f;
 
 
 #pragma mark - Default Initializers
@@ -125,45 +102,8 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     return self;
 }
 
-#pragma mark Deprecated Initializers
-- (instancetype)initRaised
-{
-    self = [super init];
-    if (self) {
-        [self setupRaised:YES];
-    }
-    return self;
-}
 
-- (instancetype)initRaisedWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self setupRaised:YES];
-    }
-    return self;
-}
-
-- (instancetype)initFlat
-{
-    self = [super init];
-    if (self) {
-        [self setupRaised:NO];
-    }
-    return self;
-}
-
-- (instancetype)initFlatWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self setupRaised:NO];
-    }
-    return self;
-}
-
-
-#pragma mark - Parent Overrides
+#pragma mark - Super Overrides
 - (void)setEnabled:(BOOL)enabled
 {
     [super setEnabled:enabled];
@@ -173,7 +113,7 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
             self.layer.shadowOpacity = 0;
         }
         else {
-            self.layer.shadowOpacity = bfPaperButton_loweredShadowOpacity;
+            self.layer.shadowOpacity = self.loweredShadowOpacity;
         }
     }
     [self setNeedsDisplay];
@@ -182,11 +122,37 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
 - (void)sizeToFit
 {
     [super sizeToFit];
+    
     if (self.isRaised) {
-        self.downRect = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height + bfPaperButton_loweredShadowYOffset);
-        self.upRect = CGRectMake(0 - bfPaperButton_raisedShadowXOffset, self.bounds.origin.y + bfPaperButton_raisedShadowYOffset, self.bounds.size.width + (2 * bfPaperButton_raisedShadowXOffset), self.bounds.size.height + bfPaperButton_raisedShadowYOffset);
-        self.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.downRect cornerRadius:self.cornerRadius].CGPath;
+        // Draw shadow
+        self.downRect = CGRectMake(self.bounds.origin.x - self.loweredShadowOffset.width,
+                                   self.bounds.origin.y + self.loweredShadowOffset.height,
+                                   self.bounds.size.width + (2 * self.loweredShadowOffset.width),
+                                   self.bounds.size.height + self.loweredShadowOffset.height);
+        
+        self.upRect = CGRectMake(self.bounds.origin.x - self.liftedShadowOffset.width,
+                                 self.bounds.origin.y + self.liftedShadowOffset.height,
+                                 self.bounds.size.width + (2 * self.liftedShadowOffset.width),
+                                 self.bounds.size.height + self.liftedShadowOffset.height);
+        
+        self.layer.shadowColor = self.shadowColor.CGColor;
+        self.layer.shadowOpacity = self.letGo ? self.loweredShadowOpacity : self.liftedShadowOpacity;
+        self.layer.shadowRadius = self.letGo ? self.loweredShadowRadius : self.liftedShadowRadius;
+        self.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.letGo ? self.downRect : self.upRect cornerRadius:self.cornerRadius].CGPath;
+        self.layer.shadowOffset = CGSizeMake(0.f, 1.0f);
     }
+    else {
+        // Erase shadow:
+        self.layer.shadowOpacity = 0.f;
+        
+        self.backgroundColorFadeLayer.frame = CGRectMake(self.bounds.origin.x, self.bounds.origin.y , self.bounds.size.width, self.bounds.size.height);
+        self.backgroundColorFadeLayer.cornerRadius = self.cornerRadius;
+    }
+    
+    self.fadeAndClippingMaskRect = CGRectMake(self.bounds.origin.x, self.bounds.origin.y , self.bounds.size.width, self.bounds.size.height);
+    
+    [self setNeedsDisplay];
+    [self.layer setNeedsDisplay];
 }
 
 - (void)layoutSubviews
@@ -195,12 +161,19 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     
     if (self.isRaised) {
         // Draw shadow
-        self.downRect = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height + bfPaperButton_loweredShadowYOffset);
-        self.upRect = CGRectMake(0 - bfPaperButton_raisedShadowXOffset, self.bounds.origin.y + bfPaperButton_raisedShadowYOffset, self.bounds.size.width + (2 * bfPaperButton_raisedShadowXOffset), self.bounds.size.height + bfPaperButton_raisedShadowYOffset);
+        self.downRect = CGRectMake(self.bounds.origin.x - self.loweredShadowOffset.width,
+                                   self.bounds.origin.y + self.loweredShadowOffset.height,
+                                   self.bounds.size.width + (2 * self.loweredShadowOffset.width),
+                                   self.bounds.size.height + self.loweredShadowOffset.height);
         
-        self.layer.shadowColor = [UIColor colorWithWhite:0.2f alpha:1.f].CGColor;
-        self.layer.shadowOpacity = self.letGo ? bfPaperButton_loweredShadowOpacity : bfPaperButton_raisedShadowOpacity;
-        self.layer.shadowRadius = self.letGo ? bfPaperButton_loweredShadowRadius : bfPaperButton_raisedShadowRadius;
+        self.upRect = CGRectMake(self.bounds.origin.x - self.liftedShadowOffset.width,
+                                 self.bounds.origin.y + self.liftedShadowOffset.height,
+                                 self.bounds.size.width + (2 * self.liftedShadowOffset.width),
+                                 self.bounds.size.height + self.liftedShadowOffset.height);
+        
+        self.layer.shadowColor = self.shadowColor.CGColor;
+        self.layer.shadowOpacity = self.letGo ? self.loweredShadowOpacity : self.liftedShadowOpacity;
+        self.layer.shadowRadius = self.letGo ? self.loweredShadowRadius : self.liftedShadowRadius;
         self.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.letGo ? self.downRect : self.upRect cornerRadius:self.cornerRadius].CGPath;
         self.layer.shadowOffset = CGSizeMake(0.f, 1.0f);
     }
@@ -223,14 +196,36 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
 - (void)setupRaised:(BOOL)isRaised
 {
     self.letGo = YES;
-    self.isRaised = isRaised;
-    
-    // Default setup:
-    self.usesSmartColor = YES;
-    self.cornerRadius = bfPaperButton_loweredShadowRadius;
-    self.tapCircleDiameter = bfPaperButton_tapCircleDiameterDefault;
-    self.rippleFromTapLocation = YES;
-    self.rippleBeyondBounds = NO;
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Defaults for visual properties:                                                                                      //
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Shadow (for raised views) - Down:
+    self.loweredShadowOpacity = 0.5f;
+    self.loweredShadowRadius  = 1.5f;
+    self.loweredShadowOffset  = CGSizeMake(0, 1);
+    // Shadow (for raised views) - Up:
+    self.liftedShadowOpacity = 0.5f;
+    self.liftedShadowRadius  = 4.5f;
+    self.liftedShadowOffset  = CGSizeMake(2, 4);
+    // Animation:
+    self.touchDownAnimationDuration  = 0.25f;
+    self.touchUpAnimationDuration    = self.touchDownAnimationDuration * 2.5f;
+    // Prettyness and Behaviour:
+    self.usesSmartColor                    = YES;
+    self.isRaised                          = isRaised;
+    self.cornerRadius                      = 0;
+    self.tapCircleColor                    = nil;
+    self.backgroundFadeColor               = nil;
+    self.shadowColor                       = [UIColor colorWithWhite:0.2f alpha:1.f];
+    self.rippleFromTapLocation             = YES;
+    self.rippleBeyondBounds                = NO;
+    self.tapCircleDiameterStartValue       = 5.f;
+    self.tapCircleDiameter                 = bfPaperButton_tapCircleDiameterDefault;
+    self.tapCircleBurstAmount              = 100.f;
+    self.dumbTapCircleFillColor            = [UIColor colorWithWhite:0.1 alpha:0.16f];
+    self.clearBackgroundDumbTapCircleColor = [UIColor colorWithWhite:0.3 alpha:0.12f];
+    self.clearBackgroundDumbFadeColor      = [UIColor colorWithWhite:0.3 alpha:0.12f];
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     self.rippleAnimationQueue = [NSMutableArray array];
     self.deathRowForCircleLayers = [NSMutableArray array];
@@ -240,6 +235,7 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     self.backgroundColorFadeLayer.frame = self.fadeAndClippingMaskRect;
     self.backgroundColorFadeLayer.cornerRadius = self.cornerRadius;
     self.backgroundColorFadeLayer.backgroundColor = [UIColor clearColor].CGColor;
+    self.backgroundColorFadeLayer.opacity = 0;
     [self.layer insertSublayer:self.backgroundColorFadeLayer atIndex:0];
     
     self.layer.masksToBounds = NO;
@@ -253,13 +249,19 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     
     if (self.isRaised) {
         // Draw shadow
-        self.downRect = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height + bfPaperButton_loweredShadowYOffset);
-        self.upRect = CGRectMake(0 - bfPaperButton_raisedShadowXOffset, self.bounds.origin.y + bfPaperButton_raisedShadowYOffset, self.bounds.size.width + (2 * bfPaperButton_raisedShadowXOffset), self.bounds.size.height + bfPaperButton_raisedShadowYOffset);
+        self.downRect = CGRectMake(self.bounds.origin.x - self.loweredShadowOffset.width,
+                                   self.bounds.origin.y + self.loweredShadowOffset.height,
+                                   self.bounds.size.width + (2 * self.loweredShadowOffset.width),
+                                   self.bounds.size.height + self.loweredShadowOffset.height);
         
-        //        self.layer.masksToBounds = NO;
-        self.layer.shadowColor = [UIColor colorWithWhite:0.2f alpha:1.f].CGColor;
-        self.layer.shadowOpacity = bfPaperButton_loweredShadowOpacity;
-        self.layer.shadowRadius = bfPaperButton_loweredShadowRadius;
+        self.upRect = CGRectMake(self.bounds.origin.x - self.liftedShadowOffset.width,
+                                 self.bounds.origin.y + self.liftedShadowOffset.height,
+                                 self.bounds.size.width + (2 * self.liftedShadowOffset.width),
+                                 self.bounds.size.height + self.liftedShadowOffset.height);
+        
+        self.layer.shadowColor = self.shadowColor.CGColor;
+        self.layer.shadowOpacity = self.loweredShadowOpacity;
+        self.layer.shadowRadius = self.loweredShadowRadius;
         self.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.downRect cornerRadius:self.cornerRadius].CGPath;
         self.layer.shadowOffset = CGSizeMake(0.f, 1.0f);
     }
@@ -284,14 +286,21 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
 - (void)setIsRaised:(BOOL)isRaised
 {
     _isRaised = isRaised;
-    self.downRect = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height + bfPaperButton_loweredShadowYOffset);
-    self.upRect = CGRectMake(0 - bfPaperButton_raisedShadowXOffset, self.bounds.origin.y + bfPaperButton_raisedShadowYOffset, self.bounds.size.width + (2 * bfPaperButton_raisedShadowXOffset), self.bounds.size.height + bfPaperButton_raisedShadowYOffset);
+    self.downRect = CGRectMake(self.bounds.origin.x - self.loweredShadowOffset.width,
+                               self.bounds.origin.y + self.loweredShadowOffset.height,
+                               self.bounds.size.width + (2 * self.loweredShadowOffset.width),
+                               self.bounds.size.height + self.loweredShadowOffset.height);
+    
+    self.upRect = CGRectMake(self.bounds.origin.x - self.liftedShadowOffset.width,
+                             self.bounds.origin.y + self.liftedShadowOffset.height,
+                             self.bounds.size.width + (2 * self.liftedShadowOffset.width),
+                             self.bounds.size.height + self.liftedShadowOffset.height);
     
     if (_isRaised) {
         // Draw shadow
-        self.layer.shadowColor = [UIColor colorWithWhite:0.2f alpha:1.f].CGColor;
-        self.layer.shadowOpacity = bfPaperButton_loweredShadowOpacity;
-        self.layer.shadowRadius = bfPaperButton_loweredShadowRadius;
+        self.layer.shadowColor = self.shadowColor.CGColor;
+        self.layer.shadowOpacity = self.loweredShadowOpacity;
+        self.layer.shadowRadius = self.loweredShadowRadius;
         self.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.downRect cornerRadius:self.cornerRadius].CGPath;
         self.layer.shadowOffset = CGSizeMake(0.f, 1.0f);
     }
@@ -365,8 +374,7 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
 {
     //NSLog(@"Touch down handler");
     self.letGo = NO;
-    
-    [self growTapCircle];
+    [self touchDownAnimations];
 }
 
 
@@ -374,10 +382,7 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
 {
     //NSLog(@"Touch Up handler");
     self.letGo = YES;
-    
-    [self growTapCircleABit];
-    [self fadeTapCircleOut];
-    [self fadeBGOutAndBringShadowBackToStart];
+    [self touchUpAnimations];
 }
 
 
@@ -385,79 +390,109 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
 - (void)animationDidStop:(CAAnimation *)theAnimation2 finished:(BOOL)flag
 {
     //NSLog(@"animation ENDED");
-    
     if ([[theAnimation2 valueForKey:@"id"] isEqualToString:@"fadeCircleOut"]) {
         [[self.deathRowForCircleLayers objectAtIndex:0] removeFromSuperlayer];
         if (self.deathRowForCircleLayers.count > 0) {
             [self.deathRowForCircleLayers removeObjectAtIndex:0];
         }
     }
-    else if ([[theAnimation2 valueForKey:@"id"] isEqualToString:@"removeFadeBackgroundDarker"]) {
-        self.backgroundColorFadeLayer.backgroundColor = [UIColor clearColor].CGColor;
-    }
 }
 
+- (void)touchDownAnimations
+{
+    [self liftButton];
+    [self fadeInBackgroundAndRippleTapCircle];
+}
 
-- (void)growTapCircle
+- (void)touchUpAnimations
+{
+    [self lowerButtonAndFadeOutBackground];
+    [self burstTapCircle];
+}
+
+- (void)liftButton
 {
     //NSLog(@"expanding a tap circle");
     if (self.isRaised) {
+        
+        CGFloat startRadius = self.loweredShadowRadius;
+        CGFloat startOpacity = self.loweredShadowOpacity;
+        CGPathRef startPath = [UIBezierPath bezierPathWithRoundedRect:self.downRect cornerRadius:self.cornerRadius].CGPath;
+        
+        // Grab the current values if we are currently animating:
+        if ([[self.layer animationKeys] count] > 0) {
+            startRadius = [[self.layer presentationLayer] shadowRadius];
+            startOpacity = [[self.layer presentationLayer] shadowOpacity];
+            startPath = [[self.layer presentationLayer] shadowPath];
+        }
+        
         // Increase shadow radius:
         CABasicAnimation *increaseRadius = [CABasicAnimation animationWithKeyPath:@"shadowRadius"];
-        increaseRadius.fromValue = [NSNumber numberWithFloat:bfPaperButton_loweredShadowRadius];
-        increaseRadius.toValue = [NSNumber numberWithFloat:bfPaperButton_raisedShadowRadius];
-        increaseRadius.duration = bfPaperButton_animationDurationConstant;
+        increaseRadius.fromValue = [NSNumber numberWithFloat:startRadius];
+        increaseRadius.toValue = [NSNumber numberWithFloat:self.liftedShadowRadius];
+        increaseRadius.duration = self.touchDownAnimationDuration;
         increaseRadius.fillMode = kCAFillModeForwards;
         increaseRadius.removedOnCompletion = YES;
-        self.layer.shadowRadius = bfPaperButton_raisedShadowRadius;
-        
-        // Change its frame a bit larger and shift it down a bit:
-        CABasicAnimation *shadowAnimation = [CABasicAnimation animationWithKeyPath:@"shadowPath"];
-        shadowAnimation.duration = bfPaperButton_animationDurationConstant;
-        shadowAnimation.fromValue = (id)[UIBezierPath bezierPathWithRoundedRect:self.downRect cornerRadius:self.cornerRadius].CGPath;
-        shadowAnimation.toValue = (id)[UIBezierPath bezierPathWithRoundedRect:self.upRect cornerRadius:self.cornerRadius].CGPath;
-        shadowAnimation.fillMode = kCAFillModeForwards;
-        shadowAnimation.removedOnCompletion = YES;
-        self.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.upRect cornerRadius:self.cornerRadius].CGPath;
+        self.layer.shadowRadius = self.liftedShadowRadius;
         
         // Lighten the shadow opacity:
         CABasicAnimation *shadowOpacityAnimation = [CABasicAnimation animationWithKeyPath:@"shadowOpacity"];
-        shadowOpacityAnimation.duration = bfPaperButton_animationDurationConstant;
-        shadowOpacityAnimation.fromValue = [NSNumber numberWithFloat:bfPaperButton_loweredShadowOpacity];
-        shadowOpacityAnimation.toValue = [NSNumber numberWithFloat:bfPaperButton_raisedShadowOpacity];
-        shadowOpacityAnimation.fillMode = kCAFillModeForwards;
+        shadowOpacityAnimation.duration = self.touchDownAnimationDuration;
+        shadowOpacityAnimation.fromValue = [NSNumber numberWithFloat:startOpacity];
+        shadowOpacityAnimation.toValue = [NSNumber numberWithFloat:self.liftedShadowOpacity];
+        shadowOpacityAnimation.fillMode = kCAFillModeBackwards;
         shadowOpacityAnimation.removedOnCompletion = YES;
-        self.layer.shadowOpacity = bfPaperButton_raisedShadowOpacity;
+        self.layer.shadowOpacity = self.liftedShadowOpacity;
         
-        [self.layer addAnimation:shadowAnimation forKey:@"shadow"];
+        // Change its frame a bit larger and shift it down a bit:
+        CABasicAnimation *shadowPathAnimation = [CABasicAnimation animationWithKeyPath:@"shadowPath"];
+        shadowPathAnimation.duration = self.touchDownAnimationDuration;
+        shadowPathAnimation.fromValue = (__bridge id)(startPath);
+        shadowPathAnimation.toValue = (id)[UIBezierPath bezierPathWithRoundedRect:self.upRect cornerRadius:self.cornerRadius].CGPath;
+        shadowPathAnimation.fillMode = kCAFillModeForwards;
+        shadowPathAnimation.removedOnCompletion = YES;
+        self.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.upRect cornerRadius:self.cornerRadius].CGPath;
+        
+        // Add the animations:
         [self.layer addAnimation:increaseRadius forKey:@"shadowRadius"];
         [self.layer addAnimation:shadowOpacityAnimation forKey:@"shadowOpacity"];
+        [self.layer addAnimation:shadowPathAnimation forKey:@"shadow"];
     }
-    
-    // Spawn a growing circle that "ripples" through the button:
+}
+
+- (void)fadeInBackgroundAndRippleTapCircle
+{
+    // Spawn a growing circle that "ripples" through the view:
     if ([UIColor isColorClear:self.backgroundColor]) {
-        // CLEAR BACKROUND SHOULD ONLY BE FOR FLAT BUTTONS!!!
+        // CLEAR BACKROUND SHOULD ONLY BE FOR FLAT VIEW!!!
         
         // Set the fill color for the tap circle (self.animationLayer's fill color):
         if (!self.tapCircleColor) {
-            self.tapCircleColor = self.usesSmartColor ? [self.titleLabel.textColor colorWithAlphaComponent:bfPaperButton_clearBGTapFillConstant] : BFPAPERBUTTON__CLEAR_BG_DUMB_TAP_FILL_COLOR;
+            self.tapCircleColor = self.usesSmartColor ? [self.titleLabel.textColor colorWithAlphaComponent:CGColorGetAlpha(self.clearBackgroundDumbTapCircleColor.CGColor)] : self.clearBackgroundDumbTapCircleColor;
         }
         
         if (!self.backgroundFadeColor) {
-            self.backgroundFadeColor = self.usesSmartColor ? self.titleLabel.textColor : BFPAPERBUTTON__CLEAR_BG_DUMB_FADE_COLOR;
+            self.backgroundFadeColor = self.usesSmartColor ? [self.titleLabel.textColor colorWithAlphaComponent:CGColorGetAlpha(self.clearBackgroundDumbFadeColor.CGColor)] : self.clearBackgroundDumbFadeColor;
         }
         
         // Setup background fade layer:
         self.backgroundColorFadeLayer.backgroundColor = self.backgroundFadeColor.CGColor;
         
+        CGFloat startingOpacity = self.backgroundColorFadeLayer.opacity;
+        
+        if ([[self.backgroundColorFadeLayer animationKeys] count] > 0) {
+            startingOpacity = [[self.backgroundColorFadeLayer presentationLayer] opacity];
+        }
+        
         // Fade the background color a bit darker:
         CABasicAnimation *fadeBackgroundDarker = [CABasicAnimation animationWithKeyPath:@"opacity"];
-        fadeBackgroundDarker.duration = bfPaperButton_animationDurationConstant;
-        fadeBackgroundDarker.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-        fadeBackgroundDarker.fromValue = [NSNumber numberWithFloat:0.f];
-        fadeBackgroundDarker.toValue = [NSNumber numberWithFloat:bfPaperButton_clearBGFadeConstant];
+        fadeBackgroundDarker.duration = self.touchDownAnimationDuration;
+        fadeBackgroundDarker.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+        fadeBackgroundDarker.fromValue = [NSNumber numberWithFloat:startingOpacity];
+        fadeBackgroundDarker.toValue = [NSNumber numberWithFloat:1];
         fadeBackgroundDarker.fillMode = kCAFillModeForwards;
-        fadeBackgroundDarker.removedOnCompletion = NO;
+        fadeBackgroundDarker.removedOnCompletion = !NO;
+        self.backgroundColorFadeLayer.opacity = 1;
         
         [self.backgroundColorFadeLayer addAnimation:fadeBackgroundDarker forKey:@"animateOpacity"];
     }
@@ -466,23 +501,23 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
         
         // Set the fill color for the tap circle (self.animationLayer's fill color):
         if (!self.tapCircleColor) {
-            self.tapCircleColor = self.usesSmartColor ? [self.titleLabel.textColor colorWithAlphaComponent:bfPaperButton_tapFillConstant] : BFPAPERBUTTON__DUMB_TAP_FILL_COLOR;
+            self.tapCircleColor = self.usesSmartColor ? [self.titleLabel.textColor colorWithAlphaComponent:CGColorGetAlpha(self.dumbTapCircleFillColor.CGColor)] : self.dumbTapCircleFillColor;
         }
     }
     
     // Calculate the tap circle's ending diameter:
-    CGFloat tapCircleFinalDiameter = (self.tapCircleDiameter < 0) ? MAX(self.frame.size.width, self.frame.size.height) : self.tapCircleDiameter;
+    CGFloat tapCircleFinalDiameter = [self calculateTapCircleFinalDiameter];
     
     // Create a UIView which we can modify for its frame value later (specifically, the ability to use .center):
     UIView *tapCircleLayerSizerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tapCircleFinalDiameter, tapCircleFinalDiameter)];
     tapCircleLayerSizerView.center = self.rippleFromTapLocation ? self.tapPoint : CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
     
     // Calculate starting path:
-    UIView *startingRectSizerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, bfPaperButton_tapCircleDiameterStartValue, bfPaperButton_tapCircleDiameterStartValue)];
+    UIView *startingRectSizerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tapCircleDiameterStartValue, self.tapCircleDiameterStartValue)];
     startingRectSizerView.center = tapCircleLayerSizerView.center;
     
     // Create starting circle path:
-    UIBezierPath *startingCirclePath = [UIBezierPath bezierPathWithRoundedRect:startingRectSizerView.frame cornerRadius:bfPaperButton_tapCircleDiameterStartValue / 2.f];
+    UIBezierPath *startingCirclePath = [UIBezierPath bezierPathWithRoundedRect:startingRectSizerView.frame cornerRadius:self.tapCircleDiameterStartValue / 2.f];
     
     // Calculate ending path:
     UIView *endingRectSizerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tapCircleFinalDiameter, tapCircleFinalDiameter)];
@@ -517,15 +552,10 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     [self.layer insertSublayer:tapCircle above:self.backgroundColorFadeLayer];
     
     
-    /*
-     * Animations:
-     */
     // Grow tap-circle animation (performed on mask layer):
     CABasicAnimation *tapCircleGrowthAnimation = [CABasicAnimation animationWithKeyPath:@"path"];
-    tapCircleGrowthAnimation.delegate = self;
-    [tapCircleGrowthAnimation setValue:@"tapGrowth" forKey:@"id"];
     [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:)];
-    tapCircleGrowthAnimation.duration = bfPaperButton_tapCircleGrowthDurationConstant;
+    tapCircleGrowthAnimation.duration = self.touchDownAnimationDuration;
     tapCircleGrowthAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     tapCircleGrowthAnimation.fromValue = (__bridge id)startingCirclePath.CGPath;
     tapCircleGrowthAnimation.toValue = (__bridge id)endingCirclePath.CGPath;
@@ -534,7 +564,7 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     
     // Fade in self.animationLayer:
     CABasicAnimation *fadeIn = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    fadeIn.duration = bfPaperButton_animationDurationConstant;
+    fadeIn.duration = self.touchDownAnimationDuration;
     fadeIn.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
     fadeIn.fromValue = [NSNumber numberWithFloat:0.f];
     fadeIn.toValue = [NSNumber numberWithFloat:1.f];
@@ -546,39 +576,50 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     [tapCircle addAnimation:fadeIn forKey:@"opacityAnimation"];
 }
 
-
-- (void)fadeBGOutAndBringShadowBackToStart
+- (void)lowerButtonAndFadeOutBackground
 {
     // NSLog(@"fading bg");
     
     if (self.isRaised) {
+        CGFloat startRadius = self.liftedShadowRadius;
+        CGFloat startOpacity = self.liftedShadowOpacity;
+        CGPathRef startPath = [UIBezierPath bezierPathWithRoundedRect:self.upRect cornerRadius:self.cornerRadius].CGPath;
+        
+        // Grab the current values if we are currently animating:
+        if ([[self.layer animationKeys] count] > 0) {
+            startRadius = [[self.layer presentationLayer] shadowRadius];
+            startOpacity = [[self.layer presentationLayer] shadowOpacity];
+            startPath = [[self.layer presentationLayer] shadowPath];
+        }
+        
         // Decrease shadow radius:
         CABasicAnimation *decreaseRadius = [CABasicAnimation animationWithKeyPath:@"shadowRadius"];
-        decreaseRadius.fromValue = [NSNumber numberWithFloat:bfPaperButton_raisedShadowRadius];
-        decreaseRadius.toValue = [NSNumber numberWithFloat:bfPaperButton_loweredShadowRadius];
-        decreaseRadius.duration = bfPaperButton_fadeOutDurationConstant;
+        decreaseRadius.fromValue = [NSNumber numberWithFloat:startRadius];
+        decreaseRadius.toValue = [NSNumber numberWithFloat:self.loweredShadowRadius];
+        decreaseRadius.duration = self.touchUpAnimationDuration;
         decreaseRadius.fillMode = kCAFillModeForwards;
         decreaseRadius.removedOnCompletion = YES;
-        self.layer.shadowRadius = bfPaperButton_loweredShadowRadius;
+        self.layer.shadowRadius = self.loweredShadowRadius;
+        
+        // Darken shadow opacity:
+        CABasicAnimation *shadowOpacityAnimation = [CABasicAnimation animationWithKeyPath:@"shadowOpacity"];
+        shadowOpacityAnimation.duration = self.touchUpAnimationDuration;
+        shadowOpacityAnimation.fromValue = [NSNumber numberWithFloat:startOpacity];
+        shadowOpacityAnimation.toValue = [NSNumber numberWithFloat:self.loweredShadowOpacity];
+        shadowOpacityAnimation.fillMode = kCAFillModeBackwards;
+        shadowOpacityAnimation.removedOnCompletion = YES;
+        self.layer.shadowOpacity = self.loweredShadowOpacity;
         
         // Move shadow back up a bit and shrink it a bit:
         CABasicAnimation *shadowAnimation = [CABasicAnimation animationWithKeyPath:@"shadowPath"];
-        shadowAnimation.duration = bfPaperButton_fadeOutDurationConstant;
-        shadowAnimation.fromValue = (id)[UIBezierPath bezierPathWithRoundedRect:self.upRect cornerRadius:self.cornerRadius].CGPath;
+        shadowAnimation.duration = self.touchUpAnimationDuration;
+        shadowAnimation.fromValue = (__bridge id)(startPath);
         shadowAnimation.toValue = (id)[UIBezierPath bezierPathWithRoundedRect:self.downRect cornerRadius:self.cornerRadius].CGPath;
         shadowAnimation.fillMode = kCAFillModeForwards;
         shadowAnimation.removedOnCompletion = YES;
         self.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.downRect cornerRadius:self.cornerRadius].CGPath;
         
-        // Darken shadow opacity:
-        CABasicAnimation *shadowOpacityAnimation = [CABasicAnimation animationWithKeyPath:@"shadowOpacity"];
-        shadowOpacityAnimation.duration = bfPaperButton_fadeOutDurationConstant;
-        shadowOpacityAnimation.fromValue = [NSNumber numberWithFloat:bfPaperButton_raisedShadowOpacity];
-        shadowOpacityAnimation.toValue = [NSNumber numberWithFloat:bfPaperButton_loweredShadowOpacity];
-        shadowOpacityAnimation.fillMode = kCAFillModeBackwards;
-        shadowOpacityAnimation.removedOnCompletion = YES;
-        self.layer.shadowOpacity = bfPaperButton_loweredShadowOpacity;
-        
+        // Add the animations:
         [self.layer addAnimation:shadowAnimation forKey:@"shadow"];
         [self.layer addAnimation:decreaseRadius forKey:@"shadowRadius"];
         [self.layer addAnimation:shadowOpacityAnimation forKey:@"shadowOpacity"];
@@ -586,84 +627,101 @@ static CGFloat const bfPaperButton_clearBGFadeConstant             = 0.12f;
     
     if ([UIColor isColorClear:self.backgroundColor]) {
         // Remove darkened background fade:
-        CABasicAnimation *removeFadeBackgroundDarker = [CABasicAnimation animationWithKeyPath:@"opacity"];
-        [removeFadeBackgroundDarker setValue:@"removeFadeBackgroundDarker" forKey:@"id"];
-        removeFadeBackgroundDarker.delegate = self;
-        removeFadeBackgroundDarker.duration = bfPaperButton_animationDurationConstant;
-        removeFadeBackgroundDarker.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-        removeFadeBackgroundDarker.fromValue = [NSNumber numberWithFloat:bfPaperButton_clearBGFadeConstant];
-        removeFadeBackgroundDarker.toValue = [NSNumber numberWithFloat:0.f];
-        removeFadeBackgroundDarker.fillMode = kCAFillModeForwards;
-        removeFadeBackgroundDarker.removedOnCompletion = NO;
         
-        [self.backgroundColorFadeLayer addAnimation:removeFadeBackgroundDarker forKey:@"removeBGShade"];
+        CGFloat startingOpacity = self.backgroundColorFadeLayer.opacity;
+        
+        // Grab the current value if we are currently animating:
+        if ([[self.backgroundColorFadeLayer animationKeys] count] > 0) {
+            startingOpacity = [[self.backgroundColorFadeLayer presentationLayer] opacity];
+        }
+        
+        CABasicAnimation *removeFadeBackgroundDarker = [CABasicAnimation animationWithKeyPath:@"opacity"];
+        removeFadeBackgroundDarker.duration = self.touchUpAnimationDuration;
+        removeFadeBackgroundDarker.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+        removeFadeBackgroundDarker.fromValue = [NSNumber numberWithFloat:startingOpacity];
+        removeFadeBackgroundDarker.toValue = [NSNumber numberWithFloat:0];
+        removeFadeBackgroundDarker.fillMode = kCAFillModeForwards;
+        removeFadeBackgroundDarker.removedOnCompletion = !NO;
+        self.backgroundColorFadeLayer.opacity = 0;
+        
+        [self.backgroundColorFadeLayer addAnimation:removeFadeBackgroundDarker forKey:@"animateOpacity"];
     }
 }
 
-
-- (void)growTapCircleABit
+- (void)burstTapCircle
 {
     //NSLog(@"expanding a bit more");
     
-    // Create a UIView which we can modify for its frame value later (specifically, the ability to use .center):
-    CGFloat tapCircleDiameterStartValue = (self.tapCircleDiameter < 0) ? MAX(self.frame.size.width, self.frame.size.height) : self.tapCircleDiameter;
-    UIView *tapCircleLayerSizerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tapCircleDiameterStartValue, tapCircleDiameterStartValue)];
-    tapCircleLayerSizerView.center = self.rippleFromTapLocation ? self.tapPoint : CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
+    // Calculate the tap circle's ending diameter:
+    CGFloat tapCircleFinalDiameter = [self calculateTapCircleFinalDiameter];
+    tapCircleFinalDiameter += self.tapCircleBurstAmount;
     
-    // Calculate mask starting path:
-    UIView *startingRectSizerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tapCircleDiameterStartValue, tapCircleDiameterStartValue)];
-    startingRectSizerView.center = tapCircleLayerSizerView.center;
-    
-    // Create starting circle path for mask:
-    UIBezierPath *startingCirclePath = [UIBezierPath bezierPathWithRoundedRect:startingRectSizerView.frame cornerRadius:tapCircleDiameterStartValue / 2.f];
-    
-    // Calculate mask ending path:
-    CGFloat tapCircleDiameterEndValue = (self.tapCircleDiameter < 0) ? MAX(self.frame.size.width, self.frame.size.height) : self.tapCircleDiameter;
-    tapCircleDiameterEndValue += 100.f;
-    UIView *endingRectSizerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tapCircleDiameterEndValue, tapCircleDiameterEndValue)];
-    endingRectSizerView.center = tapCircleLayerSizerView.center;
+    UIView *endingRectSizerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tapCircleFinalDiameter, tapCircleFinalDiameter)];
+    endingRectSizerView.center = self.rippleFromTapLocation ? self.tapPoint : CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
     
     // Create ending circle path for mask:
-    UIBezierPath *endingCirclePath = [UIBezierPath bezierPathWithRoundedRect:endingRectSizerView.frame cornerRadius:tapCircleDiameterEndValue / 2.f];
-    
+    UIBezierPath *endingCirclePath = [UIBezierPath bezierPathWithRoundedRect:endingRectSizerView.frame cornerRadius:tapCircleFinalDiameter / 2.f];
     
     // Get the next tap circle to expand:
     CAShapeLayer *tapCircle = [self.rippleAnimationQueue firstObject];
+    if (self.rippleAnimationQueue.count > 0) {
+        [self.rippleAnimationQueue removeObjectAtIndex:0];
+    }
+    [self.deathRowForCircleLayers addObject:tapCircle];
     
-    // Expand tap-circle animation:
+    
+    CGPathRef startingPath = tapCircle.path;
+    CGFloat startingOpacity = tapCircle.opacity;
+    
+    if ([[tapCircle animationKeys] count] > 0) {
+        startingPath = [[tapCircle presentationLayer] path];
+        startingOpacity = [[tapCircle presentationLayer] opacity];
+    }
+    
+    // Burst tap-circle:
     CABasicAnimation *tapCircleGrowthAnimation = [CABasicAnimation animationWithKeyPath:@"path"];
-    tapCircleGrowthAnimation.duration = bfPaperButton_fadeOutDurationConstant;
+    tapCircleGrowthAnimation.duration = self.touchUpAnimationDuration;
     tapCircleGrowthAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
-    tapCircleGrowthAnimation.fromValue = (__bridge id)startingCirclePath.CGPath;
+    tapCircleGrowthAnimation.fromValue = (__bridge id)startingPath;
     tapCircleGrowthAnimation.toValue = (__bridge id)endingCirclePath.CGPath;
     tapCircleGrowthAnimation.fillMode = kCAFillModeForwards;
     tapCircleGrowthAnimation.removedOnCompletion = NO;
     
+    // Fade tap-circle out:
+    CABasicAnimation *fadeOut = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    [fadeOut setValue:@"fadeCircleOut" forKey:@"id"];
+    fadeOut.delegate = self;
+    fadeOut.fromValue = [NSNumber numberWithFloat:startingOpacity];
+    fadeOut.toValue = [NSNumber numberWithFloat:0.f];
+    fadeOut.duration = self.touchUpAnimationDuration;
+    fadeOut.fillMode = kCAFillModeForwards;
+    fadeOut.removedOnCompletion = NO;
+    
     [tapCircle addAnimation:tapCircleGrowthAnimation forKey:@"animatePath"];
+    [tapCircle addAnimation:fadeOut forKey:@"opacityAnimation"];
 }
 
-
-- (void)fadeTapCircleOut
+- (CGFloat)calculateTapCircleFinalDiameter
 {
-    //NSLog(@"Fading away");
-    
-    if (self.rippleAnimationQueue.count > 0) {
-        CALayer *tempAnimationLayer = [self.rippleAnimationQueue firstObject];
-        [self.rippleAnimationQueue removeObjectAtIndex:0];
-        
-        [self.deathRowForCircleLayers addObject:tempAnimationLayer];
-        
-        CABasicAnimation *fadeOut = [CABasicAnimation animationWithKeyPath:@"opacity"];
-        [fadeOut setValue:@"fadeCircleOut" forKey:@"id"];
-        fadeOut.delegate = self;
-        fadeOut.fromValue = [NSNumber numberWithFloat:tempAnimationLayer.opacity];
-        fadeOut.toValue = [NSNumber numberWithFloat:0.f];
-        fadeOut.duration = bfPaperButton_fadeOutDurationConstant;
-        fadeOut.fillMode = kCAFillModeForwards;
-        fadeOut.removedOnCompletion = NO;
-        
-        [tempAnimationLayer addAnimation:fadeOut forKey:@"opacityAnimation"];
+    CGFloat finalDiameter = self.tapCircleDiameter;
+    if (self.tapCircleDiameter == bfPaperButton_tapCircleDiameterFull) {
+        // Calulate a diameter that will always cover the entire button:
+        //////////////////////////////////////////////////////////////////////////////
+        // Special thanks to github user @ThePantsThief for providing this code!    //
+        //////////////////////////////////////////////////////////////////////////////
+        CGFloat centerWidth   = self.frame.size.width;
+        CGFloat centerHeight  = self.frame.size.height;
+        CGFloat tapWidth      = 2 * MAX(self.tapPoint.x, centerWidth - self.tapPoint.x);
+        CGFloat tapHeight     = 2 * MAX(self.tapPoint.y, centerHeight - self.tapPoint.y);
+        CGFloat desiredWidth  = self.rippleFromTapLocation ? tapWidth : centerWidth;
+        CGFloat desiredHeight = self.rippleFromTapLocation ? tapHeight : centerHeight;
+        CGFloat diameter      = sqrt(pow(desiredWidth, 2) + pow(desiredHeight, 2));
+        finalDiameter = diameter;
     }
+    else if (self.tapCircleDiameter < bfPaperButton_tapCircleDiameterFull) {    // default
+        finalDiameter = MAX(self.frame.size.width, self.frame.size.height);
+    }
+    return finalDiameter;
 }
 #pragma mark -
 
