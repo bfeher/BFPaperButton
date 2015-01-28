@@ -279,6 +279,8 @@ CGFloat const bfPaperButton_tapCircleDiameterDefault = -2.f;
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:nil];
     tapGestureRecognizer.delegate = self;
     [self addGestureRecognizer:tapGestureRecognizer];
+    
+    [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:)];
 }
 
 
@@ -374,7 +376,7 @@ CGFloat const bfPaperButton_tapCircleDiameterDefault = -2.f;
 {
     //NSLog(@"Touch down handler");
     self.letGo = NO;
-    [self touchDownAnimations];
+    [self touchDownAnimations]; // Go Steelers!
 }
 
 
@@ -554,7 +556,6 @@ CGFloat const bfPaperButton_tapCircleDiameterDefault = -2.f;
     
     // Grow tap-circle animation (performed on mask layer):
     CABasicAnimation *tapCircleGrowthAnimation = [CABasicAnimation animationWithKeyPath:@"path"];
-    [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:)];
     tapCircleGrowthAnimation.duration = self.touchDownAnimationDuration;
     tapCircleGrowthAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     tapCircleGrowthAnimation.fromValue = (__bridge id)startingCirclePath.CGPath;
