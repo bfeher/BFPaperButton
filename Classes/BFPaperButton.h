@@ -84,7 +84,7 @@ extern CGFloat const bfPaperButton_tapCircleDiameterDefault;
 
 
 #pragma mark - Properties
-#pragma mark - Shadow
+#pragma mark Shadow
 /** The UIColor for the shadow of a raised button. An alpha value of 1 is recommended as shadowOpacity overwrites the alpha of this color. */
 @property UIColor *shadowColor;
 
