@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		55FFD66AAF204A9CB9263275 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06DB54154CCF4D8789C3CAC5 /* libPods.a */; };
+		EDD3C703DB1C7C025A8D9D18 /* libPods-BFPaperButtonTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 29A3EE64683DBC96E9815A26 /* libPods-BFPaperButtonTests.a */; };
 		F42B5BA61978DC9300D6F4B5 /* BFPaperButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F42B5BA51978DC9300D6F4B5 /* BFPaperButton.m */; };
 		F46DDB2A19761BF500D26097 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46DDB2919761BF500D26097 /* Foundation.framework */; };
 		F46DDB2C19761BF500D26097 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46DDB2B19761BF500D26097 /* CoreGraphics.framework */; };
@@ -38,7 +39,9 @@
 /* Begin PBXFileReference section */
 		06DB54154CCF4D8789C3CAC5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		289ABA5861550F9FC1DF4B31 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		29A3EE64683DBC96E9815A26 /* libPods-BFPaperButtonTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BFPaperButtonTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4837025DC55EFC272A8F0080 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		899E17FD75E8F4028B15A891 /* Pods-BFPaperButtonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BFPaperButtonTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BFPaperButtonTests/Pods-BFPaperButtonTests.release.xcconfig"; sourceTree = "<group>"; };
 		F42B5BA41978DC9300D6F4B5 /* BFPaperButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFPaperButton.h; path = ../Classes/BFPaperButton.h; sourceTree = "<group>"; };
 		F42B5BA51978DC9300D6F4B5 /* BFPaperButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFPaperButton.m; path = ../Classes/BFPaperButton.m; sourceTree = "<group>"; };
 		F46DDB2619761BF500D26097 /* BFPaperButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BFPaperButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,6 +63,7 @@
 		F46DDB5019761BF600D26097 /* BFPaperButtonTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BFPaperButtonTests-Info.plist"; sourceTree = "<group>"; };
 		F46DDB5219761BF600D26097 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F46DDB5419761BF600D26097 /* BFPaperButtonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BFPaperButtonTests.m; sourceTree = "<group>"; };
+		F6C3C72A34B8A25B6FF574AD /* Pods-BFPaperButtonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BFPaperButtonTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BFPaperButtonTests/Pods-BFPaperButtonTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,7 @@
 				F46DDB4919761BF600D26097 /* XCTest.framework in Frameworks */,
 				F46DDB4B19761BF600D26097 /* UIKit.framework in Frameworks */,
 				F46DDB4A19761BF600D26097 /* Foundation.framework in Frameworks */,
+				EDD3C703DB1C7C025A8D9D18 /* libPods-BFPaperButtonTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +97,8 @@
 			children = (
 				4837025DC55EFC272A8F0080 /* Pods.debug.xcconfig */,
 				289ABA5861550F9FC1DF4B31 /* Pods.release.xcconfig */,
+				F6C3C72A34B8A25B6FF574AD /* Pods-BFPaperButtonTests.debug.xcconfig */,
+				899E17FD75E8F4028B15A891 /* Pods-BFPaperButtonTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -124,6 +131,7 @@
 				F46DDB2D19761BF500D26097 /* UIKit.framework */,
 				F46DDB4819761BF600D26097 /* XCTest.framework */,
 				06DB54154CCF4D8789C3CAC5 /* libPods.a */,
+				29A3EE64683DBC96E9815A26 /* libPods-BFPaperButtonTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -208,9 +216,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F46DDB5B19761BF600D26097 /* Build configuration list for PBXNativeTarget "BFPaperButtonTests" */;
 			buildPhases = (
+				7A3820115AE34BFCB0371973 /* Check Pods Manifest.lock */,
 				F46DDB4319761BF600D26097 /* Sources */,
 				F46DDB4419761BF600D26097 /* Frameworks */,
 				F46DDB4519761BF600D26097 /* Resources */,
+				34A62BBA34FC68BAD38924E5 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -278,7 +288,37 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		34A62BBA34FC68BAD38924E5 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BFPaperButtonTests/Pods-BFPaperButtonTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		37C74664C69147669C81181B /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7A3820115AE34BFCB0371973 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -487,6 +527,7 @@
 		};
 		F46DDB5C19761BF600D26097 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F6C3C72A34B8A25B6FF574AD /* Pods-BFPaperButtonTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BFPaperButton.app/BFPaperButton";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -509,6 +550,7 @@
 		};
 		F46DDB5D19761BF600D26097 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 899E17FD75E8F4028B15A891 /* Pods-BFPaperButtonTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BFPaperButton.app/BFPaperButton";
 				FRAMEWORK_SEARCH_PATHS = (

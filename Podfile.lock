@@ -1,10 +1,13 @@
 PODS:
-  - UIColor+BFPaperColors (1.4.10)
+  - Expecta (0.2.4)
+  - UIColor+BFPaperColors (HEAD based on 1.5.1)
 
 DEPENDENCIES:
-  - UIColor+BFPaperColors (~> 1.4.10)
+  - Expecta (~> 0.2.4)
+  - UIColor+BFPaperColors (HEAD)
 
 SPEC CHECKSUMS:
-  UIColor+BFPaperColors: 740b5fe4e4227de522f91bc5cdd8aad6c1edf92d
+  Expecta: cfaf1d3e2e194ca704a25e997093d30a1ce70b61
+  UIColor+BFPaperColors: 4b2baddaef5bee61159068b5cca5b765e5e58a08
 
 COCOAPODS: 0.36.3

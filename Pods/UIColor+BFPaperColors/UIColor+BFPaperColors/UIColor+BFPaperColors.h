@@ -422,6 +422,17 @@ alpha:1.0]
 + (UIColor *)paperColorBlueGray900;
 + (UIColor *)paperColorBlueGray;
 
+#pragma mark - Text Colors Dark
++ (UIColor *)paperColorTextDark;
++ (UIColor *)paperColorTextDarkSecondary;
++ (UIColor *)paperColorTextDarkHint;
++ (UIColor *)paperColorTextDarkDivider;
+
+#pragma mark - Text Colors Light
++ (UIColor *)paperColorTextLight;
++ (UIColor *)paperColorTextLightSecondary;
++ (UIColor *)paperColorTextLightHint;
++ (UIColor *)paperColorTextLightDivider;
 
 
 @end

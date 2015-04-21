@@ -363,6 +363,19 @@
 + (UIColor *)paperColorBlueGray     { return [UIColor paperColorBlueGray500]; }
 
 
+#pragma mark - Text Colors Dark
++ (UIColor *)paperColorTextDark             { return [UIColor colorWithWhite:0 alpha:0.87f]; }
++ (UIColor *)paperColorTextDarkSecondary    { return [UIColor colorWithWhite:0 alpha:0.54f]; }
++ (UIColor *)paperColorTextDarkHint         { return [UIColor colorWithWhite:0 alpha:0.26f]; }
++ (UIColor *)paperColorTextDarkDivider      { return [UIColor colorWithWhite:0 alpha:0.12f]; }
+
+#pragma mark - Text Colors Light
++ (UIColor *)paperColorTextLight            { return [UIColor colorWithWhite:1 alpha:1]; }
++ (UIColor *)paperColorTextLightSecondary   { return [UIColor colorWithWhite:1 alpha:0.7f]; }
++ (UIColor *)paperColorTextLightHint        { return [UIColor colorWithWhite:1 alpha:0.3f]; }
++ (UIColor *)paperColorTextLightDivider     { return [UIColor colorWithWhite:1 alpha:0.12f]; }
+
+
 #pragma mark - Utilities
 // Private:
 + (CGFloat)brightnessOfColor:(UIColor *)color

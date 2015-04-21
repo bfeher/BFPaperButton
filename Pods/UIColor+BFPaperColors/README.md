@@ -6,13 +6,16 @@ BFPaperColors
 
 ![Screenshot](https://raw.githubusercontent.com/bfeher/BFPaperColors/master/colorList.png "Screenshot")
 
-![Light Blue Detail](https://raw.githubusercontent.com/bfeher/BFPaperColors/master/lightBlueList.png "Light Blue Detail")
+![Blue Detail](https://raw.githubusercontent.com/bfeher/BFPaperColors/master/blueList.png "Blue Detail")
 
 
 About
 ---------
 _UIColor+BFPaperColors_ is a category for _UIColor_ that adds class methods to conveniently produce **over 240 new colors** designed for flat or semi-flat interface designs by [Google's Material Design Labs](http://www.google.com/design/spec/style/color.html).
 
+Changes
+---------
+Please refer to this [CHANGELOG.md](https://github.com/bfeher/BFPaperColors/blob/master/CHANGELOG.md).
 
 Usage
 ---------
@@ -63,14 +66,6 @@ Returns the hex-code representation of a UIColor.<br />
 @return An NSString representing the hex-code of the passed in color.<br />
 <br />
 
-`+ (NSString *)colorToHex:(UIColor *)color`<br />
-<span style="color:red;font-size:30;">DEPRECATED! Please use 'hexStringFromRGBColor:' instead.
-</span>
-Returns the hex-code representation of a UIColor.<br />
-@param color    The color to inspect for its hex-code.<br />
-@return An NSString representing the hex-code of the passed in color.<br />
-<br />
-
 `+ (CAGradientLayer *)gradientWithStartColor:(UIColor *)startColor endColor:(UIColor *)endColor`<br />
 Returns a simple gradient layer built from two colors.<br />
 @param startColor A UIColor to use as the start color of the gradient layer.<br />
@@ -88,7 +83,7 @@ Learn more at http://cocoapods.org
 Add this to your podfile to add the UIColor+BFPaperColors category to your project.
 ```ruby
 platform :ios, '7.0'
-pod 'UIColor+BFPaperColors', '~> 1.4.10'
+pod 'UIColor+BFPaperColors', '~> 1.5.1'
 ```
 
 License
