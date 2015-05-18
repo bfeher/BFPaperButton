@@ -151,7 +151,7 @@ Learn more at http://cocoapods.org
 Add this to your podfile to add BFPaperButton to your project.
 ```ruby
 platform :ios, '7.0'
-pod 'BFPaperButton', '~> 2.0.17'
+pod 'BFPaperButton', '~> 2.0.18'
 ```
 
 
