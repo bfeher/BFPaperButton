@@ -665,41 +665,43 @@ CGFloat const bfPaperButton_tapCircleDiameterDefault = -2.f;
     
     // Get the next tap circle to expand:
     CAShapeLayer *tapCircle = [self.rippleAnimationQueue firstObject];
-    if (self.rippleAnimationQueue.count > 0) {
-        [self.rippleAnimationQueue removeObjectAtIndex:0];
+    if ( tapCircle != nil ) {
+        if (self.rippleAnimationQueue.count > 0) {
+            [self.rippleAnimationQueue removeObjectAtIndex:0];
+        }
+        [self.deathRowForCircleLayers addObject:tapCircle];
+        
+        
+        CGPathRef startingPath = tapCircle.path;
+        CGFloat startingOpacity = tapCircle.opacity;
+        
+        if ([[tapCircle animationKeys] count] > 0) {
+            startingPath = [[tapCircle presentationLayer] path];
+            startingOpacity = [[tapCircle presentationLayer] opacity];
+        }
+        
+        // Burst tap-circle:
+        CABasicAnimation *tapCircleGrowthAnimation = [CABasicAnimation animationWithKeyPath:@"path"];
+        tapCircleGrowthAnimation.duration = self.touchUpAnimationDuration;
+        tapCircleGrowthAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+        tapCircleGrowthAnimation.fromValue = (__bridge id)startingPath;
+        tapCircleGrowthAnimation.toValue = (__bridge id)endingCirclePath.CGPath;
+        tapCircleGrowthAnimation.fillMode = kCAFillModeForwards;
+        tapCircleGrowthAnimation.removedOnCompletion = NO;
+        
+        // Fade tap-circle out:
+        CABasicAnimation *fadeOut = [CABasicAnimation animationWithKeyPath:@"opacity"];
+        [fadeOut setValue:@"fadeCircleOut" forKey:@"id"];
+        fadeOut.delegate = self;
+        fadeOut.fromValue = [NSNumber numberWithFloat:startingOpacity];
+        fadeOut.toValue = [NSNumber numberWithFloat:0.f];
+        fadeOut.duration = self.touchUpAnimationDuration;
+        fadeOut.fillMode = kCAFillModeForwards;
+        fadeOut.removedOnCompletion = NO;
+        
+        [tapCircle addAnimation:tapCircleGrowthAnimation forKey:@"animatePath"];
+        [tapCircle addAnimation:fadeOut forKey:@"opacityAnimation"];
     }
-    [self.deathRowForCircleLayers addObject:tapCircle];
-    
-    
-    CGPathRef startingPath = tapCircle.path;
-    CGFloat startingOpacity = tapCircle.opacity;
-    
-    if ([[tapCircle animationKeys] count] > 0) {
-        startingPath = [[tapCircle presentationLayer] path];
-        startingOpacity = [[tapCircle presentationLayer] opacity];
-    }
-    
-    // Burst tap-circle:
-    CABasicAnimation *tapCircleGrowthAnimation = [CABasicAnimation animationWithKeyPath:@"path"];
-    tapCircleGrowthAnimation.duration = self.touchUpAnimationDuration;
-    tapCircleGrowthAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
-    tapCircleGrowthAnimation.fromValue = (__bridge id)startingPath;
-    tapCircleGrowthAnimation.toValue = (__bridge id)endingCirclePath.CGPath;
-    tapCircleGrowthAnimation.fillMode = kCAFillModeForwards;
-    tapCircleGrowthAnimation.removedOnCompletion = NO;
-    
-    // Fade tap-circle out:
-    CABasicAnimation *fadeOut = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    [fadeOut setValue:@"fadeCircleOut" forKey:@"id"];
-    fadeOut.delegate = self;
-    fadeOut.fromValue = [NSNumber numberWithFloat:startingOpacity];
-    fadeOut.toValue = [NSNumber numberWithFloat:0.f];
-    fadeOut.duration = self.touchUpAnimationDuration;
-    fadeOut.fillMode = kCAFillModeForwards;
-    fadeOut.removedOnCompletion = NO;
-    
-    [tapCircle addAnimation:tapCircleGrowthAnimation forKey:@"animatePath"];
-    [tapCircle addAnimation:fadeOut forKey:@"opacityAnimation"];
 }
 
 - (CGFloat)calculateTapCircleFinalDiameter
