@@ -142,7 +142,7 @@ circle2.tapCircleDiameter = MAX(circle2.frame.size.width, circle2.frame.size.hei
 [self.view addSubview:circle2];
 ```
 
-Cocoapods
+CocoaPods
 -------
 
 CocoaPods are the best way to manage library dependencies in Objective-C projects.
