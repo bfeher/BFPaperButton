@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		505ABA1D1C7E7BBE00B76BDF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 505ABA1C1C7E7BBE00B76BDF /* LaunchScreen.storyboard */; };
 		55FFD66AAF204A9CB9263275 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06DB54154CCF4D8789C3CAC5 /* libPods.a */; };
 		EDD3C703DB1C7C025A8D9D18 /* libPods-BFPaperButtonTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 29A3EE64683DBC96E9815A26 /* libPods-BFPaperButtonTests.a */; };
 		F42B5BA61978DC9300D6F4B5 /* BFPaperButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F42B5BA51978DC9300D6F4B5 /* BFPaperButton.m */; };
@@ -41,6 +42,7 @@
 		289ABA5861550F9FC1DF4B31 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		29A3EE64683DBC96E9815A26 /* libPods-BFPaperButtonTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BFPaperButtonTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4837025DC55EFC272A8F0080 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		505ABA1C1C7E7BBE00B76BDF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		899E17FD75E8F4028B15A891 /* Pods-BFPaperButtonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BFPaperButtonTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BFPaperButtonTests/Pods-BFPaperButtonTests.release.xcconfig"; sourceTree = "<group>"; };
 		F42B5BA41978DC9300D6F4B5 /* BFPaperButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFPaperButton.h; path = ../Classes/BFPaperButton.h; sourceTree = "<group>"; };
 		F42B5BA51978DC9300D6F4B5 /* BFPaperButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFPaperButton.m; path = ../Classes/BFPaperButton.m; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				F46DDB3819761BF600D26097 /* BFPaperAppDelegate.h */,
 				F46DDB3919761BF600D26097 /* BFPaperAppDelegate.m */,
 				F46DDB3B19761BF600D26097 /* Main.storyboard */,
+				505ABA1C1C7E7BBE00B76BDF /* LaunchScreen.storyboard */,
 				F46DDB3E19761BF600D26097 /* BFPaperViewController.h */,
 				F46DDB3F19761BF600D26097 /* BFPaperViewController.m */,
 				F46DDB4119761BF600D26097 /* Images.xcassets */,
@@ -239,7 +242,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = BFPaper;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Bence Feher";
 				TargetAttributes = {
 					F46DDB4619761BF600D26097 = {
@@ -272,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F46DDB4219761BF600D26097 /* Images.xcassets in Resources */,
+				505ABA1D1C7E7BBE00B76BDF /* LaunchScreen.storyboard in Resources */,
 				F46DDB3419761BF600D26097 /* InfoPlist.strings in Resources */,
 				F46DDB3D19761BF600D26097 /* Main.storyboard in Resources */,
 			);
@@ -439,6 +443,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -498,11 +503,11 @@
 			baseConfigurationReference = 4837025DC55EFC272A8F0080 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BFPaperButton/BFPaperButton-Prefix.pch";
 				INFOPLIST_FILE = "BFPaperButton/BFPaperButton-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bencefeher.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = "\"$(SRCROOT)/Pods/Headers\"/** \"$(BUILT_PRODUCTS_DIR)\"/** \"${PODS_ROOT}/BuildHeaders\"/**";
 				WRAPPER_EXTENSION = app;
@@ -514,11 +519,11 @@
 			baseConfigurationReference = 289ABA5861550F9FC1DF4B31 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BFPaperButton/BFPaperButton-Prefix.pch";
 				INFOPLIST_FILE = "BFPaperButton/BFPaperButton-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bencefeher.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = "\"$(SRCROOT)/Pods/Headers\"/** \"$(BUILT_PRODUCTS_DIR)\"/** \"${PODS_ROOT}/BuildHeaders\"/**";
 				WRAPPER_EXTENSION = app;
@@ -542,6 +547,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "BFPaperButtonTests/BFPaperButtonTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bencefeher.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -561,6 +567,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BFPaperButton/BFPaperButton-Prefix.pch";
 				INFOPLIST_FILE = "BFPaperButtonTests/BFPaperButtonTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bencefeher.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

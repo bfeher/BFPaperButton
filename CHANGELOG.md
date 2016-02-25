@@ -6,6 +6,12 @@ BFPaperButton
 
 
 
+2.0.27
+---------
++ Added LaunchScreen.xib to get fullscreen for iPhone 5 and up. (Lazy demo app doesn't scroll so iPhone 4 and down won't fit evertying on screen.)
++^ Modified BFPaperButton.m to check if tapCircles are nil first (credit goes to github user [Adam Szeptycki](https://github.com/adamszeptycki))
+
+
 2.0.18
 ---------
-+ ^ Fixed bug where loweredShadowOffset property wasn't being utilized and instead was ignored for a hardcoded default value.
++^ Fixed bug where loweredShadowOffset property wasn't being utilized and instead was ignored for a hardcoded default value.
