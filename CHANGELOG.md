@@ -6,6 +6,11 @@ BFPaperButton
 
 
 
+2.0.27.1
+---------
++ Migrated to Cocoapods 1.0.
+
+
 2.0.27
 ---------
 + Added LaunchScreen.xib to get fullscreen for iPhone 5 and up. (Lazy demo app doesn't scroll so iPhone 4 and down won't fit evertying on screen.)
