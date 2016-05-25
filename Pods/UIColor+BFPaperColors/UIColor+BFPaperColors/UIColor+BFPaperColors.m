@@ -366,7 +366,7 @@
 #pragma mark - Text Colors Dark
 + (UIColor *)paperColorTextDark             { return [UIColor colorWithWhite:0 alpha:0.87f]; }
 + (UIColor *)paperColorTextDarkSecondary    { return [UIColor colorWithWhite:0 alpha:0.54f]; }
-+ (UIColor *)paperColorTextDarkHint         { return [UIColor colorWithWhite:0 alpha:0.26f]; }
++ (UIColor *)paperColorTextDarkHint         { return [UIColor colorWithWhite:0 alpha:0.38f]; }
 + (UIColor *)paperColorTextDarkDivider      { return [UIColor colorWithWhite:0 alpha:0.12f]; }
 
 #pragma mark - Text Colors Light
