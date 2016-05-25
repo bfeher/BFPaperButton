@@ -6,7 +6,7 @@ BFPaperButton
 
 
 
-2.0.28
+2.0.29
 ---------
 + Migrated to Cocoapods 1.0.
 
