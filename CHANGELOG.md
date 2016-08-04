@@ -8,9 +8,9 @@ BFPaperButton
 
 2.1.0
 ---------
-+ Added IB_DESIGNABLE/IBInspectable attributes to properties courtesy of github user [Bhargav Mogra](https://github.com/bhargavms)
-^ Updated README to be more readable courtesy of github user [Bhargav Mogra](https://github.com/bhargavms)
-- Removed BFPaperColor dependency courtesy of github user [Bhargav Mogra](https://github.com/bhargavms)
++ Added IB_DESIGNABLE/IBInspectable attributes to properties courtesy of github user [Bhargav Mogra](https://github.com/bhargavms)  
+^ Updated README to be more readable courtesy of github user [Bhargav Mogra](https://github.com/bhargavms)  
+- Removed BFPaperColor dependency courtesy of github user [Bhargav Mogra](https://github.com/bhargavms)  
 
 
 2.0.29
