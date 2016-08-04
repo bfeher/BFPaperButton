@@ -130,7 +130,7 @@ BFPaperButton *raisedPaperButton = [[BFPaperButton alloc] initWithFrame:rect rai
 ```objective-c
 BFPaperButton *bfFlatSmart = [[BFPaperButton alloc] initWithFrame:CGRectMake(20, 20, 280, 43) raised:NO];
 [bfFlatSmart setTitle:@"BFPaperButton Flat: Smart Color" forState:UIControlStateNormal];
-bfFlatSmart.backgroundColor = [UIColor paperColorGray600];	// You can find this from other library, BFPaperColors :)
+bfFlatSmart.backgroundColor = [UIColor paperColorGray600];	// You can find this from my other library, BFPaperColors :)
 [bfFlatSmart setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 [bfFlatSmart setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
 [bfFlatSmart addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
