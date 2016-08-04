@@ -29,7 +29,6 @@
 
 #import "BFPaperViewController.h"
 #import "BFPaperButton.h"
-#import "UIColor+BFPaperColors.h"
 
 @interface BFPaperViewController ()
 
@@ -45,7 +44,7 @@
     BFPaperButton *bfFlatSmart = [[BFPaperButton alloc] initWithFrame:CGRectMake(20, 20, 280, 43) raised:NO];
     [bfFlatSmart setTitle:@"BFPaperButton Flat: Smart Color" forState:UIControlStateNormal];
     [bfFlatSmart setTitleFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:15.f]];
-    bfFlatSmart.backgroundColor = [UIColor paperColorGray600];  // This is from the included cocoapod "UIColor+BFPaperColors".
+    bfFlatSmart.backgroundColor = [UIColor colorWithRed:117.f/255.f green:117.f/255.f blue:117.f/255.f alpha:1];
     [bfFlatSmart setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [bfFlatSmart setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     [bfFlatSmart addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -55,7 +54,7 @@
     bfFlatDumb.usesSmartColor = NO;
     [bfFlatDumb setTitle:@"BFPaperButton Flat: !Smart Color" forState:UIControlStateNormal];
     [bfFlatDumb setTitleFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:15.f]];
-    bfFlatDumb.backgroundColor = [UIColor paperColorGray600];   // This is from the included cocoapod "UIColor+BFPaperColors".
+    bfFlatDumb.backgroundColor = [UIColor colorWithRed:117.f/255.f green:117.f/255.f blue:117.f/255.f alpha:1];
     [bfFlatDumb setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [bfFlatDumb setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     [bfFlatDumb addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -64,7 +63,7 @@
     BFPaperButton *bfFlatClearSmart = [[BFPaperButton alloc] initWithFrame:CGRectMake(20, 122, 280, 43) raised:NO];
     [bfFlatClearSmart setTitle:@"BFPaperButton Flat: Clear, Smart Color" forState:UIControlStateNormal];
     [bfFlatClearSmart setTitleFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:15.f]];
-    [bfFlatClearSmart setTitleColor:[UIColor paperColorBlue] forState:UIControlStateNormal];
+    [bfFlatClearSmart setTitleColor:[UIColor colorWithRed:33.f/255.f green:150.f/255.f blue:243.f/255.f alpha:1] forState:UIControlStateNormal];
     [bfFlatClearSmart addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bfFlatClearSmart];
     
@@ -72,14 +71,14 @@
     bfFlatClearDumb.usesSmartColor = NO;
     [bfFlatClearDumb setTitle:@"BFPaperButton Flat: Clear, !Smart Color" forState:UIControlStateNormal];
     [bfFlatClearDumb setTitleFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:15.f]];
-    [bfFlatClearDumb setTitleColor:[UIColor paperColorBlue] forState:UIControlStateNormal];
+    [bfFlatClearDumb setTitleColor:[UIColor colorWithRed:33.f/255.f green:150.f/255.f blue:243.f/255.f alpha:1] forState:UIControlStateNormal];
     [bfFlatClearDumb addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bfFlatClearDumb];
     
     
     
     BFPaperButton *bfRaisedSmart = [[BFPaperButton alloc] initWithFrame:CGRectMake(20, 239, 280, 43) raised:YES];
-    [bfRaisedSmart setBackgroundColor:[UIColor paperColorBlue]];
+    [bfRaisedSmart setBackgroundColor:[UIColor colorWithRed:33.f/255.f green:150.f/255.f blue:243.f/255.f alpha:1]];
     [bfRaisedSmart setTitle:@"BFPaperButton Raised: Smart Color" forState:UIControlStateNormal];
     [bfRaisedSmart setTitleFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:15.f]];
     [bfRaisedSmart addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -87,14 +86,14 @@
     
     BFPaperButton *bfRaisedDumb = [[BFPaperButton alloc] initWithFrame:CGRectMake(20, 307, 280, 43) raised:YES];
     bfRaisedDumb.usesSmartColor = NO;
-    [bfRaisedDumb setBackgroundColor:[UIColor paperColorBlue]];
+    [bfRaisedDumb setBackgroundColor:[UIColor colorWithRed:33.f/255.f green:150.f/255.f blue:243.f/255.f alpha:1]];
     [bfRaisedDumb setTitle:@"BFPaperButton Raised: !Smart Color" forState:UIControlStateNormal];
     [bfRaisedDumb setTitleFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:15.f]];
     [bfRaisedDumb addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bfRaisedDumb];
     
     BFPaperButton *bfRaisedSmartSmall = [[BFPaperButton alloc] initWithFrame:CGRectMake(20, 375, 135, 83) raised:YES];
-    [bfRaisedSmartSmall setBackgroundColor:[UIColor paperColorBlue]];
+    [bfRaisedSmartSmall setBackgroundColor:[UIColor colorWithRed:33.f/255.f green:150.f/255.f blue:243.f/255.f alpha:1]];
     bfRaisedSmartSmall.titleLabel.numberOfLines = 0;
     bfRaisedSmartSmall.titleLabel.font = [UIFont systemFontOfSize:10.f];
     [bfRaisedSmartSmall setTitle:@"BFPaperButton Raised: Smart Color" forState:UIControlStateNormal];
@@ -104,7 +103,7 @@
     
     BFPaperButton *bfRaisedDumbSmall = [[BFPaperButton alloc] initWithFrame:CGRectMake(163, 375, 135, 83) raised:YES];
     bfRaisedDumbSmall.usesSmartColor = NO;
-    [bfRaisedDumbSmall setBackgroundColor:[UIColor paperColorBlue]];
+    [bfRaisedDumbSmall setBackgroundColor:[UIColor colorWithRed:33.f/255.f green:150.f/255.f blue:243.f/255.f alpha:1]];
     bfRaisedDumbSmall.titleLabel.numberOfLines = 0;
     bfRaisedDumbSmall.titleLabel.font = [UIFont systemFontOfSize:10.f];
     bfRaisedDumbSmall.tapCircleDiameter = bfPaperButton_tapCircleDiameterFull;
@@ -116,7 +115,7 @@
     
     
     BFPaperButton *circle1 = [[BFPaperButton alloc] initWithFrame:CGRectMake(20, 468, 86, 86) raised:YES];
-    [circle1 setBackgroundColor:[UIColor paperColorBlue]];
+    [circle1 setBackgroundColor:[UIColor colorWithRed:33.f/255.f green:150.f/255.f blue:243.f/255.f alpha:1]];
     [circle1 setTitle:@"Center" forState:UIControlStateNormal];
     [circle1 setTitleFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:15.f]];
     [circle1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -143,8 +142,8 @@
     BFPaperButton *circle3 = [[BFPaperButton alloc] initWithFrame:CGRectMake(212, 468, 86, 86) raised:NO];
     [circle3 setTitle:@"Custom" forState:UIControlStateNormal];
     [circle3 setTitleFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:15.f]];
-    [circle3 setTitleColor:[UIColor paperColorGray900] forState:UIControlStateNormal];
-    [circle3 setTitleColor:[UIColor paperColorGray900] forState:UIControlStateHighlighted];
+    [circle3 setTitleColor:[UIColor colorWithRed:33.f/255.f green:33.f/255.f blue:33.f/255.f alpha:1] forState:UIControlStateNormal];
+    [circle3 setTitleColor:[UIColor colorWithRed:33.f/255.f green:33.f/255.f blue:33.f/255.f alpha:1] forState:UIControlStateHighlighted];
     [circle3 addTarget:self action:@selector(buttonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
     circle3.cornerRadius = circle3.frame.size.width / 2;
     circle3.tapCircleDiameter = 53;

@@ -461,33 +461,6 @@ CGFloat const bfPaperButton_tapCircleDiameterDefault = -2.f;
     }
 }
 
-+(BOOL)isColorClear:(UIColor *)color
-{
-    if (color == [UIColor clearColor]) {
-        return YES;
-    }
-    
-    NSUInteger totalComponents = CGColorGetNumberOfComponents(color.CGColor);
-    BOOL isGreyscale = (totalComponents == 2) ? YES : NO;
-    CGFloat *components = (CGFloat *)CGColorGetComponents(color.CGColor);
-    if (!components) {
-        return YES;
-    }
-    
-    if(isGreyscale) {
-        if (components[1] <= 0) {
-            return YES;
-        }
-    }
-    else {
-        if (components[3] <= 0) {
-            return YES;
-        }
-    }
-    
-    return NO;
-}
-
 - (void)fadeInBackgroundAndRippleTapCircle
 {
     // Spawn a growing circle that "ripples" through the view:
@@ -752,7 +725,27 @@ CGFloat const bfPaperButton_tapCircleDiameterDefault = -2.f;
     }
     return finalDiameter;
 }
-#pragma mark -
+
+
+#pragma mark - Utility Functions
+#pragma mark Private
++ (BOOL)isColorClear:(UIColor *)color
+{
+    if (color == [UIColor clearColor]) { return YES; }
+    
+    NSUInteger totalComponents = CGColorGetNumberOfComponents(color.CGColor);
+    BOOL isGreyscale = (totalComponents == 2) ? YES : NO;
+    CGFloat *components = (CGFloat *)CGColorGetComponents(color.CGColor);
+    if (!components) { return YES; }
+    if(isGreyscale) {
+        if (components[1] <= 0) { return YES; }
+    } else {
+        if (components[3] <= 0) { return YES; }
+    }
+    return NO;
+}
+
+#pragma mark Public
 
 
 @end

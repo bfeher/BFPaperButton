@@ -6,6 +6,13 @@ BFPaperButton
 
 
 
+2.1.0
+---------
++ Added IB_DESIGNABLE/IBInspectable attributes to properties courtesy of github user [Bhargav Mogra](https://github.com/bhargavms)
+^ Updated README to be more readable courtesy of github user [Bhargav Mogra](https://github.com/bhargavms)
+- Removed BFPaperColor dependency courtesy of github user [Bhargav Mogra](https://github.com/bhargavms)
+
+
 2.0.29
 ---------
 + Migrated to Cocoapods 1.0.
@@ -13,7 +20,7 @@ BFPaperButton
 
 2.0.27
 ---------
-+ Added LaunchScreen.xib to get fullscreen for iPhone 5 and up. (Lazy demo app doesn't scroll so iPhone 4 and down won't fit evertying on screen.)
++ Added LaunchScreen.xib to get fullscreen for iPhone 5 and up. (Lazy demo app doesn't scroll so iPhone 4 and down won't fit everything on screen.)
 +^ Modified BFPaperButton.m to check if tapCircles are nil first (credit goes to github user [Adam Szeptycki](https://github.com/adamszeptycki))
 
 
