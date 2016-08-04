@@ -37,7 +37,7 @@ extern CGFloat const bfPaperButton_tapCircleDiameterLarge;
 extern CGFloat const bfPaperButton_tapCircleDiameterFull;
 extern CGFloat const bfPaperButton_tapCircleDiameterDefault;
 
-
+IB_DESIGNABLE
 @interface BFPaperButton : UIButton <UIGestureRecognizerDelegate>
 
 /* Notes on RAISED vs FLAT and SMART COLOR vs NON SMART COLOR:
@@ -86,65 +86,65 @@ extern CGFloat const bfPaperButton_tapCircleDiameterDefault;
 #pragma mark - Properties
 #pragma mark Shadow
 /** The UIColor for the shadow of a raised button. An alpha value of 1 is recommended as shadowOpacity overwrites the alpha of this color. */
-@property UIColor *shadowColor;
+@property IBInspectable UIColor *shadowColor;
 
 #pragma mark Shadow - Down
 /** A CGFLoat representing the opacity of the shadow of RAISED buttons when they are lowered (idle). Default is 0.5f. */
-@property CGFloat   loweredShadowOpacity;
+@property IBInspectable CGFloat   loweredShadowOpacity;
 /** A CGFLoat representing the radius of the shadow of RAISED buttons when they are lowered (idle). Default is 1.5f. */
-@property CGFloat   loweredShadowRadius;
+@property IBInspectable CGFloat   loweredShadowRadius;
 /** A CGSize representing the offset of the shadow of RAISED buttons when they are lowered (idle). Default is (0, 1). */
-@property CGSize    loweredShadowOffset;
+@property IBInspectable CGSize    loweredShadowOffset;
 
 #pragma mark Shadow - Up
 /** A CGFLoat representing the opacity of the shadow of RAISED buttons when they are lifted (on touch down). Default is 0.5f. */
-@property CGFloat   liftedShadowOpacity;
+@property IBInspectable CGFloat   liftedShadowOpacity;
 /** A CGFLoat representing the radius of the shadow of RAISED buttons when they are lifted (on touch down). Default is 4.5f. */
-@property CGFloat   liftedShadowRadius;
+@property IBInspectable CGFloat   liftedShadowRadius;
 /** A CGSize representing the offset of the shadow of RAISED buttons when they are lifted (on touch down). Default is (2, 4). */
-@property CGSize    liftedShadowOffset;
+@property IBInspectable CGSize    liftedShadowOffset;
 
 
 #pragma mark Animation
 /** A CGFLoat representing the duration of the animations which take place on touch DOWN! Default is 0.25f seconds. (Go Steelers) */
-@property CGFloat touchDownAnimationDuration;
+@property IBInspectable CGFloat touchDownAnimationDuration;
 /** A CGFLoat representing the duration of the animations which take place on touch UP! Default is 2 * touchDownAnimationDuration seconds. */
-@property CGFloat touchUpAnimationDuration;
+@property IBInspectable CGFloat touchUpAnimationDuration;
 
 
 #pragma mark Prettyness and Behaviour
 /** The corner radius which propagates through to the sub layers. Default is 0. */
-@property (nonatomic) CGFloat cornerRadius;
+@property (nonatomic) IBInspectable CGFloat cornerRadius;
 
 /** A CGFLoat representing the diameter of the tap-circle as soon as it spawns, before it grows. Default is 5.f. */
-@property CGFloat tapCircleDiameterStartValue;
+@property IBInspectable CGFloat tapCircleDiameterStartValue;
 
 /** The CGFloat value representing the Diameter of the tap-circle. By default it will be the result of MAX(self.frame.width, self.frame.height). tapCircleDiameterFull will calculate a circle that always fills the entire view. Any value less than or equal to tapCircleDiameterFull will result in default being used. The constants: tapCircleDiameterLarge, tapCircleDiameterMedium, and tapCircleDiameterSmall are also available for use. */
-@property CGFloat tapCircleDiameter;
+@property IBInspectable CGFloat tapCircleDiameter;
 
 /** The CGFloat value representing how much we should increase the diameter of the tap-circle by when we burst it. Default is 100.f. */
-@property CGFloat tapCircleBurstAmount;
+@property IBInspectable CGFloat tapCircleBurstAmount;
 
 /** The UIColor to use for the circle which appears where you tap. NOTE: Setting this defeats the "Smart Color" ability of the tap circle. Alpha values less than 1 are recommended. */
-@property UIColor *tapCircleColor;
+@property IBInspectable UIColor *tapCircleColor;
 
 /** The UIColor to fade clear backgrounds to. NOTE: Setting this defeats the "Smart Color" ability of the background fade. Alpha values less than 1 are recommended. */
-@property UIColor *backgroundFadeColor;
+@property IBInspectable UIColor *backgroundFadeColor;
 
 /** A flag to set to YES to have the tap-circle ripple from point of touch. If this is set to NO, the tap-circle will always ripple from the center of the tab. Default is YES. */
-@property (nonatomic) BOOL rippleFromTapLocation;
+@property (nonatomic) IBInspectable BOOL rippleFromTapLocation;
 
 /** A flag to set to YES to have the tap-circle ripple beyond the bounds of the view. If this is set to NO, the tap-circle will be clipped to the view's bounds. Default is NO. */
-@property (nonatomic) BOOL rippleBeyondBounds;
+@property (nonatomic) IBInspectable BOOL rippleBeyondBounds;
 
 /** A flag to set to YES to CHANGE a flat view to raised, or set to NO to CHANGE a raised view to flat. If you used one of the provided custom initializers, you should probably leave this parameter alone. If you instantiated via storyboard or IB and want to change from riased to flat, this is the parameter for you! Default is YES. */
-@property (nonatomic) BOOL isRaised;
+@property (nonatomic) IBInspectable BOOL isRaised;
 
 /** A flag to set to YES to use Smart Color, or NO to use a custom color scheme. While Smart Color is the default (usesSmartColor = YES), customization is cool too. */
-@property (nonatomic) BOOL usesSmartColor;
+@property (nonatomic) IBInspectable BOOL usesSmartColor;
 
 /** A property governing the title font. It is settable via UIAppearance! */
-@property (nonatomic) UIFont *titleFont UI_APPEARANCE_SELECTOR;
+@property (nonatomic) IBInspectable UIFont *titleFont UI_APPEARANCE_SELECTOR;
 
 
 @end
