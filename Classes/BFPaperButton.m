@@ -150,6 +150,8 @@ CGFloat const bfPaperButton_tapCircleDiameterDefault = -2.f;
     
     self.fadeAndClippingMaskRect = CGRectMake(self.bounds.origin.x, self.bounds.origin.y , self.bounds.size.width, self.bounds.size.height);
     
+    [self setEnabled:self.enabled];
+
     [self setNeedsDisplay];
     [self.layer setNeedsDisplay];
 }
@@ -186,6 +188,8 @@ CGFloat const bfPaperButton_tapCircleDiameterDefault = -2.f;
     
     self.fadeAndClippingMaskRect = CGRectMake(self.bounds.origin.x, self.bounds.origin.y , self.bounds.size.width, self.bounds.size.height);
     
+    [self setEnabled:self.enabled];
+
     [self setNeedsDisplay];
     [self.layer setNeedsDisplay];
 }

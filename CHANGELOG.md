@@ -5,6 +5,10 @@ BFPaperButton
 > Note that this changelog was started very late, at roughly the time between version 2.0.17 and 2.0.18. Non consecutive jumps in changelog mean that there were incremental builds that weren't released as a pod, typically while solving a problem.
 
 
+2.1.1
+---------
+* (^) Fixed bug where '.enabled' property was not being taken into account during sizeToFit and layoutSubviews calls. [Issue 28](https://github.com/bfeher/BFPaperButton/issues/28)  
+
 
 2.1.0
 ---------
