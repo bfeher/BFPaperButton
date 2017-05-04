@@ -38,7 +38,7 @@ extern CGFloat const bfPaperButton_tapCircleDiameterFull;
 extern CGFloat const bfPaperButton_tapCircleDiameterDefault;
 
 IB_DESIGNABLE
-@interface BFPaperButton : UIButton <UIGestureRecognizerDelegate>
+@interface BFPaperButton : UIButton <UIGestureRecognizerDelegate, CAAnimationDelegate>
 
 /* Notes on RAISED vs FLAT and SMART COLOR vs NON SMART COLOR:
  *
