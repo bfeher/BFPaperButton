@@ -58,7 +58,7 @@ or
 ```objective-c
 // #define EXP_OLD_SYNTAX // enable backward-compatibility
 #define EXP_SHORTHAND
-#import "Expecta.h"
+# import "Expecta.h"
 ```
 
 If `EXP_SHORTHAND` is not defined, expectations must be written with `EXP_expect` instead of `expect`.
@@ -146,7 +146,7 @@ Writing a new matcher is easy with special macros provided by Expecta. Take a lo
 `EXPMatchers+beKindOf.h`
 
 ```objective-c
-#import "Expecta.h"
+# import "Expecta.h"
 
 EXPMatcherInterface(beKindOf, (Class expected));
 // 1st argument is the name of the matcher function
@@ -159,7 +159,7 @@ EXPMatcherInterface(beKindOf, (Class expected));
 `EXPMatchers+beKindOf.m`
 
 ```objective-c
-#import "EXPMatchers+beKindOf.h"
+# import "EXPMatchers+beKindOf.h"
 
 EXPMatcherImplementationBegin(beKindOf, (Class expected)) {
   BOOL actualIsNil = (actual == nil);
