@@ -282,8 +282,6 @@ CGFloat const bfPaperButton_tapCircleDiameterDefault = -2.f;
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:nil];
     tapGestureRecognizer.delegate = self;
     [self addGestureRecognizer:tapGestureRecognizer];
-    
-    [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:)];
 }
 
 
