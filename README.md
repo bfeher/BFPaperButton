@@ -19,7 +19,7 @@ BFPaperButtons come in 2 flavors, Flat or Raised.
 Flat BFPaperButtons have no shadow and will remain flat through all animations. Flat buttons can be transparent, in which case the background will also fade a little when tapped.
 Raised BFPaperButtons have a drop shadow that animates along with a tap, giving it the feeling of raising up with your touch. Raised BFPaperButtons do not look good with a clear background color since it will expose their shadow layer underneath.
 
-By default, BFPaperButtons use "Smart Color" which will match the tap-circle and background fade colors to the color of the `titleLabel`.
+By default, BFPaperButtons use "Smart Color", which will match the tap-circle and background fade colors to the color of the `titleLabel`.
 You can turn off Smart Color by setting the property, `.usesSmartColor` to `NO`. If you disable Smart Color, a gray color will be used by default for both the tap-circle and the background color fade.
 You can set your own colors via: `.tapCircleColor` and `.backgroundFadeColor`. Note that setting these disables Smart Color.
 
